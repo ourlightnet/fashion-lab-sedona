@@ -111,6 +111,7 @@ p { margin: 0 0 1em; }
 .hero__body { position: relative; z-index: 1; padding: clamp(48px, 8vw, 96px) 0 clamp(40px, 6vw, 72px); max-width: 900px; }
 .hero__body h1 { margin-bottom: .35em; text-shadow: 0 2px 20px rgba(0,0,0,.5); }
 .hero__body .lead { max-width: 640px; text-shadow: 0 1px 12px rgba(0,0,0,.6); }
+.hero__body h1 .grad-text { background: none; color: #ffb055; -webkit-text-fill-color: #ffb055; }
 .hero__badge { display: inline-block; background: var(--sedona); color: var(--white); font-family: var(--font-head); font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; padding: .5em .9em; border-radius: var(--radius); margin-bottom: 1.2rem; }
 .hero--short { min-height: min(62vh, 560px); }
 
@@ -133,6 +134,10 @@ p { margin: 0 0 1em; }
 .credit { font-size: .85rem; color: var(--ink-soft); margin-top: 14px; }
 .credit a { color: inherit; }
 .section--black .credit { color: #bbb; }
+.credit--top { font-size: 1.1rem; font-weight: 500; color: var(--ink); margin: 0 0 18px; padding-left: 12px; border-left: 4px solid var(--sedona); }
+.credit--top a:first-of-type { font-weight: 700; color: var(--sedona-deep); }
+.section--black .credit--top { color: var(--white); }
+.section--black .credit--top a:first-of-type { color: var(--sedona-glow); }
 
 /* Cards ------------------------------------------------------------------ */
 .cards { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
@@ -143,6 +148,8 @@ p { margin: 0 0 1em; }
 .card__meta { font-size: .85rem; letter-spacing: .05em; text-transform: uppercase; color: var(--sedona); font-family: var(--font-head); }
 .card__body .btn { align-self: flex-start; margin-top: auto; }
 .section--black .card { background: #121212; border-color: #2a2a2a; color: var(--white); }
+.sponsor-list a { color: inherit; text-decoration: underline; text-decoration-color: var(--sedona); text-underline-offset: 3px; }
+.sponsor-list a:hover { color: var(--sedona); }
 
 /* Split ------------------------------------------------------------------ */
 .split { display: grid; gap: clamp(28px, 5vw, 64px); align-items: center; }
