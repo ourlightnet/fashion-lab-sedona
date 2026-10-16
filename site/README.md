@@ -9,6 +9,7 @@ Static site, no build step. Open `index.html` in a browser or host the `site/` f
 - `popups.html` — past pop-ups and workshops.
 - `2025.html`, `2024.html` — prior years' photos (Prior Years menu).
 - `videos.html` — the YouTube videos.
+- `updates/` — sign-up page for Fashion Lab updates (fashionlabsedona.com/updates). `newsletter/` redirects there.
 
 ## Folders
 
@@ -21,7 +22,7 @@ Static site, no build step. Open `index.html` in a browser or host the `site/` f
 
 ## Editing
 
-- Sign-up forms are `<form class="signup">` in `index.html` (monthly updates) and `your-town.html` (playbook list). Put each Brevo form's URL in the form's `action` attribute. Field names match Brevo: `EMAIL`, `FIRSTNAME`, and the custom attributes `CITY` and `ORGANIZATION`. While `action` is empty, the form opens an email to fashionlabsedona@gmail.com instead.
+- Sign-up forms are `<form class="signup">` in `index.html` and `updates/index.html` (monthly updates, same Brevo form) and `your-town.html` (playbook list). Put each Brevo form's URL in the form's `action` attribute. Field names match Brevo: `EMAIL`, `FIRSTNAME`, and the custom attributes `CITY` and `ORGANIZATION`. While `action` is empty, the form opens an email to fashionlabsedona@gmail.com instead.
 - Prior-year photos live in `assets/img/past/<year>/<lab|show|popups>/`.
 
 ## Local preview
