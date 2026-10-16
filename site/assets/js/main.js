@@ -128,10 +128,35 @@
   }
 
   /* Newsletter placeholder ---------------------------------------------- */
-  var nl = document.querySelector('form.newsletter');
-  if (nl) nl.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var email = nl.querySelector('input[type=email]').value;
-    window.location.href = 'mailto:fashionlabsedona@gmail.com?subject=' + encodeURIComponent('Monthly Fashion Lab updates') + '&body=' + encodeURIComponent('Please add me to the Fashion Lab Sedona list: ' + email);
+  /* Sign-up forms (Brevo) ------------------------------------------------
+     Each form.signup posts to its Brevo form URL in the action attribute.
+     Brevo replies with a page we don't need, so the post goes to a hidden
+     iframe and we show our own thank-you. With no action set yet, the form
+     falls back to opening an email to the team. */
+  document.querySelectorAll('form.signup').forEach(function (form, i) {
+    var done = form.querySelector('.signup__done');
+    form.addEventListener('submit', function (e) {
+      var action = form.getAttribute('action');
+      if (!action) {
+        e.preventDefault();
+        var lines = [];
+        form.querySelectorAll('input[name]:not([type=hidden]):not(.signup__trap)').forEach(function (inp) {
+          if (inp.value) lines.push((inp.closest('label') ? inp.closest('label').firstChild.textContent.trim() : inp.name) + ': ' + inp.value);
+        });
+        window.location.href = 'mailto:fashionlabsedona@gmail.com?subject=' + encodeURIComponent(form.dataset.fallbackSubject || 'Fashion Lab updates') + '&body=' + encodeURIComponent('Please add me to the list.\n\n' + lines.join('\n'));
+        return;
+      }
+      var name = 'signup-frame-' + i;
+      if (!document.querySelector('iframe[name="' + name + '"]')) {
+        var f = document.createElement('iframe');
+        f.name = name; f.hidden = true; f.title = 'Sign-up';
+        document.body.appendChild(f);
+      }
+      form.target = name;
+      setTimeout(function () {
+        form.reset();
+        if (done) done.hidden = false;
+      }, 400);
+    });
   });
 })();

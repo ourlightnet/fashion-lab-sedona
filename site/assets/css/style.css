@@ -369,3 +369,12 @@ dialog.docview::backdrop { background: rgba(0,0,0,.78); }
 .video__frame { position: relative; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; overflow: hidden; }
 .video__frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .video figcaption { margin-top: 10px; font-family: var(--font-head); font-size: .9rem; text-transform: uppercase; letter-spacing: .02em; }
+
+/* Sign-up forms ------------------------------------------------------------ */
+.signup__trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.signup__done { grid-column: 1 / -1; margin: 4px 0 0; font-weight: 700; color: var(--sedona-deep); }
+.signup--stack { display: grid; gap: 14px; max-width: 520px; margin-top: 22px; }
+.signup--stack label { display: grid; gap: 6px; font-weight: 500; font-size: .95rem; }
+.signup--stack input:not([type=hidden]):not(.signup__trap) { padding: .9em 1em; border: 2px solid var(--black); border-radius: var(--radius); font: inherit; min-width: 0; background: var(--white); }
+.signup--stack .btn { justify-self: start; }
+.role p { margin: 6px 0 0; font-size: .95rem; color: #d6d6d6; }
