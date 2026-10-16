@@ -24,6 +24,7 @@ Static site, no build step. Open `index.html` in a browser or host the `site/` f
 ## Editing
 
 - Sign-up forms are `<form class="signup">` in `index.html` and `updates/index.html` (monthly updates, same Brevo form) and `your-town.html` (playbook list). Put each Brevo form's URL in the form's `action` attribute. The Brevo form URLs are already set. Fields must match each Brevo form exactly: the updates form sends `EMAIL`; the playbook form sends `FIRSTNAME`, `EMAIL`, `CITY`, `ORGANIZATION` and an optional phone (`SMS` digits plus `SMS__COUNTRY_CODE`). If you add a field in Brevo, add the same `name` here. While `action` is empty, the form opens an email to fashionlabsedona@gmail.com instead.
+- Sponsors section on the home page is generated from `data/sponsors-2026.csv` (exported from the "Donors Fashion Lab Sedona 2026" Google Sheet). Put logo files in `site/assets/img/sponsors/` named by sponsor (e.g. `fabric-incubator.png`), then run `python3 tools/build_sponsors.py`; it lists the file names it expects. Sponsors without a logo show a name tile.
 - Prior-year photos live in `assets/img/past/<year>/<lab|show|popups>/`.
 
 ## Local preview
