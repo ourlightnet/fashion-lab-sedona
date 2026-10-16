@@ -442,3 +442,13 @@ a.sp-card:hover, .sp-card:focus-visible { border-color: var(--sedona); box-shado
   .sp-card--sm:hover .sp-card__desc, .sp-card--sm:focus-visible .sp-card__desc { opacity: 1; }
 }
 @media (hover: none) { .sp-card--sm .sp-card__desc { font-size: .78rem; } }
+
+/* Sensational Sedonans: designer cards with a small side portrait (ezine photos are small) */
+.sedonans { display: grid; gap: 28px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 520px), 1fr)); }
+.sedonan { flex-direction: row; align-items: flex-start; }
+.sedonan__img { flex: 0 0 auto; width: 140px; aspect-ratio: 125 / 180; height: auto; object-fit: cover; margin: 22px 0 22px 22px; border-radius: 4px; }
+.sedonan .designer__body p { margin: 0; }
+@media (max-width: 560px) {
+  .sedonan { flex-direction: column; }
+  .sedonan__img { width: 125px; margin: 20px 22px 0; }
+}
