@@ -25,12 +25,13 @@ GROUPS = [
 ]
 # Names as they should read on the site, where the sheet has a working label.
 RENAME = {
-    '"d+b … Productions" (round logo)': 'DTB Productions',
+    '"d+b … Productions" (round logo)': 'Downtown Browne Productions',
     'Sedona Superhum Juice': 'Sedona Superhuman Juice',
 }
 
 def slug(name):
-    return re.sub(r'[^a-z0-9]+', '-', name.lower().replace('&', 'and').replace('é', 'e')).strip('-')
+    name = re.sub(r"['’]", '', name.lower()).replace('&', 'and').replace('é', 'e')
+    return re.sub(r'[^a-z0-9]+', '-', name).strip('-')
 
 def logo_for(name):
     for ext in ('svg', 'png', 'webp', 'jpg', 'jpeg'):
