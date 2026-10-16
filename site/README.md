@@ -5,23 +5,25 @@ Static site, no build step. Open `index.html` in a browser or host the `site/` f
 ## Pages
 
 - `index.html` — Fashion Lab Sedona showcase (2026 recap, photos, Create-a-Thon, about, pop-ups, team, sponsors, join).
-- `your-town.html` — "Do the Fashion Lab in your own town or city!": money model, 8 roles, timeline, budget template, print pack, contract pack, lessons, consulting.
+- `your-town.html` — "Do the Fashion Lab in your own town or city!" teaser: what's in the playbook, plus a sign-up form. The full playbook is held in `../drafts/`.
+- `popups.html` — past pop-ups and workshops.
+- `2025.html`, `2024.html` — prior years' photos (Prior Years menu).
+- `videos.html` — the YouTube videos.
+- `updates/` — sign-up page for Fashion Lab updates (fashionlabsedona.com/updates). `newsletter/` redirects there.
 
 ## Folders
 
 - `assets/css/style.css` — all styles. Colors and fonts are CSS variables at the top.
-- `assets/js/main.js` — mobile menu, photo lightbox, contract viewer, budget calculator, newsletter placeholder.
+- `assets/js/main.js` — mobile menu, photo lightbox, sign-up forms (Brevo).
 - `assets/img/show/` — 2026 Fashion Show photos (KFM Designs, proofing watermark).
 - `assets/img/lab/` — 2026 Create-a-Thon photos (KFM Designs, proofing watermark).
 - `assets/img/folder/` — Create-a-Thon phone photos from the shared folder.
 - `assets/img/team/`, `assets/img/site/` — headshots and graphics from the old Squarespace site.
-- `assets/docs/fashion-lab-budget-template.xlsx` — downloadable budget with formulas, roles and timeline tabs.
 
 ## Editing
 
-- Contracts live at the bottom of `your-town.html` inside `<template id="doc-...">` blocks. Edit the text there; the cards open them.
-- Budget numbers are in the table in `your-town.html`; the `data-sedona` attribute on each input is what the "Fill with Sedona 2026" button uses.
-- Newsletter form is a placeholder (opens an email). Point it at Brevo or another list when ready.
+- Sign-up forms are `<form class="signup">` in `index.html` and `updates/index.html` (monthly updates, same Brevo form) and `your-town.html` (playbook list). Put each Brevo form's URL in the form's `action` attribute. The Brevo form URLs are already set. Fields must match each Brevo form exactly: the updates form sends `EMAIL`; the playbook form sends `FIRSTNAME`, `EMAIL`, `CITY`, `ORGANIZATION` and an optional phone (`SMS` digits plus `SMS__COUNTRY_CODE`). If you add a field in Brevo, add the same `name` here. While `action` is empty, the form opens an email to fashionlabsedona@gmail.com instead.
+- Prior-year photos live in `assets/img/past/<year>/<lab|show|popups>/`.
 
 ## Local preview
 
