@@ -104,9 +104,29 @@
           <h2>Send me the playbook</h2>
           <p class="lead">Tell us where you'd like to bring the Fashion Lab. We'll email you as soon as the playbook is ready.</p>
           <form class="signup signup--stack" action="https://ebebc29d.sibforms.com/serve/MUIFALH1qsv8obgNitZidrCGSYmba4Y1LZKltmwW3Cj-trRT4Xp5DXFHFan301C5V4EE7aKYbNuZwF8OpNeZh-fKmxSenAMFmdEntSffjIZDtyyOOlOcxiH4B5iqWRGSWnEjDfINVpp47YNU05glUBKHQGx75E6Op_OxIhsuXuNMJZa8bIxSukrU2K1qIGq2C9q8plUTWGIiTEDh" method="post" data-fallback-subject="Fashion Lab playbook for our town" aria-label="Get the Fashion Lab playbook">
+            <label>First name<input type="text" name="FIRSTNAME" autocomplete="given-name" maxlength="200" required></label>
             <label>Email<input type="email" name="EMAIL" autocomplete="email" required></label>
             <label>Town or city<input type="text" name="CITY" autocomplete="address-level2" maxlength="200" required></label>
             <label>Organization <span class="muted">(optional)</span><input type="text" name="ORGANIZATION" autocomplete="organization" maxlength="200"></label>
+            <div class="signup__field">
+              <label for="signup-phone">Phone <span class="muted">(optional)</span></label>
+              <div class="signup__phone">
+                <select name="SMS__COUNTRY_CODE" aria-label="Country code">
+                  <option value="+1" selected>+1 US/CA</option>
+                  <option value="+52">+52 MX</option>
+                  <option value="+44">+44 UK</option>
+                  <option value="+61">+61 AU</option>
+                  <option value="+64">+64 NZ</option>
+                  <option value="+49">+49 DE</option>
+                  <option value="+33">+33 FR</option>
+                  <option value="+34">+34 ES</option>
+                  <option value="+39">+39 IT</option>
+                  <option value="+31">+31 NL</option>
+                  <option value="+91">+91 IN</option>
+                </select>
+                <input id="signup-phone" type="tel" name="SMS" autocomplete="tel-national" inputmode="tel" placeholder="928 555 0123">
+              </div>
+            </div>
             <input class="signup__trap" type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off" aria-hidden="true">
             <input type="hidden" name="locale" value="en">
             <button class="btn btn--sedona" type="submit">Send me the playbook</button>

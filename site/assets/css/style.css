@@ -374,7 +374,19 @@ dialog.docview::backdrop { background: rgba(0,0,0,.78); }
 .signup__trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .signup__done { grid-column: 1 / -1; margin: 4px 0 0; font-weight: 700; color: var(--sedona-deep); }
 .signup--stack { display: grid; gap: 14px; max-width: 520px; margin-top: 22px; }
-.signup--stack label { display: grid; gap: 6px; font-weight: 500; font-size: .95rem; }
+.signup--stack label { display: block; font-weight: 500; font-size: .95rem; }
+.signup--stack label > input { display: block; width: 100%; margin-top: 6px; }
 .signup--stack input:not([type=hidden]):not(.signup__trap) { padding: .9em 1em; border: 2px solid var(--black); border-radius: var(--radius); font: inherit; min-width: 0; background: var(--white); }
 .signup--stack .btn { justify-self: start; }
+.signup__field { display: grid; gap: 6px; font-weight: 500; font-size: .95rem; }
+.signup__phone { display: grid; grid-template-columns: auto 1fr; gap: 8px; }
+.signup--stack select { padding: .9em .6em; border: 2px solid var(--black); border-radius: var(--radius); font: inherit; background: var(--white); }
 .role p { margin: 6px 0 0; font-size: .95rem; color: #d6d6d6; }
+.video__play { display: block; color: inherit; }
+.video__play img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+.video__play:hover img { transform: scale(1.03); }
+.video__btn { position: absolute; left: 50%; top: 50%; width: 76px; height: 54px; margin: -27px 0 0 -38px; background: var(--sedona); border-radius: 14px; box-shadow: 0 6px 20px rgba(0,0,0,.35); transition: transform .2s ease; }
+.video__btn::after { content: ""; position: absolute; left: 31px; top: 16px; border-style: solid; border-width: 11px 0 11px 18px; border-color: transparent transparent transparent var(--white); }
+.video__play:hover .video__btn { transform: scale(1.08); }
+.video figcaption a { font-family: var(--font-body); text-transform: none; letter-spacing: 0; font-weight: 500; color: var(--sedona-deep); }
+.lead a { color: inherit; text-decoration-color: var(--sedona); text-underline-offset: 3px; }

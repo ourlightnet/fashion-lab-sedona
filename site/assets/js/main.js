@@ -128,6 +128,22 @@
   }
 
   /* Newsletter placeholder ---------------------------------------------- */
+  /* Videos: show a thumbnail, load the YouTube player only when clicked */
+  document.querySelectorAll('a.video__play[data-video]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + a.dataset.video + '?autoplay=1';
+      f.title = a.getAttribute('aria-label') || 'Video';
+      f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      f.allowFullscreen = true;
+      var box = document.createElement('div');
+      box.className = 'video__frame';
+      box.appendChild(f);
+      a.replaceWith(box);
+    });
+  });
+
   /* Sign-up forms (Brevo) ------------------------------------------------
      Each form.signup posts to its Brevo form URL in the action attribute.
      Brevo replies with a page we don't need, so the post goes to a hidden
@@ -145,6 +161,15 @@
         });
         window.location.href = 'mailto:fashionlabsedona@gmail.com?subject=' + encodeURIComponent(form.dataset.fallbackSubject || 'Fashion Lab updates') + '&body=' + encodeURIComponent('Please add me to the list.\n\n' + lines.join('\n'));
         return;
+      }
+      // Brevo wants the phone as digits only, without the country code.
+      var phone = form.querySelector('input[name=SMS]');
+      var cc = form.querySelector('select[name=SMS__COUNTRY_CODE]');
+      if (phone) {
+        var digits = phone.value.replace(/\D/g, '');
+        var code = cc ? cc.value.replace(/\D/g, '') : '';
+        if (code && digits.indexOf(code) === 0 && digits.length > 10) digits = digits.slice(code.length);
+        phone.value = digits;
       }
       var name = 'signup-frame-' + i;
       if (!document.querySelector('iframe[name="' + name + '"]')) {
