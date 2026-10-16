@@ -9,6 +9,7 @@ Static site, no build step. Open `index.html` in a browser or host the `site/` f
 - `popups.html` — past pop-ups and workshops.
 - `2025.html`, `2024.html` — prior years' photos (Prior Years menu).
 - `videos.html` — the YouTube videos.
+- `designers.html` — the 2026 Create-a-Thon designers (photos in `assets/img/designers/`). `designers-2026/` forwards the old Squarespace address there.
 - `updates/` — sign-up page for Fashion Lab updates (fashionlabsedona.com/updates). `newsletter/` redirects there.
 
 ## Folders
