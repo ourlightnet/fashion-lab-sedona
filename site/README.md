@@ -9,7 +9,7 @@ Static site, no build step. Open `index.html` in a browser or host the `site/` f
 - `popups.html` — past pop-ups and workshops.
 - `2025.html`, `2024.html` — prior years' photos (Prior Years menu).
 - `videos.html` — the YouTube videos.
-- `photos-2026.html` — 2026 photos hub (big group shot, one card per event). Event pages: `createathon-2026.html` (Day 1 and Day 2), `show-2026.html` (Karl Mullings), `show-2026-leah.html` (Leah Joy Love, links to her Pixieset gallery until her photos are added), `afterparty-2026.html`. Photos are culled to one shot per person and live in `assets/img/2026/<event>/`.
+- `photos-2026.html` — 2026 photos hub (big group shot, one card per event). Event pages: `createathon-2026.html` (Day 1 and Day 2), `show-2026.html` (Karl Mullings), `show-2026-leah.html` (Leah Joy Love, links to her Pixieset gallery until her photos are added), `afterparty-2026.html`, and `galleries-2026.html` (links to both photographers' full galleries). Every 2026 page ends with links to the 2025 and 2024 photos. Photos are culled to one shot per person and live in `assets/img/2026/<event>/`.
 - `designers.html` — the 2026 Create-a-Thon designers (photos in `assets/img/designers/`). `designers-2026/` forwards the old Squarespace address there.
 - `updates/` — sign-up page for Fashion Lab updates (fashionlabsedona.com/updates). `newsletter/` redirects there.
 
