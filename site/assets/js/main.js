@@ -127,6 +127,19 @@
     recalc();
   }
 
+  /* Copy buttons (press boilerplate) ------------------------------------ */
+  document.querySelectorAll('[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var el = document.querySelector(btn.dataset.copy);
+      if (!el || !navigator.clipboard) return;
+      navigator.clipboard.writeText(el.textContent.trim()).then(function () {
+        var label = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(function () { btn.textContent = label; }, 1800);
+      });
+    });
+  });
+
   /* Newsletter placeholder ---------------------------------------------- */
   /* Videos: show a thumbnail, load the YouTube player only when clicked */
   document.querySelectorAll('a.video__play[data-video]').forEach(function (a) {
