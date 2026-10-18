@@ -14,7 +14,7 @@ Static site, no build step. Open `index.html` in a browser or host the `site/` f
 - `designers.html` — the 2026 Create-a-Thon designers (photos in `assets/img/designers/`). `designers-2026/` forwards the old Squarespace address there.
 - `updates/` — sign-up page for Fashion Lab updates (fashionlabsedona.com/updates). `newsletter/` redirects there.
 - `playbook-map.html` — team map of where playbook requests come from (not in the menu, not indexed). Rebuild it from a Brevo export with `python3 tools/build_request_map.py`; see the top of that script.
-- `press.html` — press page: news coverage, fast facts, boilerplate, logos and photos, press contact. Add new clippings to the `press-list` at the top.
+- `press.html` — press page: news coverage, fast facts, boilerplate, logos and photos, press contact. Add new clippings to the `press-list` at the top; PDF copies of articles go in `assets/press/`.
 
 ## Folders
 
