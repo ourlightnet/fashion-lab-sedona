@@ -535,8 +535,9 @@ a.sp-card:hover, .sp-card:focus-visible { border-color: var(--sedona); box-shado
 .teaser__row img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
 .teaser__row a:hover img { transform: scale(1.04); }
 @media (max-width: 640px) { .teaser__row { grid-template-columns: repeat(3, 1fr); } .teaser__row a:nth-child(n+4) { display: none; } }
-.collab-strip { display: grid; gap: 10px; grid-template-columns: repeat(3, 1fr); }
-@media (min-width: 700px) { .collab-strip { grid-template-columns: repeat(6, 1fr); } }
-.collab-strip a { display: block; overflow: hidden; border-radius: 3px; aspect-ratio: 3 / 4; }
-.collab-strip img { width: 100%; height: 100%; object-fit: cover; object-position: center 60%; transition: transform .5s ease; }
-.collab-strip a:hover img { transform: scale(1.04); }
+.collab-masonry { columns: 2; column-gap: 10px; }
+@media (min-width: 700px) { .collab-masonry { columns: 4; } }
+@media (min-width: 1000px) { .collab-masonry { columns: 6; } .collab-masonry--page { columns: 4; } }
+.collab-masonry a { display: block; break-inside: avoid; margin-bottom: 10px; overflow: hidden; border-radius: 3px; }
+.collab-masonry img { width: 100%; height: auto; display: block; transition: transform .5s ease; }
+.collab-masonry a:hover img { transform: scale(1.04); }
