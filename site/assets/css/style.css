@@ -130,6 +130,14 @@ p { margin: 0 0 1em; }
 .winners__list a, .winners__list span { color: var(--white); text-decoration: none; }
 .winners__list a { border-bottom: 3px solid var(--sedona); }
 .winners__list a:hover { color: #ffb055; }
+.winners a.eyebrow { text-decoration: none; }
+
+/* 2026 award winners page */
+.winners-page { display: grid; gap: 28px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); }
+.winner__place { display: block; font-family: var(--font-head); font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--sedona-deep); margin-bottom: .6rem; }
+.winner__noimg { aspect-ratio: 4 / 5; background: var(--grad); display: grid; place-items: center; }
+.winner__noimg span { font-family: var(--font-head); font-size: 9rem; color: var(--white); line-height: 1; }
+.winner .designer__body a { color: var(--sedona-deep); }
 
 /* Photo grids ------------------------------------------------------------ */
 .grid { display: grid; gap: 10px; }
@@ -490,3 +498,4 @@ a.sp-card:hover, .sp-card:focus-visible { border-color: var(--sedona); box-shado
 .reqmap__table th, .reqmap__table td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); }
 .reqmap__table td:last-child, .reqmap__table th:last-child { text-align: right; }
 .reqmap__note { margin-top: 18px; font-size: .9rem; }
+.signup--stack label > textarea { display: block; width: 100%; margin-top: 6px; padding: .9em 1em; border: 2px solid var(--black); border-radius: var(--radius); font: inherit; background: var(--white); resize: vertical; }
