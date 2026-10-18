@@ -231,4 +231,61 @@
     next.hidden = false;
     next.querySelector('.playbook-next__thanks').focus();
   }
+
+  /* Email links ------------------------------------------------------------
+     A mailto: link does nothing for people without an email app set up
+     (common with Gmail in the browser). So every email link opens a small
+     panel instead: open the email app, open Gmail, or copy the address. */
+  var mailDialog;
+  function openMail(href) {
+    var q = href.replace(/^mailto:/i, '').split('?');
+    var to = decodeURIComponent(q[0]);
+    var params = new URLSearchParams(q[1] || '');
+    var subject = params.get('subject') || '';
+    var body = params.get('body') || '';
+    if (!mailDialog) {
+      mailDialog = document.createElement('div');
+      mailDialog.className = 'mail-dialog';
+      mailDialog.setAttribute('role', 'dialog');
+      mailDialog.setAttribute('aria-modal', 'true');
+      mailDialog.setAttribute('aria-labelledby', 'mail-dialog-title');
+      mailDialog.innerHTML =
+        '<div class="mail-dialog__box">' +
+        '<button class="mail-dialog__close" type="button" aria-label="Close">×</button>' +
+        '<h3 id="mail-dialog-title">Email us</h3>' +
+        '<p class="mail-dialog__to"><a class="mail-dialog__addr"></a></p>' +
+        '<p class="mail-dialog__subject muted"></p>' +
+        '<div class="mail-dialog__actions">' +
+        '<a class="btn btn--sedona mail-dialog__gmail" target="_blank" rel="noopener">Open in Gmail</a>' +
+        '<a class="btn mail-dialog__app">Open my email app</a>' +
+        '<button class="btn btn--ghost mail-dialog__copy" type="button">Copy address</button>' +
+        '</div></div>';
+      document.body.appendChild(mailDialog);
+      var close = function () { mailDialog.classList.remove('is-open'); };
+      mailDialog.querySelector('.mail-dialog__close').addEventListener('click', close);
+      mailDialog.addEventListener('click', function (e) { if (e.target === mailDialog) close(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+      mailDialog.querySelector('.mail-dialog__copy').addEventListener('click', function () {
+        var btn = this, addr = mailDialog.dataset.to;
+        var done = function () { btn.textContent = 'Copied!'; setTimeout(function () { btn.textContent = 'Copy address'; }, 2000); };
+        if (navigator.clipboard) navigator.clipboard.writeText(addr).then(done, function () { window.prompt('Copy our email address:', addr); });
+        else window.prompt('Copy our email address:', addr);
+      });
+    }
+    mailDialog.dataset.to = to;
+    var addr = mailDialog.querySelector('.mail-dialog__addr');
+    addr.textContent = to; addr.href = href;
+    mailDialog.querySelector('.mail-dialog__subject').textContent = subject ? 'Subject: ' + subject : '';
+    mailDialog.querySelector('.mail-dialog__app').href = href;
+    mailDialog.querySelector('.mail-dialog__gmail').href = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(to) +
+      (subject ? '&su=' + encodeURIComponent(subject) : '') + (body ? '&body=' + encodeURIComponent(body) : '');
+    mailDialog.classList.add('is-open');
+    mailDialog.querySelector('.mail-dialog__gmail').focus();
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="mailto:"]');
+    if (!a || a.closest('.mail-dialog') || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    e.preventDefault();
+    openMail(a.getAttribute('href'));
+  });
 })();
