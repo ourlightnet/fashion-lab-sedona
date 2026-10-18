@@ -135,8 +135,6 @@ p { margin: 0 0 1em; }
 /* 2026 award winners page */
 .winners-page { display: grid; gap: 28px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); }
 .winner__place { display: block; font-family: var(--font-head); font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--sedona-deep); margin-bottom: .6rem; }
-.winner__noimg { aspect-ratio: 4 / 5; background: var(--grad); display: grid; place-items: center; }
-.winner__noimg span { font-family: var(--font-head); font-size: 9rem; color: var(--white); line-height: 1; }
 .winner .designer__body a { color: var(--sedona-deep); }
 
 /* Photo grids ------------------------------------------------------------ */
