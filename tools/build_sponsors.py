@@ -18,6 +18,7 @@ START, END = '<!-- SPONSORS:START -->', '<!-- SPONSORS:END -->'
 GROUPS = [
     ('Headline Sponsor', 'Headline Sponsors', 'xl'),
     ('Event Sponsor', 'Event Sponsors', 'md'),
+    ('Event Collaborator', 'Event Collaborators', 'md'),
     ('Production Partner', 'Production Partner', 'md'),
     ('Vendor', 'Vendors', 'sm'),
     ('Raffle Donor', 'Raffle Donors', 'sm'),
