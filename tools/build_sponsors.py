@@ -13,6 +13,8 @@ CSV = ROOT / 'data' / 'sponsors-2026.csv'
 INDEX = ROOT / 'site' / 'index.html'
 LOGOS = ROOT / 'site' / 'assets' / 'img' / 'sponsors'
 START, END = '<!-- SPONSORS:START -->', '<!-- SPONSORS:END -->'
+# Compact strip of headline sponsor logos near the top of the page.
+STRIP_START, STRIP_END = '<!-- HEADLINE-STRIP:START -->', '<!-- HEADLINE-STRIP:END -->'
 
 # Section order, heading and display size on the page.
 GROUPS = [
@@ -62,6 +64,20 @@ def card(row, size):
     close = '</a>' if url else '</div>'
     return f'          {tag}{inner}{close}'
 
+def strip_item(row):
+    name = RENAME.get(row['Name'], row['Name']).strip()
+    url, logo, e = link(row['Link']), logo_for(name), html.escape
+    mark = (f'<img src="{logo}" alt="{e(name)}" loading="lazy">' if logo
+            else f'<span class="sp-strip__name">{e(name)}</span>')
+    attrs = ' target="_blank" rel="noopener"' if url.startswith('http') else ''
+    if url:
+        return f'          <a class="sp-strip__item" href="{e(url)}" title="{e(name)}"{attrs}>{mark}</a>'
+    return f'          <span class="sp-strip__item" title="{e(name)}">{mark}</span>'
+
+def replace_between(page, start, end, body):
+    s, t = page.index(start), page.index(end) + len(end)
+    return page[:s] + body + page[t:]
+
 def build():
     rows = [r for r in csv.DictReader(open(CSV, encoding='utf-8')) if r.get('Name', '').strip()]
     out = [START]
@@ -73,9 +89,11 @@ def build():
         out += [card(r, size) for r in members]
         out.append('        </div>\n      </div>')
     out.append('      ' + END)
-    page = INDEX.read_text(encoding='utf-8')
-    s, t = page.index(START), page.index(END) + len(END)
-    INDEX.write_text(page[:s] + '\n'.join(out) + page[t:], encoding='utf-8')
+    page = replace_between(INDEX.read_text(encoding='utf-8'), START, END, '\n'.join(out))
+    headline = [strip_item(r) for r in rows if r['Category'].strip() == GROUPS[0][0]]
+    strip = [STRIP_START, '        <div class="sp-strip__logos">', *headline, '        </div>', '        ' + STRIP_END]
+    page = replace_between(page, STRIP_START, STRIP_END, '\n'.join(strip))
+    INDEX.write_text(page, encoding='utf-8')
     missing = [RENAME.get(r['Name'], r['Name']) for r in rows if not logo_for(RENAME.get(r['Name'], r['Name']))]
     print(f'{len(rows)} sponsors; {len(rows) - len(missing)} with logos')
     print('Logo file names expected (in site/assets/img/sponsors/):')

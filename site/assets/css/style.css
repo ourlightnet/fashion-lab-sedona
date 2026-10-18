@@ -461,6 +461,20 @@ dialog.docview::backdrop { background: rgba(0,0,0,.78); }
 .designer__links { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .9rem; font-weight: 700; }
 .designer__links a { color: var(--sedona-deep); text-underline-offset: 3px; }
 
+/* Headline sponsor strip (near the top of the home page) ------------------- */
+.sp-strip { background: var(--white); border-bottom: 1px solid var(--line); padding: 22px 0; }
+.sp-strip__inner { display: flex; align-items: center; gap: 12px 28px; flex-wrap: wrap; justify-content: center; }
+.sp-strip__label { margin: 0; text-decoration: none; white-space: nowrap; }
+.sp-strip__logos { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 14px 30px; flex: 1 1 520px; }
+.sp-strip__item { display: flex; align-items: center; justify-content: center; height: 56px; max-width: 150px; transition: transform .2s ease; }
+a.sp-strip__item:hover, a.sp-strip__item:focus-visible { transform: translateY(-2px); }
+.sp-strip__item img { max-height: 100%; max-width: 100%; object-fit: contain; }
+.sp-strip__name { font-family: var(--font-head); font-size: .75rem; text-transform: uppercase; color: var(--sedona-deep); text-align: center; line-height: 1.15; }
+@media (max-width: 600px) {
+  .sp-strip__logos { gap: 12px 20px; }
+  .sp-strip__item { height: 44px; max-width: 110px; }
+}
+
 /* Sponsor logo grid ---------------------------------------------------------- */
 .sp-group { margin-top: 36px; }
 .sp-group .sponsor-title { margin: 0 0 14px; }
