@@ -6,6 +6,7 @@ Static site, no build step. Open `index.html` in a browser or host the `site/` f
 
 - `index.html` — Fashion Lab Sedona showcase (2026 recap, photos, Create-a-Thon, about, pop-ups, team, sponsors, join).
 - `your-town.html` — "Do the Fashion Lab in your own town or city!" teaser: what's in the playbook, plus a sign-up form. The full playbook is held in `../drafts/`.
+- `get-involved.html` — five ways to help (donate materials, volunteer, design for 2027, give, run a Fashion Lab in your town), plus model sign-up, nominations and the updates form. The menu's "Get Involved" item points here.
 - `popups.html` — past pop-ups and workshops.
 - `2025.html`, `2024.html` — prior years' photos (Prior Years menu).
 - `videos.html` — the YouTube videos.
