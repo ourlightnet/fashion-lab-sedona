@@ -328,6 +328,8 @@ dialog.docview::backdrop { background: rgba(0,0,0,.78); }
 .press-list h3 a { text-decoration: none; }
 .press-list h3 a:hover { color: var(--sedona-deep); text-decoration: underline; text-underline-offset: 4px; }
 .press-list p { margin: 0; color: var(--ink-soft); }
+.press-list p.press-list__links { margin-top: 8px; font-size: .9rem; font-weight: 700; }
+.press-list__links a { color: var(--sedona-deep); text-underline-offset: 3px; }
 .facts { display: grid; gap: 2px 32px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); margin: 32px 0 0; }
 .facts div { padding: 14px 0; border-bottom: 1px solid #2a2a2a; }
 .facts dt { font-family: var(--font-head); font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--sedona-glow); }
