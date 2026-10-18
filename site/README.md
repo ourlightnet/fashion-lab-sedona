@@ -13,7 +13,7 @@ Static site, no build step. Open `index.html` in a browser or host the `site/` f
 - `photos-2026.html` — 2026 photos hub (big group shot, one card per event). Event pages: `createathon-2026.html` (Day 1 and Day 2), `show-2026.html` (Karl Mullings), `show-2026-leah.html` (Leah Joy Love, links to her Pixieset gallery until her photos are added), `afterparty-2026.html`, and `galleries-2026.html` (links to both photographers' full galleries). Every 2026 page ends with links to the 2025 and 2024 photos. Photos are culled to one shot per person and live in `assets/img/2026/<event>/`.
 - `designers.html` — the 2026 Create-a-Thon designers (photos in `assets/img/designers/`). `designers-2026/` forwards the old Squarespace address there.
 - `updates/` — sign-up page for Fashion Lab updates (fashionlabsedona.com/updates). `newsletter/` redirects there.
-- `press.html` — press page: news coverage, fast facts, boilerplate, logos and photos, press contact. Add new clippings to the `press-list` at the top.
+- `press.html` — press page: news coverage, fast facts, boilerplate, logos and photos, press contact. Add new clippings to the `press-list` at the top; PDF copies of articles go in `assets/press/`.
 
 ## Folders
 
