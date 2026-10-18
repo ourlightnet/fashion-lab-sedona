@@ -490,3 +490,4 @@ a.sp-card:hover, .sp-card:focus-visible { border-color: var(--sedona); box-shado
 .reqmap__table th, .reqmap__table td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); }
 .reqmap__table td:last-child, .reqmap__table th:last-child { text-align: right; }
 .reqmap__note { margin-top: 18px; font-size: .9rem; }
+.signup--stack label > textarea { display: block; width: 100%; margin-top: 6px; padding: .9em 1em; border: 2px solid var(--black); border-radius: var(--radius); font: inherit; background: var(--white); resize: vertical; }
