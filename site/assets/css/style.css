@@ -391,16 +391,24 @@ dialog.docview::backdrop { background: rgba(0,0,0,.78); }
 .video figcaption { margin-top: 10px; font-family: var(--font-head); font-size: .9rem; text-transform: uppercase; letter-spacing: .02em; }
 
 /* Sign-up forms ------------------------------------------------------------ */
+.signup[hidden], .signup__field[hidden], .playbook-next[hidden] { display: none; }
 .signup__trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .signup__done { grid-column: 1 / -1; margin: 4px 0 0; font-weight: 700; color: var(--sedona-deep); }
 .callout .signup__done { color: var(--white); }
 .signup--stack { display: grid; gap: 14px; max-width: 520px; margin-top: 22px; }
 .signup--stack label { display: block; font-weight: 500; font-size: .95rem; }
 .signup--stack label > input { display: block; width: 100%; margin-top: 6px; }
-.signup--stack input:not([type=hidden]):not(.signup__trap) { padding: .9em 1em; border: 2px solid var(--black); border-radius: var(--radius); font: inherit; min-width: 0; background: var(--white); }
+.signup--stack input:not([type=hidden]):not(.signup__trap):not([type=radio]) { padding: .9em 1em; border: 2px solid var(--black); border-radius: var(--radius); font: inherit; min-width: 0; background: var(--white); }
 .signup--stack .btn { justify-self: start; }
 .signup__field { display: grid; gap: 6px; font-weight: 500; font-size: .95rem; }
 .signup__phone { display: grid; grid-template-columns: auto 1fr; gap: 8px; }
+.signup__choice { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px 24px; }
+.signup__choice legend { font-weight: 700; margin-bottom: 10px; padding: 0; }
+.signup__choice label { display: inline-flex; align-items: center; gap: 8px; font-weight: 500; cursor: pointer; }
+.signup__choice input { width: 1.2em; height: 1.2em; accent-color: var(--sedona-deep); margin: 0; }
+.playbook-next { margin-top: 22px; max-width: 560px; }
+.playbook-next__thanks { font-size: 1.1rem; font-weight: 500; padding: 18px 20px; background: var(--white); border-left: 4px solid var(--sedona); border-radius: var(--radius); outline: none; }
+.playbook-next .signup--stack { margin-top: 18px; }
 .signup--stack select { padding: .9em .6em; border: 2px solid var(--black); border-radius: var(--radius); font: inherit; background: var(--white); }
 .role p { margin: 6px 0 0; font-size: .95rem; color: #d6d6d6; }
 .video__play { display: block; color: inherit; }
@@ -463,3 +471,11 @@ a.sp-card:hover, .sp-card:focus-visible { border-color: var(--sedona); box-shado
   .sp-card--sm:hover .sp-card__desc, .sp-card--sm:focus-visible .sp-card__desc { opacity: 1; }
 }
 @media (hover: none) { .sp-card--sm .sp-card__desc { font-size: .78rem; } }
+
+/* Playbook request map (playbook-map.html) -------------------------------- */
+.reqmap__title { margin-bottom: .3em; }
+.reqmap { height: min(70vh, 560px); margin: 24px 0; border: 2px solid var(--black); border-radius: 8px; z-index: 0; }
+.reqmap__table { border-collapse: collapse; width: 100%; max-width: 520px; }
+.reqmap__table th, .reqmap__table td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); }
+.reqmap__table td:last-child, .reqmap__table th:last-child { text-align: right; }
+.reqmap__note { margin-top: 18px; font-size: .9rem; }
