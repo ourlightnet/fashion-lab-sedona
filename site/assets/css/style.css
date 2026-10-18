@@ -121,6 +121,15 @@ p { margin: 0 0 1em; }
 .stats strong { display: block; font-family: var(--font-head); font-size: clamp(1.8rem, 3.5vw, 2.8rem); line-height: 1; margin-bottom: .3em; }
 .stats strong.grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; }
 .stats span { font-size: .85rem; letter-spacing: .06em; text-transform: uppercase; color: #cfcfcf; }
+.hero__links { margin-top: 18px; font-size: 1rem; text-shadow: 0 1px 10px rgba(0,0,0,.7); }
+.hero__links a { color: var(--white); font-weight: 700; text-decoration-color: var(--sedona-glow); text-underline-offset: 4px; }
+.hero__links a:hover { color: #ffb055; }
+.winners { margin-top: 2px; border: 2px solid #222; padding: 22px 18px; text-align: center; }
+.winners .eyebrow { margin-bottom: .9rem; }
+.winners__list { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; font-family: var(--font-head); font-size: clamp(1.2rem, 2.6vw, 1.8rem); line-height: 1.1; }
+.winners__list a, .winners__list span { color: var(--white); text-decoration: none; }
+.winners__list a { border-bottom: 3px solid var(--sedona); }
+.winners__list a:hover { color: #ffb055; }
 
 /* Photo grids ------------------------------------------------------------ */
 .grid { display: grid; gap: 10px; }
