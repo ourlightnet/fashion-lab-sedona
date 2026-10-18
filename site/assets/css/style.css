@@ -126,10 +126,14 @@ p { margin: 0 0 1em; }
 .hero__links a:hover { color: #ffb055; }
 .winners { margin-top: 2px; border: 2px solid #222; padding: 22px 18px; text-align: center; }
 .winners .eyebrow { margin-bottom: .9rem; }
-.winners__list { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; font-family: var(--font-head); font-size: clamp(1.2rem, 2.6vw, 1.8rem); line-height: 1.1; }
-.winners__list a, .winners__list span { color: var(--white); text-decoration: none; }
-.winners__list a { border-bottom: 3px solid var(--sedona); }
-.winners__list a:hover { color: #ffb055; }
+.winners__list { display: grid; grid-template-columns: repeat(3, minmax(0, 220px)); justify-content: center; gap: 22px; }
+.winners__card { display: flex; flex-direction: column; align-items: center; color: var(--white); text-decoration: none; }
+.winners__card img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center top; border-radius: var(--radius); border: 3px solid transparent; transition: border-color .2s; }
+.winners__card:hover img, .winners__card:focus-visible img { border-color: var(--sedona); }
+.winners__place { margin-top: .8rem; font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--sedona-glow); }
+.winners__name { margin-top: .25rem; font-family: var(--font-head); font-size: clamp(1rem, 2.2vw, 1.35rem); line-height: 1.15; text-align: center; }
+.winners__card:hover .winners__name { color: #ffb055; }
+@media (max-width: 560px) { .winners__list { gap: 10px; } .winners__place { font-size: .62rem; letter-spacing: .08em; } }
 .winners a.eyebrow { text-decoration: none; }
 
 /* 2026 award winners page */
