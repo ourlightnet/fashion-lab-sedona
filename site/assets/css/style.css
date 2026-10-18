@@ -332,6 +332,12 @@ dialog.docview::backdrop { background: rgba(0,0,0,.78); }
 .facts div { padding: 14px 0; border-bottom: 1px solid #2a2a2a; }
 .facts dt { font-family: var(--font-head); font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--sedona-glow); }
 .facts dd { margin: 4px 0 0; }
+.quotes { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); align-items: start; }
+.quote { margin: 0; color: var(--ink); background: var(--white); border: 1px solid var(--line); border-top: 6px solid var(--sedona); border-radius: 6px; padding: 24px 24px 20px; }
+.quote blockquote { margin: 0 0 16px; font-size: 1.05rem; line-height: 1.5; }
+.quote blockquote::before { content: "\201C"; display: block; font-family: var(--font-head); font-size: 3rem; line-height: .7; color: var(--sedona); margin-bottom: 6px; }
+.quote strong { display: block; font-family: var(--font-head); font-size: .9rem; text-transform: uppercase; }
+.quote span { font-size: .85rem; color: var(--ink-soft); }
 .boilerplate { margin: 0 0 18px; padding: 20px 22px; background: var(--white); border: 1px solid var(--line); border-left: 6px solid var(--sedona); border-radius: 6px; font-size: 1.05rem; }
 
 .newsletter { display: grid; gap: 10px; grid-template-columns: 1fr auto; max-width: 520px; }
