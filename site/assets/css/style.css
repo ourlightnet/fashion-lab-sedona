@@ -320,6 +320,26 @@ dialog.docview::backdrop { background: rgba(0,0,0,.78); }
 .pill-list { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0; }
 .pill-list li { border: 1px solid currentColor; border-radius: 999px; padding: .35em .9em; font-size: .85rem; }
 
+/* Press page --------------------------------------------------------------- */
+.press-list { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--ink); }
+.press-list li { padding: 22px 0 20px; border-bottom: 1px solid var(--line); }
+.press-list__meta { display: block; font-family: var(--font-head); font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--sedona); margin-bottom: 6px; }
+.press-list h3 { font-size: clamp(1.15rem, 2.2vw, 1.5rem); margin-bottom: .3em; }
+.press-list h3 a { text-decoration: none; }
+.press-list h3 a:hover { color: var(--sedona-deep); text-decoration: underline; text-underline-offset: 4px; }
+.press-list p { margin: 0; color: var(--ink-soft); }
+.facts { display: grid; gap: 2px 32px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); margin: 32px 0 0; }
+.facts div { padding: 14px 0; border-bottom: 1px solid #2a2a2a; }
+.facts dt { font-family: var(--font-head); font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--sedona-glow); }
+.facts dd { margin: 4px 0 0; }
+.quotes { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); align-items: start; }
+.quote { margin: 0; color: var(--ink); background: var(--white); border: 1px solid var(--line); border-top: 6px solid var(--sedona); border-radius: 6px; padding: 24px 24px 20px; }
+.quote blockquote { margin: 0 0 16px; font-size: 1.05rem; line-height: 1.5; }
+.quote blockquote::before { content: "\201C"; display: block; font-family: var(--font-head); font-size: 3rem; line-height: .7; color: var(--sedona); margin-bottom: 6px; }
+.quote strong { display: block; font-family: var(--font-head); font-size: .9rem; text-transform: uppercase; }
+.quote span { font-size: .85rem; color: var(--ink-soft); }
+.boilerplate { margin: 0 0 18px; padding: 20px 22px; background: var(--white); border: 1px solid var(--line); border-left: 6px solid var(--sedona); border-radius: 6px; font-size: 1.05rem; }
+
 .newsletter { display: grid; gap: 10px; grid-template-columns: 1fr auto; max-width: 520px; }
 .newsletter input { padding: .9em 1em; border: 2px solid var(--black); border-radius: var(--radius); font: inherit; min-width: 0; }
 @media (max-width: 520px) { .newsletter { grid-template-columns: 1fr; } }
