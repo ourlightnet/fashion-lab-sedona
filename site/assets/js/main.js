@@ -244,6 +244,18 @@
     var subject = params.get('subject') || '';
     var body = params.get('body') || '';
     if (!mailDialog) {
+      // Styles live here, next to the panel, so the panel never shows unstyled.
+      var st = document.createElement('style');
+      st.textContent =
+        '.mail-dialog{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;z-index:110;align-items:center;justify-content:center;padding:16px}' +
+        '.mail-dialog.is-open{display:flex}' +
+        '.mail-dialog__box{position:relative;background:#fff;color:#111;border-radius:8px;padding:32px 28px 28px;max-width:460px;width:100%;box-shadow:0 10px 30px rgba(0,0,0,.12)}' +
+        '.mail-dialog__close{position:absolute;top:10px;right:12px;background:none;border:0;font-size:1.8rem;line-height:1;cursor:pointer;color:#111}' +
+        '.mail-dialog__to{font-size:1.15rem;font-weight:700;margin:6px 0 4px;word-break:break-all}' +
+        '.mail-dialog__subject{font-size:.9rem;margin:0 0 18px}' +
+        '.mail-dialog__actions{display:grid;gap:10px}' +
+        '.mail-dialog__actions .btn{width:100%;justify-content:center;text-align:center}';
+      document.head.appendChild(st);
       mailDialog = document.createElement('div');
       mailDialog.className = 'mail-dialog';
       mailDialog.setAttribute('role', 'dialog');
@@ -280,7 +292,7 @@
     mailDialog.querySelector('.mail-dialog__gmail').href = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(to) +
       (subject ? '&su=' + encodeURIComponent(subject) : '') + (body ? '&body=' + encodeURIComponent(body) : '');
     mailDialog.classList.add('is-open');
-    mailDialog.querySelector('.mail-dialog__gmail').focus();
+    mailDialog.querySelector('.mail-dialog__gmail').focus({ preventScroll: true });
   }
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href^="mailto:"]');
