@@ -210,7 +210,7 @@
     var follow = next.querySelector('form');
     var hadPhone = !!sent.get('SMS');
     follow.querySelectorAll('input.carry').forEach(function (el) { el.remove(); });
-    ['FIRSTNAME', 'EMAIL', 'CITY', 'ORGANIZATION'].concat(hadPhone ? ['SMS', 'SMS__COUNTRY_CODE'] : []).forEach(function (key) {
+    ['FIRSTNAME', 'LASTNAME', 'EMAIL', 'CITY', 'ORGANIZATION'].concat(hadPhone ? ['SMS', 'SMS__COUNTRY_CODE'] : []).forEach(function (key) {
       if (!sent.get(key)) return;
       var el = document.createElement('input');
       el.type = 'hidden'; el.className = 'carry'; el.name = key; el.value = sent.get(key);
