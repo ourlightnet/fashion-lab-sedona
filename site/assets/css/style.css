@@ -581,3 +581,4 @@ a.sp-card:hover, .sp-card:focus-visible { border-color: var(--sedona); box-shado
 .offer__split { font-weight: 500; }
 .offer__note { font-size: .9rem; }
 .playbook-next__skip { margin: 12px 0 0; font-weight: 500; }
+.offer__rate { font-weight: 700; color: var(--ink-soft); }
