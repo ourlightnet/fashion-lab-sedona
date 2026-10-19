@@ -20,7 +20,7 @@ EXPORT = ROOT / 'data' / 'playbook-requests.csv'
 COORDS = ROOT / 'data' / 'city-coords.csv'
 OUT = ROOT / 'site' / 'assets' / 'data' / 'playbook-requests.js'
 CITY_COLUMNS = ('CITY', 'TOWN OR CITY', 'VILLE')
-UA = 'fashion-lab-sedona-site (fashionlabsedona@gmail.com)'
+UA = 'fashion-lab-sedona-site (info@fashionlabsedona.com)'
 
 def key(city):
     return ' '.join(city.replace('.', ' ').split()).casefold()

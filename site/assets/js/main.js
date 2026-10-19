@@ -172,7 +172,7 @@
         form.querySelectorAll('input[name]:not([type=hidden]):not(.signup__trap)').forEach(function (inp) {
           if (inp.value) lines.push((inp.closest('label') ? inp.closest('label').firstChild.textContent.trim() : inp.name) + ': ' + inp.value);
         });
-        window.location.href = 'mailto:fashionlabsedona@gmail.com?subject=' + encodeURIComponent(form.dataset.fallbackSubject || 'Fashion Lab updates') + '&body=' + encodeURIComponent('Please add me to the list.\n\n' + lines.join('\n'));
+        window.location.href = 'mailto:info@fashionlabsedona.com?subject=' + encodeURIComponent(form.dataset.fallbackSubject || 'Fashion Lab updates') + '&body=' + encodeURIComponent('Please add me to the list.\n\n' + lines.join('\n'));
         return;
       }
       // Brevo wants the phone as digits only, without the country code.
