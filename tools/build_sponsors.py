@@ -1,4 +1,9 @@
-"""Build the sponsors section of site/index.html from data/sponsors-2026.csv.
+"""Build the sponsors section of site/index.html and the Partners page
+(site/partners.html) from data/sponsors-2026.csv.
+
+On the home page only Headline Sponsors show their name under the logo; every
+other logo shows its name and description on hover. The Partners page prints
+every name and description in full.
 
 The CSV is exported from the "Donors Fashion Lab Sedona 2026" Google Sheet
 (File > Download > CSV). Logos are picked up from site/assets/img/sponsors/
@@ -11,6 +16,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 CSV = ROOT / 'data' / 'sponsors-2026.csv'
 INDEX = ROOT / 'site' / 'index.html'
+PARTNERS = ROOT / 'site' / 'partners.html'
 LOGOS = ROOT / 'site' / 'assets' / 'img' / 'sponsors'
 START, END = '<!-- SPONSORS:START -->', '<!-- SPONSORS:END -->'
 # Compact strip of headline sponsor logos near the top of the page.
@@ -49,18 +55,24 @@ def link(url):
         url = 'https://' + url
     return url
 
-def card(row, size):
+def card(row, size, roll=False):
+    """A logo card. roll=True hides the name and shows name + description on hover."""
     name = RENAME.get(row['Name'], row['Name']).strip()
     url, desc = link(row['Link']), row['Description'].strip()
     logo = logo_for(name)
     e = html.escape
     mark = (f'<img src="{logo}" alt="{e(name)}" loading="lazy">' if logo
             else f'<span class="sp-card__name-tile">{e(name)}</span>')
-    inner = (f'<span class="sp-card__logo">{mark}</span>'
-             f'<span class="sp-card__name">{e(name)}</span>'
-             + (f'<span class="sp-card__desc">{e(desc)}</span>' if desc else ''))
+    text = (f'<span class="sp-card__name">{e(name)}</span>'
+            + (f'<span class="sp-card__desc">{e(desc)}</span>' if desc else ''))
+    if roll:
+        inner = f'<span class="sp-card__logo">{mark}</span><span class="sp-card__roll">{text}</span>'
+        cls = f'sp-card sp-card--{size} sp-card--roll'
+    else:
+        inner = f'<span class="sp-card__logo">{mark}</span>{text}'
+        cls = f'sp-card sp-card--{size}'
     attrs = ' target="_blank" rel="noopener"' if url.startswith('http') else ''
-    tag = f'<a class="sp-card sp-card--{size}" href="{e(url)}"{attrs}>' if url else f'<div class="sp-card sp-card--{size}" tabindex="0">'
+    tag = f'<a class="{cls}" href="{e(url)}"{attrs}>' if url else f'<div class="{cls}" tabindex="0">'
     close = '</a>' if url else '</div>'
     return f'          {tag}{inner}{close}'
 
@@ -78,21 +90,31 @@ def replace_between(page, start, end, body):
     s, t = page.index(start), page.index(end) + len(end)
     return page[:s] + body + page[t:]
 
-def build():
-    rows = [r for r in csv.DictReader(open(CSV, encoding='utf-8')) if r.get('Name', '').strip()]
-    out = [START]
+def groups_html(rows, partners_page=False):
+    out = []
     for cat, heading, size in GROUPS:
         members = [r for r in rows if r['Category'].strip() == cat]
         if not members:
             continue
+        headline = cat == GROUPS[0][0]
+        if partners_page and not headline:
+            size = 'md'  # full name + description on every card
+        roll = not partners_page and not headline
         out.append(f'      <div class="sp-group reveal">\n        <h3 class="sponsor-title">{html.escape(heading)}</h3>\n        <div class="sp-grid sp-grid--{size}">')
-        out += [card(r, size) for r in members]
+        out += [card(r, size, roll) for r in members]
         out.append('        </div>\n      </div>')
-    out.append('      ' + END)
+    return out
+
+def build():
+    rows = [r for r in csv.DictReader(open(CSV, encoding='utf-8')) if r.get('Name', '').strip()]
+    out = [START, *groups_html(rows), '      ' + END]
     page = replace_between(INDEX.read_text(encoding='utf-8'), START, END, '\n'.join(out))
     headline = [strip_item(r) for r in rows if r['Category'].strip() == GROUPS[0][0]]
     strip = [STRIP_START, '        <div class="sp-strip__logos">', *headline, '        </div>', '        ' + STRIP_END]
     page = replace_between(page, STRIP_START, STRIP_END, '\n'.join(strip))
+    partners = PARTNERS.read_text(encoding='utf-8')
+    partners = replace_between(partners, START, END, '\n'.join([START, *groups_html(rows, True), '      ' + END]))
+    PARTNERS.write_text(partners, encoding='utf-8')
     INDEX.write_text(page, encoding='utf-8')
     missing = [RENAME.get(r['Name'], r['Name']) for r in rows if not logo_for(RENAME.get(r['Name'], r['Name']))]
     print(f'{len(rows)} sponsors; {len(rows) - len(missing)} with logos')
