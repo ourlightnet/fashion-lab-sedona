@@ -196,6 +196,8 @@
         form.reset();
         if (form.dataset.followup) playbookFollowup(form, sent);
         else if (done) done.hidden = false;
+        // A form with data-next moves on to that page once it's sent.
+        if (form.dataset.next) setTimeout(function () { window.location.href = form.dataset.next; }, 1200);
       }, 400);
     });
   });
