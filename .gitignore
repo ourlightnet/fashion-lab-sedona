@@ -3,5 +3,8 @@
 Thumbs.db
 *.log
 
+# Brevo export with contact details (see tools/build_request_map.py)
+data/playbook-requests.csv
+
 # Local tooling
 .claude/settings.local.json

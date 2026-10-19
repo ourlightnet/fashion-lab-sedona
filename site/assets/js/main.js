@@ -127,6 +127,19 @@
     recalc();
   }
 
+  /* Copy buttons (press boilerplate) ------------------------------------ */
+  document.querySelectorAll('[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var el = document.querySelector(btn.dataset.copy);
+      if (!el || !navigator.clipboard) return;
+      navigator.clipboard.writeText(el.textContent.trim()).then(function () {
+        var label = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(function () { btn.textContent = label; }, 1800);
+      });
+    });
+  });
+
   /* Newsletter placeholder ---------------------------------------------- */
   /* Videos: show a thumbnail, load the YouTube player only when clicked */
   document.querySelectorAll('a.video__play[data-video]').forEach(function (a) {
@@ -178,10 +191,113 @@
         document.body.appendChild(f);
       }
       form.target = name;
+      var sent = new FormData(form);
       setTimeout(function () {
         form.reset();
-        if (done) done.hidden = false;
+        if (form.dataset.followup) playbookFollowup(form, sent);
+        else if (done) done.hidden = false;
       }, 400);
     });
+  });
+
+  /* Playbook request (your-town.html): after the first form is sent, swap it
+     for the thank-you and the "email or phone?" question. The follow-up posts
+     to the same Brevo form, carrying the first form's answers so Brevo updates
+     that contact, and asks for a phone number only if none was given. */
+  function playbookFollowup(form, sent) {
+    var next = document.getElementById(form.dataset.followup);
+    if (!next) return;
+    var follow = next.querySelector('form');
+    var hadPhone = !!sent.get('SMS');
+    follow.querySelectorAll('input.carry').forEach(function (el) { el.remove(); });
+    ['FIRSTNAME', 'LASTNAME', 'EMAIL', 'CITY', 'ORGANIZATION'].concat(hadPhone ? ['SMS', 'SMS__COUNTRY_CODE'] : []).forEach(function (key) {
+      if (!sent.get(key)) return;
+      var el = document.createElement('input');
+      el.type = 'hidden'; el.className = 'carry'; el.name = key; el.value = sent.get(key);
+      follow.appendChild(el);
+    });
+    var phoneBox = follow.querySelector('.playbook-next__phone');
+    var phoneInputs = phoneBox.querySelectorAll('input, select');
+    follow.querySelectorAll('input[name=NOTIFY_BY]').forEach(function (radio) {
+      radio.addEventListener('change', function () {
+        var ask = radio.checked && radio.value === 'Phone' && !hadPhone;
+        phoneBox.hidden = !ask;
+        phoneInputs.forEach(function (el) { el.disabled = !ask; });
+        phoneBox.querySelector('input').required = ask;
+        if (ask) phoneBox.querySelector('input').focus();
+      });
+    });
+    form.hidden = true;
+    next.hidden = false;
+    next.querySelector('.playbook-next__thanks').focus();
+  }
+
+  /* Email links ------------------------------------------------------------
+     A mailto: link does nothing for people without an email app set up
+     (common with Gmail in the browser). So every email link opens a small
+     panel instead: open the email app, open Gmail, or copy the address. */
+  var mailDialog;
+  function openMail(href) {
+    var q = href.replace(/^mailto:/i, '').split('?');
+    var to = decodeURIComponent(q[0]);
+    var params = new URLSearchParams(q[1] || '');
+    var subject = params.get('subject') || '';
+    var body = params.get('body') || '';
+    if (!mailDialog) {
+      // Styles live here, next to the panel, so the panel never shows unstyled.
+      var st = document.createElement('style');
+      st.textContent =
+        '.mail-dialog{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;z-index:110;align-items:center;justify-content:center;padding:16px}' +
+        '.mail-dialog.is-open{display:flex}' +
+        '.mail-dialog__box{position:relative;background:#fff;color:#111;border-radius:8px;padding:32px 28px 28px;max-width:460px;width:100%;box-shadow:0 10px 30px rgba(0,0,0,.12)}' +
+        '.mail-dialog__close{position:absolute;top:10px;right:12px;background:none;border:0;font-size:1.8rem;line-height:1;cursor:pointer;color:#111}' +
+        '.mail-dialog__to{font-size:1.15rem;font-weight:700;margin:6px 0 4px;word-break:break-all}' +
+        '.mail-dialog__subject{font-size:.9rem;margin:0 0 18px}' +
+        '.mail-dialog__actions{display:grid;gap:10px}' +
+        '.mail-dialog__actions .btn{width:100%;justify-content:center;text-align:center}';
+      document.head.appendChild(st);
+      mailDialog = document.createElement('div');
+      mailDialog.className = 'mail-dialog';
+      mailDialog.setAttribute('role', 'dialog');
+      mailDialog.setAttribute('aria-modal', 'true');
+      mailDialog.setAttribute('aria-labelledby', 'mail-dialog-title');
+      mailDialog.innerHTML =
+        '<div class="mail-dialog__box">' +
+        '<button class="mail-dialog__close" type="button" aria-label="Close">×</button>' +
+        '<h3 id="mail-dialog-title">Email us</h3>' +
+        '<p class="mail-dialog__to"><a class="mail-dialog__addr"></a></p>' +
+        '<p class="mail-dialog__subject muted"></p>' +
+        '<div class="mail-dialog__actions">' +
+        '<a class="btn btn--sedona mail-dialog__gmail" target="_blank" rel="noopener">Open in Gmail</a>' +
+        '<a class="btn mail-dialog__app">Open my email app</a>' +
+        '<button class="btn btn--ghost mail-dialog__copy" type="button">Copy address</button>' +
+        '</div></div>';
+      document.body.appendChild(mailDialog);
+      var close = function () { mailDialog.classList.remove('is-open'); };
+      mailDialog.querySelector('.mail-dialog__close').addEventListener('click', close);
+      mailDialog.addEventListener('click', function (e) { if (e.target === mailDialog) close(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+      mailDialog.querySelector('.mail-dialog__copy').addEventListener('click', function () {
+        var btn = this, addr = mailDialog.dataset.to;
+        var done = function () { btn.textContent = 'Copied!'; setTimeout(function () { btn.textContent = 'Copy address'; }, 2000); };
+        if (navigator.clipboard) navigator.clipboard.writeText(addr).then(done, function () { window.prompt('Copy our email address:', addr); });
+        else window.prompt('Copy our email address:', addr);
+      });
+    }
+    mailDialog.dataset.to = to;
+    var addr = mailDialog.querySelector('.mail-dialog__addr');
+    addr.textContent = to; addr.href = href;
+    mailDialog.querySelector('.mail-dialog__subject').textContent = subject ? 'Subject: ' + subject : '';
+    mailDialog.querySelector('.mail-dialog__app').href = href;
+    mailDialog.querySelector('.mail-dialog__gmail').href = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(to) +
+      (subject ? '&su=' + encodeURIComponent(subject) : '') + (body ? '&body=' + encodeURIComponent(body) : '');
+    mailDialog.classList.add('is-open');
+    mailDialog.querySelector('.mail-dialog__gmail').focus({ preventScroll: true });
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="mailto:"]');
+    if (!a || a.closest('.mail-dialog') || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    e.preventDefault();
+    openMail(a.getAttribute('href'));
   });
 })();

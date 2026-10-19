@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where playbook requests come from — Fashion Lab Sedona</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/img/logo-box.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Fashion Lab Sedona home">
+      <img src="assets/img/logo-strip.jpg" alt="Fashion Lab Sedona">
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="index.html">Sedona 2026</a>
+      <a href="your-town.html">The playbook</a>
+      <a href="get-involved.html">Get Involved</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="section">
+    <div class="wrap">
+      <span class="eyebrow">Playbook requests</span>
+      <h1 class="reqmap__title">Where the Fashion Lab is wanted</h1>
+      <p class="lead" id="reqmap-summary">No requests mapped yet.</p>
+      <div class="reqmap" id="reqmap" role="img" aria-label="Map of towns and cities that asked for the Fashion Lab playbook"></div>
+      <table class="reqmap__table" id="reqmap-table" hidden>
+        <thead><tr><th scope="col">Town or city</th><th scope="col">Requests</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <p class="muted reqmap__note">Built from the playbook sign-ups in Brevo with <code>tools/build_request_map.py</code>. Shows towns and counts only.</p>
+    </div>
+  </section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="assets/data/playbook-requests.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+(function () {
+  var data = window.PLAYBOOK_REQUESTS || { places: [], total: 0 };
+  var map = L.map('reqmap', { scrollWheelZoom: false }).setView([39, -98], 4);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  // Sedona, where it started.
+  L.circleMarker([34.8697, -111.7610], { radius: 7, color: '#000', weight: 2, fillColor: '#fff', fillOpacity: 1 })
+    .addTo(map).bindTooltip('Sedona, where it started');
+
+  if (!data.places.length) return;
+  var max = Math.max.apply(null, data.places.map(function (p) { return p.count; }));
+  var bounds = [];
+  var tbody = document.querySelector('#reqmap-table tbody');
+  data.places.forEach(function (p) {
+    var label = p.name + ': ' + p.count + (p.count === 1 ? ' request' : ' requests');
+    L.circleMarker([p.lat, p.lon], {
+      radius: 7 + 13 * Math.sqrt(p.count / max),
+      color: '#b2340a', weight: 2, fillColor: '#e85d1a', fillOpacity: .7
+    }).addTo(map).bindTooltip(label);
+    bounds.push([p.lat, p.lon]);
+    var tr = document.createElement('tr');
+    var td1 = document.createElement('td'); td1.textContent = p.name;
+    var td2 = document.createElement('td'); td2.textContent = p.count;
+    tr.appendChild(td1); tr.appendChild(td2); tbody.appendChild(tr);
+  });
+  map.fitBounds(bounds, { padding: [40, 40], maxZoom: 7 });
+  document.getElementById('reqmap-table').hidden = false;
+  var when = data.updated ? new Date(data.updated + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : '';
+  document.getElementById('reqmap-summary').textContent =
+    data.total + (data.total === 1 ? ' request' : ' requests') + ' from ' + data.places.length +
+    (data.places.length === 1 ? ' place' : ' places') + (when ? ', as of ' + when : '') + '.' +
+    (data.unmapped ? ' ' + data.unmapped + ' could not be placed on the map.' : '');
+})();
+</script>
+</body>
+</html>

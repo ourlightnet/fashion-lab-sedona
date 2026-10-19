@@ -121,6 +121,28 @@ p { margin: 0 0 1em; }
 .stats strong { display: block; font-family: var(--font-head); font-size: clamp(1.8rem, 3.5vw, 2.8rem); line-height: 1; margin-bottom: .3em; }
 .stats strong.grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; }
 .stats span { font-size: .85rem; letter-spacing: .06em; text-transform: uppercase; color: #cfcfcf; }
+.hero__links { margin-top: 18px; font-size: 1rem; text-shadow: 0 1px 10px rgba(0,0,0,.7); }
+.hero__links a { color: var(--white); font-weight: 700; text-decoration-color: var(--sedona-glow); text-underline-offset: 4px; }
+.hero__links a:hover { color: #ffb055; }
+.winners { margin-top: 2px; border: 2px solid #222; padding: 22px 18px; text-align: center; }
+.winners .eyebrow { margin-bottom: .9rem; }
+.winners__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; text-align: left; }
+.winners__card { display: flex; flex-direction: column; color: #d6d6d6; }
+.winners__photo img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center top; border-radius: var(--radius); border: 3px solid transparent; transition: border-color .2s; }
+.winners__photo:hover img, .winners__photo:focus-visible img { border-color: var(--sedona); }
+.winners__place { margin-top: .9rem; font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--sedona-glow); }
+.winners__name { margin: .25rem 0 .6rem; font-family: var(--font-head); font-size: clamp(1.15rem, 2.2vw, 1.4rem); line-height: 1.15; color: var(--white); text-decoration: none; }
+.winners__name:hover { color: #ffb055; }
+.winners__card p { font-size: .95rem; line-height: 1.5; margin: 0 0 .7em; }
+.winners__card p strong { color: var(--white); }
+.winners__card p a { color: var(--sedona-glow); }
+@media (max-width: 760px) { .winners__list { grid-template-columns: 1fr; gap: 36px; max-width: 420px; margin: 0 auto; } }
+.winners a.eyebrow { text-decoration: none; }
+
+/* 2026 award winners page */
+.winners-page { display: grid; gap: 28px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); }
+.winner__place { display: block; font-family: var(--font-head); font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--sedona-deep); margin-bottom: .6rem; }
+.winner .designer__body a { color: var(--sedona-deep); }
 
 /* Photo grids ------------------------------------------------------------ */
 .grid { display: grid; gap: 10px; }
@@ -320,6 +342,28 @@ dialog.docview::backdrop { background: rgba(0,0,0,.78); }
 .pill-list { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0; }
 .pill-list li { border: 1px solid currentColor; border-radius: 999px; padding: .35em .9em; font-size: .85rem; }
 
+/* Press page --------------------------------------------------------------- */
+.press-list { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--ink); }
+.press-list li { padding: 22px 0 20px; border-bottom: 1px solid var(--line); }
+.press-list__meta { display: block; font-family: var(--font-head); font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--sedona); margin-bottom: 6px; }
+.press-list h3 { font-size: clamp(1.15rem, 2.2vw, 1.5rem); margin-bottom: .3em; }
+.press-list h3 a { text-decoration: none; }
+.press-list h3 a:hover { color: var(--sedona-deep); text-decoration: underline; text-underline-offset: 4px; }
+.press-list p { margin: 0; color: var(--ink-soft); }
+.press-list p.press-list__links { margin-top: 8px; font-size: .9rem; font-weight: 700; }
+.press-list__links a { color: var(--sedona-deep); text-underline-offset: 3px; }
+.facts { display: grid; gap: 2px 32px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); margin: 32px 0 0; }
+.facts div { padding: 14px 0; border-bottom: 1px solid #2a2a2a; }
+.facts dt { font-family: var(--font-head); font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--sedona-glow); }
+.facts dd { margin: 4px 0 0; }
+.quotes { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); align-items: start; }
+.quote { margin: 0; color: var(--ink); background: var(--white); border: 1px solid var(--line); border-top: 6px solid var(--sedona); border-radius: 6px; padding: 24px 24px 20px; }
+.quote blockquote { margin: 0 0 16px; font-size: 1.05rem; line-height: 1.5; }
+.quote blockquote::before { content: "\201C"; display: block; font-family: var(--font-head); font-size: 3rem; line-height: .7; color: var(--sedona); margin-bottom: 6px; }
+.quote strong { display: block; font-family: var(--font-head); font-size: .9rem; text-transform: uppercase; }
+.quote span { font-size: .85rem; color: var(--ink-soft); }
+.boilerplate { margin: 0 0 18px; padding: 20px 22px; background: var(--white); border: 1px solid var(--line); border-left: 6px solid var(--sedona); border-radius: 6px; font-size: 1.05rem; }
+
 .newsletter { display: grid; gap: 10px; grid-template-columns: 1fr auto; max-width: 520px; }
 .newsletter input { padding: .9em 1em; border: 2px solid var(--black); border-radius: var(--radius); font: inherit; min-width: 0; }
 @media (max-width: 520px) { .newsletter { grid-template-columns: 1fr; } }
@@ -371,15 +415,24 @@ dialog.docview::backdrop { background: rgba(0,0,0,.78); }
 .video figcaption { margin-top: 10px; font-family: var(--font-head); font-size: .9rem; text-transform: uppercase; letter-spacing: .02em; }
 
 /* Sign-up forms ------------------------------------------------------------ */
+.signup[hidden], .signup__field[hidden], .playbook-next[hidden] { display: none; }
 .signup__trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .signup__done { grid-column: 1 / -1; margin: 4px 0 0; font-weight: 700; color: var(--sedona-deep); }
+.callout .signup__done { color: var(--white); }
 .signup--stack { display: grid; gap: 14px; max-width: 520px; margin-top: 22px; }
 .signup--stack label { display: block; font-weight: 500; font-size: .95rem; }
 .signup--stack label > input { display: block; width: 100%; margin-top: 6px; }
-.signup--stack input:not([type=hidden]):not(.signup__trap) { padding: .9em 1em; border: 2px solid var(--black); border-radius: var(--radius); font: inherit; min-width: 0; background: var(--white); }
+.signup--stack input:not([type=hidden]):not(.signup__trap):not([type=radio]) { padding: .9em 1em; border: 2px solid var(--black); border-radius: var(--radius); font: inherit; min-width: 0; background: var(--white); }
 .signup--stack .btn { justify-self: start; }
 .signup__field { display: grid; gap: 6px; font-weight: 500; font-size: .95rem; }
 .signup__phone { display: grid; grid-template-columns: auto 1fr; gap: 8px; }
+.signup__choice { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px 24px; }
+.signup__choice legend { font-weight: 700; margin-bottom: 10px; padding: 0; }
+.signup__choice label { display: inline-flex; align-items: center; gap: 8px; font-weight: 500; cursor: pointer; }
+.signup__choice input { width: 1.2em; height: 1.2em; accent-color: var(--sedona-deep); margin: 0; }
+.playbook-next { margin-top: 22px; max-width: 560px; }
+.playbook-next__thanks { font-size: 1.1rem; font-weight: 500; padding: 18px 20px; background: var(--white); border-left: 4px solid var(--sedona); border-radius: var(--radius); outline: none; }
+.playbook-next .signup--stack { margin-top: 18px; }
 .signup--stack select { padding: .9em .6em; border: 2px solid var(--black); border-radius: var(--radius); font: inherit; background: var(--white); }
 .role p { margin: 6px 0 0; font-size: .95rem; color: #d6d6d6; }
 .video__play { display: block; color: inherit; }
@@ -415,6 +468,20 @@ dialog.docview::backdrop { background: rgba(0,0,0,.78); }
 .designer__links { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .9rem; font-weight: 700; }
 .designer__links a { color: var(--sedona-deep); text-underline-offset: 3px; }
 
+/* Headline sponsor strip (near the top of the home page) ------------------- */
+.sp-strip { background: var(--white); border-bottom: 1px solid var(--line); padding: 22px 0; }
+.sp-strip__inner { display: flex; align-items: center; gap: 12px 28px; flex-wrap: wrap; justify-content: center; }
+.sp-strip__label { margin: 0; text-decoration: none; white-space: nowrap; }
+.sp-strip__logos { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 14px 30px; flex: 1 1 520px; }
+.sp-strip__item { display: flex; align-items: center; justify-content: center; height: 56px; max-width: 150px; transition: transform .2s ease; }
+a.sp-strip__item:hover, a.sp-strip__item:focus-visible { transform: translateY(-2px); }
+.sp-strip__item img { max-height: 100%; max-width: 100%; object-fit: contain; }
+.sp-strip__name { font-family: var(--font-head); font-size: .75rem; text-transform: uppercase; color: var(--sedona-deep); text-align: center; line-height: 1.15; }
+@media (max-width: 600px) {
+  .sp-strip__logos { gap: 12px 20px; }
+  .sp-strip__item { height: 44px; max-width: 110px; }
+}
+
 /* Sponsor logo grid ---------------------------------------------------------- */
 .sp-group { margin-top: 36px; }
 .sp-group .sponsor-title { margin: 0 0 14px; }
@@ -442,6 +509,38 @@ a.sp-card:hover, .sp-card:focus-visible { border-color: var(--sedona); box-shado
   .sp-card--sm:hover .sp-card__desc, .sp-card--sm:focus-visible .sp-card__desc { opacity: 1; }
 }
 @media (hover: none) { .sp-card--sm .sp-card__desc { font-size: .78rem; } }
+
+/* Playbook request map (playbook-map.html) -------------------------------- */
+.reqmap__title { margin-bottom: .3em; }
+.reqmap { height: min(70vh, 560px); margin: 24px 0; border: 2px solid var(--black); border-radius: 8px; z-index: 0; }
+.reqmap__table { border-collapse: collapse; width: 100%; max-width: 520px; }
+.reqmap__table th, .reqmap__table td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); }
+.reqmap__table td:last-child, .reqmap__table th:last-child { text-align: right; }
+.reqmap__note { margin-top: 18px; font-size: .9rem; }
+.signup--stack label > textarea { display: block; width: 100%; margin-top: 6px; padding: .9em 1em; border: 2px solid var(--black); border-radius: var(--radius); font: inherit; background: var(--white); resize: vertical; }
+
+/* Event collaboration (show-2026) --------------------------------------- */
+.collab-media { display: grid; gap: 20px; justify-items: center; max-width: 380px; width: 100%; justify-self: center; }
+.split .collab-photo { aspect-ratio: 4 / 5; object-fit: cover; object-position: top; }
+.collab-logo { display: block; width: 100%; background: var(--white); border-radius: 6px; padding: 12px 16px; }
+.split .collab-logo img { border-radius: 0; object-fit: contain; }
+
+/* Teaser rows on the 2026 photos hub */
+.teaser { margin-bottom: 44px; }
+.teaser__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; margin-bottom: 12px; }
+.teaser__head h3 { margin: 0; }
+.teaser__head a.teaser__more { font-weight: 700; color: var(--sedona-deep); white-space: nowrap; }
+.teaser__row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.teaser__row a { display: block; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 3px; background: #ddd; }
+.teaser__row img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.teaser__row a:hover img { transform: scale(1.04); }
+@media (max-width: 640px) { .teaser__row { grid-template-columns: repeat(3, 1fr); } .teaser__row a:nth-child(n+4) { display: none; } }
+.collab-masonry { columns: 2; column-gap: 10px; }
+@media (min-width: 700px) { .collab-masonry { columns: 4; } }
+@media (min-width: 1000px) { .collab-masonry { columns: 6; } .collab-masonry--page { columns: 4; } }
+.collab-masonry a { display: block; break-inside: avoid; margin-bottom: 10px; overflow: hidden; border-radius: 3px; }
+.collab-masonry img { width: 100%; height: auto; display: block; transition: transform .5s ease; }
+.collab-masonry a:hover img { transform: scale(1.04); }
 
 /* Sensational Sedonans: designer cards with a small side portrait (ezine photos are small) */
 .sedonans { display: grid; gap: 28px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 520px), 1fr)); }
