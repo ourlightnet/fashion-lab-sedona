@@ -130,6 +130,11 @@ p { margin: 0 0 1em; }
 .winners__card { display: flex; flex-direction: column; color: #d6d6d6; }
 .winners__photo img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center top; border-radius: var(--radius); border: 3px solid transparent; transition: border-color .2s; }
 .winners__photo:hover img, .winners__photo:focus-visible img { border-color: var(--sedona); }
+.winners__photo, .winner__photo { position: relative; display: block; }
+.winner__photo .designer__img { display: block; }
+.winners__photo .winners__hover, .winner__photo .winners__hover { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; object-position: center top; opacity: 0; transition: opacity .35s ease; }
+.winners__photo:hover .winners__hover, .winners__photo:focus-visible .winners__hover,
+.winner__photo:hover .winners__hover, .winner__photo:focus-visible .winners__hover, .winner__photo:active .winners__hover { opacity: 1; }
 .winners__place { margin-top: .9rem; font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--sedona-glow); }
 .winners__name { margin: .25rem 0 .6rem; font-family: var(--font-head); font-size: clamp(1.15rem, 2.2vw, 1.4rem); line-height: 1.15; color: var(--white); text-decoration: none; }
 .winners__name:hover { color: #ffb055; }
