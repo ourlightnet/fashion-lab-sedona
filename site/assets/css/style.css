@@ -160,6 +160,8 @@ p { margin: 0 0 1em; }
 .grid--photos .tall { grid-row: span 2; }
 .grid--photos .wide { grid-column: span 2; }
 @media (min-width: 700px) { .grid--photos { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); grid-auto-rows: 260px; } }
+.grid--photos.grid--four { grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 700px) { .grid--photos.grid--four { grid-template-columns: repeat(4, 1fr); } }
 .credit { font-size: .85rem; color: var(--ink-soft); margin-top: 14px; }
 .credit a { color: inherit; }
 .section--black .credit { color: #bbb; }
