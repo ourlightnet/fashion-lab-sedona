@@ -469,6 +469,8 @@ dialog.docview::backdrop { background: rgba(0,0,0,.78); }
 .designers { display: grid; gap: 28px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); }
 .designer { background: var(--white); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; }
 .designer__img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center top; }
+.designer__img--none { display: grid; place-items: center; background: var(--grad); }
+.designer__img--none span { font-family: var(--font-head); font-size: clamp(3rem, 9vw, 5.5rem); color: var(--white); letter-spacing: .04em; opacity: .9; }
 .designer__body { padding: 20px 22px 24px; }
 .designer__body h3 { font-size: 1.3rem; margin-bottom: .5em; }
 .designer__body p { font-size: .95rem; margin: 0 0 .8em; }
