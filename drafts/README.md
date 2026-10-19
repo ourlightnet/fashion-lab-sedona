@@ -1,12 +1,10 @@
 # Drafts (not published)
 
-Held back from the live site until the team decides on costs and how the
-"Do the Fashion Lab in your own town" offer works.
+Nothing is held back here right now.
 
-- `your-town-full.html` — the full playbook page (money model, roles,
-  timeline, budget, print pack, contracts, lessons, consulting). It was
-  `site/your-town.html`; to publish it again, move it back into `site/`
-  and restore the budget file to `site/assets/docs/`.
-- `fashion-lab-budget-template.xlsx` — the downloadable budget.
+The full playbook that used to live here is now published as the hidden page
+`site/playbook.html` (fashionlabsedona.com/playbook.html), with its budget
+spreadsheet in `site/assets/docs/`. It is only shared by direct link: it is
+not in the menus, footer or sitemap and carries `noindex`.
 
-Note: this repository is public, so these files can still be read on GitHub.
+Note: this repository is public, so files here can still be read on GitHub.
