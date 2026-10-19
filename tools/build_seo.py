@@ -12,7 +12,7 @@ For each page in PAGES this:
 Google Analytics: put the Measurement ID in site/assets/js/analytics.js.
 
 To add a page, add a line to PAGES and run:  python3 tools/build_seo.py
-Pages not in PAGES (playbook-map, the redirect folders) are left alone.
+Pages not in PAGES (playbook, playbook-map, the redirect folders) are left alone.
 """
 import html, re, subprocess
 from pathlib import Path
