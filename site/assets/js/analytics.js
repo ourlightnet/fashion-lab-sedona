@@ -1,7 +1,7 @@
 /* Google Analytics (GA4). Every page loads this file.
    Paste the Measurement ID from Google Analytics between the quotes,
    e.g. 'G-ABC123XYZ'. While it is empty, nothing is loaded or tracked. */
-var GA_MEASUREMENT_ID = 'G-H42XJSP050';
+var GA_MEASUREMENT_ID = 'G-RQS8Y8MZJF';
 
 (function () {
   if (!GA_MEASUREMENT_ID) return;
