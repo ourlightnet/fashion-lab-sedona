@@ -38,6 +38,7 @@ PAGES = [
     ('afterparty-2026.html', 'afterparty-2026', '2026/afterparty/02.jpg', 'Fashion Lab Sedona', 'After Party 2026', (.5, .35)),
     ('photos-2026.html', 'photos-2026', 'show/11185.jpg', 'Show, Create-a-Thon, After Party', '2026 Photos', (.5, .3)),
     ('galleries-2026.html', 'galleries-2026', '2026/show-karl/75.jpg', 'Karl Mullings and Leah Joy Love', '2026 Full Galleries', (.5, .5)),
+    ('photographers-2026.html', 'photographers-2026', 'collab/leah-joy-love.jpg', 'Leah Joy Love, Karl Mullings and more', 'Photographers & Videographers 2026', (.5, .3)),
     ('winners-2026.html', 'winners-2026', 'designers/jesselynn-desmond-runway.jpg', 'Sustainable Design Award', '2026 Winners', (.5, .3)),
     ('designers.html', 'designers', 'lab/0262.jpg', 'Upcycled in 48 hours', 'Meet the 2026 Designers', (.5, .4)),
     ('sedonans.html', 'sedonans', 'show/10883.jpg', 'Local celebrity models', 'Sensational Sedonans 2026', (.5, .25)),
