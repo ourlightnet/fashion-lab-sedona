@@ -439,9 +439,6 @@ dialog.docview::backdrop { background: rgba(0,0,0,.78); }
 .signup__choice legend { font-weight: 700; margin-bottom: 10px; padding: 0; }
 .signup__choice label { display: inline-flex; align-items: center; gap: 8px; font-weight: 500; cursor: pointer; }
 .signup__choice input { width: 1.2em; height: 1.2em; accent-color: var(--sedona-deep); margin: 0; }
-.playbook-next { margin-top: 22px; max-width: 560px; }
-.playbook-next__thanks { font-size: 1.1rem; font-weight: 500; padding: 18px 20px; background: var(--white); border-left: 4px solid var(--sedona); border-radius: var(--radius); outline: none; }
-.playbook-next .signup--stack { margin-top: 18px; }
 .signup--stack select { padding: .9em .6em; border: 2px solid var(--black); border-radius: var(--radius); font: inherit; background: var(--white); }
 .role p { margin: 6px 0 0; font-size: .95rem; color: #d6d6d6; }
 .video__play { display: block; color: inherit; }
@@ -580,5 +577,4 @@ a.sp-card:hover, .sp-card:focus-visible { border-color: var(--sedona); box-shado
 .offer__list { margin: 0; padding-left: 1.3em; display: grid; gap: 8px; }
 .offer__split { font-weight: 500; }
 .offer__note { font-size: .9rem; }
-.playbook-next__skip { margin: 12px 0 0; font-weight: 500; }
 .offer__rate { font-weight: 700; color: var(--ink-soft); }

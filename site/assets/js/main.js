@@ -191,48 +191,14 @@
         document.body.appendChild(f);
       }
       form.target = name;
-      var sent = new FormData(form);
       setTimeout(function () {
         form.reset();
-        if (form.dataset.followup) playbookFollowup(form, sent);
-        else if (done) done.hidden = false;
+        if (done) done.hidden = false;
         // A form with data-next moves on to that page once it's sent.
         if (form.dataset.next) setTimeout(function () { window.location.href = form.dataset.next; }, 1200);
       }, 400);
     });
   });
-
-  /* Playbook request (your-town.html): after the first form is sent, swap it
-     for the thank-you and the "email or phone?" question. The follow-up posts
-     to the same Brevo form, carrying the first form's answers so Brevo updates
-     that contact, and asks for a phone number only if none was given. */
-  function playbookFollowup(form, sent) {
-    var next = document.getElementById(form.dataset.followup);
-    if (!next) return;
-    var follow = next.querySelector('form');
-    var hadPhone = !!sent.get('SMS');
-    follow.querySelectorAll('input.carry').forEach(function (el) { el.remove(); });
-    ['FIRSTNAME', 'LASTNAME', 'EMAIL', 'CITY', 'ORGANIZATION'].concat(hadPhone ? ['SMS', 'SMS__COUNTRY_CODE'] : []).forEach(function (key) {
-      if (!sent.get(key)) return;
-      var el = document.createElement('input');
-      el.type = 'hidden'; el.className = 'carry'; el.name = key; el.value = sent.get(key);
-      follow.appendChild(el);
-    });
-    var phoneBox = follow.querySelector('.playbook-next__phone');
-    var phoneInputs = phoneBox.querySelectorAll('input, select');
-    follow.querySelectorAll('input[name=NOTIFY_BY]').forEach(function (radio) {
-      radio.addEventListener('change', function () {
-        var ask = radio.checked && radio.value === 'Phone' && !hadPhone;
-        phoneBox.hidden = !ask;
-        phoneInputs.forEach(function (el) { el.disabled = !ask; });
-        phoneBox.querySelector('input').required = ask;
-        if (ask) phoneBox.querySelector('input').focus();
-      });
-    });
-    form.hidden = true;
-    next.hidden = false;
-    next.querySelector('.playbook-next__thanks').focus();
-  }
 
   /* Email links ------------------------------------------------------------
      A mailto: link does nothing for people without an email app set up
