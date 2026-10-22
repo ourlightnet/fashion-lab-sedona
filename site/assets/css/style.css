@@ -239,6 +239,9 @@ table.budget { width: 100%; border-collapse: collapse; font-size: .95rem; min-wi
 .budget input { width: 110px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 4px; font: inherit; text-align: right; }
 .budget input:focus { outline: 2px solid var(--sedona); border-color: var(--sedona); }
 .budget .note { font-size: .82rem; color: var(--ink-soft); }
+.budget .calc { display: flex; align-items: center; gap: 4px; margin-bottom: 4px; white-space: nowrap; color: var(--ink); }
+.budget .calc input { width: 64px; padding: 4px 6px; }
+.budget .calc input[data-price] { width: 76px; }
 .budget-summary { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-top: 18px; }
 .budget-summary div { background: var(--black); color: var(--white); padding: 18px 20px; border-radius: 6px; }
 .budget-summary strong { display: block; font-family: var(--font-head); font-size: 1.6rem; margin-top: 4px; }

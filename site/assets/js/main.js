@@ -113,15 +113,25 @@
       if (ec) ec.textContent = fmt(totals.expense);
       if (net) { var d = totals.income - totals.expense; if (nc) nc.textContent = (d < 0 ? '−' : '') + fmt(Math.abs(d)); net.textContent = (d < 0 ? '−' : '') + fmt(Math.abs(d)); net.className = d < 0 ? 'neg' : 'pos'; }
     }
-    budget.addEventListener('input', recalc);
+    // A line with "how many × price" fills its Your Town total from those two.
+    function lineFromCalc(row) {
+      var q = parseFloat(row.querySelector('input[data-qty]').value);
+      var pr = parseFloat(row.querySelector('input[data-price]').value);
+      row.querySelector('input[data-your]').value = isNaN(q) || isNaN(pr) ? '' : Math.round(q * pr);
+    }
+    budget.addEventListener('input', function (e) {
+      if (e.target.matches('input[data-qty], input[data-price]')) lineFromCalc(e.target.closest('tr'));
+      recalc();
+    });
     var fill = document.getElementById('budget-fill');
     if (fill) fill.addEventListener('click', function () {
       budget.querySelectorAll('input[data-your]').forEach(function (inp) { inp.value = inp.dataset.sedona || ''; });
+      budget.querySelectorAll('input[data-qty]').forEach(function (inp) { inp.value = inp.dataset.sedonaQty || ''; });
       recalc();
     });
     var clear = document.getElementById('budget-clear');
     if (clear) clear.addEventListener('click', function () {
-      budget.querySelectorAll('input[data-your]').forEach(function (inp) { inp.value = ''; });
+      budget.querySelectorAll('input[data-your], input[data-qty]').forEach(function (inp) { inp.value = ''; });
       recalc();
     });
     recalc();
