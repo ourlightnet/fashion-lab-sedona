@@ -51,6 +51,7 @@ PAGES = [
     ('popups.html', 'popups', 'site/popup-sewing.jpg', 'Sewing, dyeing, modeling and more', 'Pop-Ups and Workshops', (.5, .5)),
     ('videos.html', 'videos', '2026/show-karl/01.jpg', 'Highlights and sizzle reel', 'Videos', (.5, .3)),
     ('partners.html', 'partners', 'show/11203.jpg', 'Sponsors, donors and collaborators', 'Our Partners', (.5, .5)),
+    ('people.html', 'people', 'show/11185.jpg', 'Sponsors, team, designers, models and more', 'Everyone behind Fashion Lab', (.5, .3)),
     ('press.html', 'press', 'site/lead.jpg', 'News, fast facts, logos, photos', 'Press', (.5, .5)),
     ('2025.html', '2025', 'past/2025/show/01.jpg', 'Prior years', 'Fashion Lab 2025', (.5, .3)),
     ('2024.html', '2024', 'past/2024/show/02.jpg', 'Prior years', 'Fashion Lab 2024', (.5, .3)),
