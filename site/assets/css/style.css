@@ -619,3 +619,4 @@ a.sp-card:hover, .sp-card:focus-visible { border-color: var(--sedona); box-shado
 .follow-chip--yt { background: #ff0000; }
 .footer-dream small a { color: #bbb; text-decoration: underline; text-underline-offset: 2px; }
 @media (max-width: 760px) { .footer-follow { grid-template-columns: 1fr; } }
+.grid--faces img { object-position: center 15%; }
