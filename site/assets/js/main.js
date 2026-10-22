@@ -157,6 +157,14 @@
     });
   });
 
+  /* get-started.html?support shows only the two paid options (linked from
+     the playbook's support buttons): hide [data-support-hide] and swap in
+     each [data-support] text. */
+  if (/[?&]support\b/.test(window.location.search)) {
+    document.querySelectorAll('[data-support-hide]').forEach(function (el) { el.hidden = true; });
+    document.querySelectorAll('[data-support]').forEach(function (el) { el.textContent = el.dataset.support; });
+  }
+
   /* Sign-up forms (Brevo) ------------------------------------------------
      Each form.signup posts to its Brevo form URL in the action attribute.
      Brevo replies with a page we don't need, so the post goes to a hidden
