@@ -591,3 +591,11 @@ a.sp-card:hover, .sp-card:focus-visible { border-color: var(--sedona); box-shado
 .hero__img--sedonans { object-position: 45% top; }
 @media (min-width: 760px) { .hero__img--sedonans { object-position: right top; } }
 @media (max-width: 759px) { .hero--sedonans { min-height: 780px; } }
+
+/* Photographer blocks: services list and podcast card */
+.services { list-style: none; margin: 18px 0 22px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.services li { border: 1px solid var(--sedona); color: inherit; border-radius: 999px; padding: 6px 14px; font-size: .9rem; }
+.podcast-card { display: flex; gap: 16px; align-items: center; margin-top: 26px; max-width: 460px; color: inherit; text-decoration: none; }
+.podcast-card img { width: 88px; flex: none; border-radius: 6px; }
+.podcast-card .eyebrow { margin-bottom: 4px; }
+.podcast-card strong, .podcast-card span span { display: block; }
