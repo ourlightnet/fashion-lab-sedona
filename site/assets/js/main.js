@@ -164,18 +164,22 @@
      falls back to opening an email to the team. */
   document.querySelectorAll('form.signup').forEach(function (form, i) {
     var done = form.querySelector('.signup__done');
-    // A checkbox group marked data-pick-one needs at least one box ticked.
-    var groups = form.querySelectorAll('[data-pick-one]');
-    function checkGroups() {
-      groups.forEach(function (g) {
-        var boxes = g.querySelectorAll('input[type=checkbox]');
-        var any = Array.prototype.some.call(boxes, function (b) { return b.checked; });
-        boxes[0].setCustomValidity(any ? '' : 'Please choose at least one.');
+    // Phone and texting consent (.sms-only) show only when the person picks
+    // texting (SMS or Both). Hidden fields are disabled so they aren't sent.
+    var smsOnly = form.querySelectorAll('.sms-only');
+    function syncSms() {
+      var pick = form.querySelector('input[name=CONTACT_METHOD_PREFERENCE]:checked');
+      var show = !!pick && pick.value !== 'Email';
+      smsOnly.forEach(function (el) {
+        el.hidden = !show;
+        el.querySelectorAll('input, select').forEach(function (inp) { inp.disabled = !show; });
       });
     }
-    form.addEventListener('change', checkGroups);
-    form.addEventListener('reset', function () { setTimeout(checkGroups); });
-    checkGroups();
+    if (smsOnly.length) {
+      syncSms();
+      form.addEventListener('change', syncSms);
+      form.addEventListener('reset', function () { setTimeout(syncSms); });
+    }
     form.addEventListener('submit', function (e) {
       var action = form.getAttribute('action');
       if (!action) {
