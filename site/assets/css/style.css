@@ -237,6 +237,8 @@ table.budget { width: 100%; border-collapse: collapse; font-size: .95rem; min-wi
 .budget tr.total td { background: #111; color: var(--white); font-family: var(--font-head); font-size: .9rem; }
 .budget tr.subtotal td { background: #f7f3ee; font-weight: 700; }
 .budget input { width: 110px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 4px; font: inherit; text-align: right; }
+.budget input[type=number] { -moz-appearance: textfield; appearance: textfield; }
+.budget input[type=number]::-webkit-inner-spin-button, .budget input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
 .budget input:focus { outline: 2px solid var(--sedona); border-color: var(--sedona); }
 .budget .note { font-size: .82rem; color: var(--ink-soft); }
 .budget .calc { display: flex; align-items: center; gap: 4px; margin-bottom: 4px; white-space: nowrap; color: var(--ink); }
