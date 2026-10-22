@@ -424,22 +424,23 @@ dialog.docview::backdrop { background: rgba(0,0,0,.78); }
 .video figcaption { margin-top: 10px; font-family: var(--font-head); font-size: .9rem; text-transform: uppercase; letter-spacing: .02em; }
 
 /* Sign-up forms ------------------------------------------------------------ */
-.signup[hidden], .signup__field[hidden], .playbook-next[hidden] { display: none; }
+.signup[hidden], .signup__field[hidden], .signup--stack .signup__consent[hidden] { display: none; }
 .signup__trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .signup__done { grid-column: 1 / -1; margin: 4px 0 0; font-weight: 700; color: var(--sedona-deep); }
 .callout .signup__done { color: var(--white); }
 .signup--stack { display: grid; gap: 14px; max-width: 520px; margin-top: 22px; }
 .signup--stack label { display: block; font-weight: 500; font-size: .95rem; }
 .signup--stack label > input { display: block; width: 100%; margin-top: 6px; }
-.signup--stack input:not([type=hidden]):not(.signup__trap):not([type=radio]):not([type=checkbox]) { padding: .9em 1em; border: 2px solid var(--black); border-radius: var(--radius); font: inherit; min-width: 0; background: var(--white); }
+.signup--stack input:not([type=hidden]):not(.signup__trap):not([type=radio]) { padding: .9em 1em; border: 2px solid var(--black); border-radius: var(--radius); font: inherit; min-width: 0; background: var(--white); }
 .signup--stack .btn { justify-self: start; }
 .signup__field { display: grid; gap: 6px; font-weight: 500; font-size: .95rem; }
 .signup__phone { display: grid; grid-template-columns: auto 1fr; gap: 8px; }
 .signup__choice { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px 24px; }
 .signup__choice legend { font-weight: 700; margin-bottom: 10px; padding: 0; }
-.signup__hint { font-weight: 400; opacity: .75; }
-.signup__choice label { display: inline-flex; align-items: center; gap: 8px; font-weight: 500; cursor: pointer; }
+.signup__choice label { display: inline-flex; align-items: center; gap: 8px; font-weight: 500; cursor: pointer; white-space: nowrap; }
 .signup__choice input { width: 1.2em; height: 1.2em; accent-color: var(--sedona-deep); margin: 0; }
+.signup--stack .signup__consent { display: flex; align-items: flex-start; gap: 8px; font-size: .9em; cursor: pointer; }
+.signup--stack .signup__consent input { display: block; width: 1.2em; height: 1.2em; flex: none; margin: .15em 0 0; accent-color: var(--sedona-deep); }
 .signup--stack select { padding: .9em .6em; border: 2px solid var(--black); border-radius: var(--radius); font: inherit; background: var(--white); }
 .role p { margin: 6px 0 0; font-size: .95rem; color: #d6d6d6; }
 .video__play { display: block; color: inherit; }
