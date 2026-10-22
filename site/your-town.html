@@ -130,7 +130,7 @@
             <label>Town or city<input type="text" name="CITY" autocomplete="address-level2" maxlength="200" required></label>
             <label>Organization <span class="muted">(optional)</span><input type="text" name="ORGANIZATION" autocomplete="organization" maxlength="200"></label>
             <div class="signup__field">
-              <label for="signup-phone">Phone <span class="muted">(optional)</span></label>
+              <label for="signup-phone">Phone</label>
               <div class="signup__phone">
                 <select name="SMS__COUNTRY_CODE" aria-label="Country code">
                   <option value="+1" selected>+1 US/CA</option>
@@ -145,7 +145,7 @@
                   <option value="+31">+31 NL</option>
                   <option value="+91">+91 IN</option>
                 </select>
-                <input id="signup-phone" type="tel" name="SMS" autocomplete="tel-national" inputmode="tel" placeholder="928 555 0123">
+                <input id="signup-phone" type="tel" name="SMS" autocomplete="tel-national" inputmode="tel" placeholder="928 555 0123" required>
               </div>
             </div>
             <input class="signup__trap" type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off" aria-hidden="true">
