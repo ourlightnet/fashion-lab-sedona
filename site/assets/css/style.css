@@ -599,3 +599,23 @@ a.sp-card:hover, .sp-card:focus-visible { border-color: var(--sedona); box-shado
 .podcast-card img { width: 88px; flex: none; border-radius: 6px; }
 .podcast-card .eyebrow { margin-bottom: 4px; }
 .podcast-card strong, .podcast-card span span { display: block; }
+
+/* Footer: Follow us (Instagram first, then Facebook + YouTube) */
+.footer-follow { margin-top: 44px; display: grid; gap: 20px; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); align-items: stretch; }
+.site-footer .follow-ig { display: flex; align-items: center; gap: clamp(16px, 3vw, 28px); padding: clamp(20px, 3vw, 32px); border-radius: 18px; color: #fff; background: linear-gradient(45deg, #feda75 0%, #fa7e1e 25%, #d62976 55%, #962fbf 80%, #4f5bd5 100%); box-shadow: 0 14px 40px rgba(214,41,118,.35); transition: transform .2s ease, box-shadow .2s ease; }
+.site-footer .follow-ig:hover { color: #fff; transform: translateY(-3px); box-shadow: 0 20px 50px rgba(214,41,118,.5); }
+.follow-ig__icon { flex: none; width: clamp(72px, 10vw, 110px); height: clamp(72px, 10vw, 110px); border-radius: 26%; background: rgba(255,255,255,.18); display: grid; place-items: center; }
+.follow-ig__icon svg { width: 66%; height: 66%; color: #fff; }
+.follow-ig__text { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.follow-ig__text small { font-size: .85rem; text-transform: uppercase; letter-spacing: .08em; opacity: .9; }
+.follow-ig__text strong { font-family: var(--font-head); font-size: clamp(1.35rem, 3.4vw, 2.3rem); line-height: 1.05; overflow-wrap: anywhere; }
+.follow-ig__text em { font-style: normal; font-size: .95rem; opacity: .95; }
+.follow-more { display: flex; flex-direction: column; justify-content: center; gap: 12px; padding: clamp(18px, 2.5vw, 26px); border: 1px solid #2a2a2a; border-radius: 18px; }
+.follow-more p { margin: 0 0 2px; font-family: var(--font-head); text-transform: uppercase; color: var(--white); font-size: .9rem; letter-spacing: .04em; }
+.site-footer .follow-chip { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 12px; color: #fff; font-weight: 600; transition: transform .2s ease, filter .2s ease; }
+.site-footer .follow-chip:hover { color: #fff; transform: translateY(-2px); filter: brightness(1.1); }
+.follow-chip svg { width: 26px; height: 26px; flex: none; }
+.follow-chip--fb { background: #1877f2; }
+.follow-chip--yt { background: #ff0000; }
+.footer-dream small a { color: #bbb; text-decoration: underline; text-underline-offset: 2px; }
+@media (max-width: 760px) { .footer-follow { grid-template-columns: 1fr; } }
