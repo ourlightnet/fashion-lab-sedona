@@ -164,22 +164,27 @@
      falls back to opening an email to the team. */
   document.querySelectorAll('form.signup').forEach(function (form, i) {
     var done = form.querySelector('.signup__done');
-    // Phone and texting consent (.sms-only) show only when the person picks
-    // texting (SMS or Both). Hidden fields are disabled so they aren't sent.
+    // A checkbox group with data-joins sends its ticked values as one
+    // comma-separated field (Brevo stores it as text) and needs at least one.
+    // Phone and texting consent (.sms-only) show only when something other
+    // than Email is ticked. Hidden fields are disabled so they aren't sent.
+    var joined = form.querySelector('[data-joins]');
     var smsOnly = form.querySelectorAll('.sms-only');
-    function syncSms() {
-      var pick = form.querySelector('input[name=CONTACT_METHOD_PREFERENCE]:checked');
-      var show = !!pick && pick.value !== 'Email';
+    function syncChoices() {
+      if (!joined) return;
+      var boxes = joined.querySelectorAll('input[type=checkbox]');
+      var picked = Array.prototype.filter.call(boxes, function (b) { return b.checked; }).map(function (b) { return b.value; });
+      joined.querySelector('input[name="' + joined.dataset.joins + '"]').value = picked.join(', ');
+      boxes[0].setCustomValidity(picked.length ? '' : 'Please choose at least one.');
+      var show = picked.some(function (v) { return v !== 'Email'; });
       smsOnly.forEach(function (el) {
         el.hidden = !show;
         el.querySelectorAll('input, select').forEach(function (inp) { inp.disabled = !show; });
       });
     }
-    if (smsOnly.length) {
-      syncSms();
-      form.addEventListener('change', syncSms);
-      form.addEventListener('reset', function () { setTimeout(syncSms); });
-    }
+    syncChoices();
+    form.addEventListener('change', syncChoices);
+    form.addEventListener('reset', function () { setTimeout(syncChoices); });
     form.addEventListener('submit', function (e) {
       var action = form.getAttribute('action');
       if (!action) {

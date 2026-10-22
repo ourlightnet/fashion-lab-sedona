@@ -129,11 +129,12 @@
             <label>Email<input type="email" name="EMAIL" autocomplete="email" required></label>
             <label>Town or city<input type="text" name="CITY" autocomplete="address-level2" maxlength="200" required></label>
             <label>Organization <span class="muted">(optional)</span><input type="text" name="ORGANIZATION" autocomplete="organization" maxlength="200"></label>
-            <fieldset class="signup__choice">
-              <legend>Your preference: how should we reach you?</legend>
-              <label><input type="radio" name="CONTACT_METHOD_PREFERENCE" value="SMS Phone Text" required> SMS Phone Text</label>
-              <label><input type="radio" name="CONTACT_METHOD_PREFERENCE" value="Email"> Email</label>
-              <label><input type="radio" name="CONTACT_METHOD_PREFERENCE" value="Both"> Both</label>
+            <fieldset class="signup__choice" data-joins="CONTACT_METHOD_PREFERENCE">
+              <legend>Your preference: how should we reach you? <span class="signup__hint">Pick any.</span></legend>
+              <label><input type="checkbox" value="SMS Phone Text"> SMS Phone Text</label>
+              <label><input type="checkbox" value="WhatsApp"> WhatsApp</label>
+              <label><input type="checkbox" value="Email"> Email</label>
+              <input type="hidden" name="CONTACT_METHOD_PREFERENCE" value="">
             </fieldset>
             <div class="signup__field sms-only" hidden>
               <label for="signup-phone">Phone</label>
@@ -154,7 +155,7 @@
                 <input id="signup-phone" type="tel" name="SMS" autocomplete="tel-national" inputmode="tel" placeholder="928 555 0123" required>
               </div>
             </div>
-            <label class="signup__consent sms-only" id="sms-consent" hidden><input type="checkbox" name="SMS_CONSENT" value="Yes" required> Yes, Fashion Lab Sedona may text me about the playbook. Message and data rates may apply. Reply STOP to opt out.</label>
+            <label class="signup__consent sms-only" id="sms-consent" hidden><input type="checkbox" name="SMS_CONSENT" value="Yes" required> Yes, Fashion Lab Sedona may text or WhatsApp me about the playbook. Message and data rates may apply. Reply STOP to opt out.</label>
             <input class="signup__trap" type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off" aria-hidden="true">
             <input type="hidden" name="locale" value="en">
             <button class="btn btn--sedona" type="submit">Send me the playbook</button>
