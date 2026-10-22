@@ -18,6 +18,7 @@ Static site, no build step. Open `index.html` in a browser or host the `site/` f
 - `sedonans.html` — the 2026 Sensational Sedonans from the E-Program (photos in `assets/img/sedonans/`, cropped from the E-Program PDF).
 - `updates/` — sign-up page for Fashion Lab updates (fashionlabsedona.com/updates). `newsletter/` redirects there.
 - `playbook-map.html` — team map of where playbook requests come from (not in the menu, not indexed). Rebuild it from a Brevo export with `python3 tools/build_request_map.py`; see the top of that script.
+- `about.html` — About us: the story year by year (2024, 2025, 2026, heading into 2027) with each year's core team. 2025 headshots in `assets/img/team/2025/`, cropped from the 2025 E-Program. Every "About us" menu link points here.
 - `press.html` — press page: news coverage, fast facts, boilerplate, logos and photos, press contact. Add new clippings to the `press-list` at the top; PDF copies of articles go in `assets/press/`.
 
 ## Folders
