@@ -164,6 +164,18 @@
      falls back to opening an email to the team. */
   document.querySelectorAll('form.signup').forEach(function (form, i) {
     var done = form.querySelector('.signup__done');
+    // A checkbox group marked data-pick-one needs at least one box ticked.
+    var groups = form.querySelectorAll('[data-pick-one]');
+    function checkGroups() {
+      groups.forEach(function (g) {
+        var boxes = g.querySelectorAll('input[type=checkbox]');
+        var any = Array.prototype.some.call(boxes, function (b) { return b.checked; });
+        boxes[0].setCustomValidity(any ? '' : 'Please choose at least one.');
+      });
+    }
+    form.addEventListener('change', checkGroups);
+    form.addEventListener('reset', function () { setTimeout(checkGroups); });
+    checkGroups();
     form.addEventListener('submit', function (e) {
       var action = form.getAttribute('action');
       if (!action) {

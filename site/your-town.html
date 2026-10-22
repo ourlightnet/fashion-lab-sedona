@@ -148,10 +148,12 @@
                 <input id="signup-phone" type="tel" name="SMS" autocomplete="tel-national" inputmode="tel" placeholder="928 555 0123" required>
               </div>
             </div>
-            <fieldset class="signup__choice">
-              <legend>Preference: how should we reach you?</legend>
-              <label><input type="radio" name="CONTACT_PREFERENCE" value="Email" required> Email</label>
-              <label><input type="radio" name="CONTACT_PREFERENCE" value="Phone"> Phone</label>
+            <fieldset class="signup__choice" data-pick-one>
+              <legend>Your preference: how should we reach you? <span class="signup__hint">Pick any.</span></legend>
+              <label><input type="checkbox" name="YOUR_PREFERENCE[]" value="SMS"> SMS</label>
+              <label><input type="checkbox" name="YOUR_PREFERENCE[]" value="Phone"> Phone</label>
+              <label><input type="checkbox" name="YOUR_PREFERENCE[]" value="Text"> Text</label>
+              <label><input type="checkbox" name="YOUR_PREFERENCE[]" value="Email"> Email</label>
             </fieldset>
             <input class="signup__trap" type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off" aria-hidden="true">
             <input type="hidden" name="locale" value="en">
