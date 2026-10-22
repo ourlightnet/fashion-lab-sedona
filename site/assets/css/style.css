@@ -606,3 +606,4 @@ a.sp-card:hover, .sp-card:focus-visible { border-color: var(--sedona); box-shado
   .donor__body h3 { padding-right: 0; }
   .donor-sticker { position: static; margin-bottom: 8px; transform: rotate(-2deg); }
 }
+.shop-feature--next { border-top: 1px solid var(--line); }

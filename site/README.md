@@ -18,7 +18,7 @@ Static site, no build step. Open `index.html` in a browser or host the `site/` f
 - `sedonans.html` — the 2026 Sensational Sedonans from the E-Program (photos in `assets/img/sedonans/`, cropped from the E-Program PDF).
 - `updates/` — sign-up page for Fashion Lab updates (fashionlabsedona.com/updates). `newsletter/` redirects there.
 - `playbook-map.html` — team map of where playbook requests come from (not in the menu, not indexed). Rebuild it from a Brevo export with `python3 tools/build_request_map.py`; see the top of that script.
-- `shop.html` — Shop Our Sponsors: 2026 Headline Sponsor The Closet Concierge (Betsy Klein's shop, address and directions; they ran the VIP room and dressed the Sensational Sedonans), then the raffle donors with shops (Cielo Connection, Village Yoga, Sedona Active Wear, Shine, Mermaid Heaven), each with logo, description and a 2026 donor sticker. In the main menu and footer.
+- `shop.html` — Shop Our Sponsors: 2026 Headline Sponsors The Closet Concierge (Betsy Klein's shop, address and directions; they ran the VIP room and dressed the Sensational Sedonans) and FABRIC Incubator (photo in `assets/img/collab/fabric-incubator.jpg`), then the raffle donors with shops (Cielo Connection, Village Yoga, Sedona Active Wear, Shine, Mermaid Heaven), each with logo, description and a 2026 donor sticker. In the main menu and footer.
 - `press.html` — press page: news coverage, fast facts, boilerplate, logos and photos, press contact. Add new clippings to the `press-list` at the top; PDF copies of articles go in `assets/press/`.
 
 ## Folders
