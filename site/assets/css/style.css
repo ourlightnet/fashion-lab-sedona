@@ -588,3 +588,6 @@ a.sp-card:hover, .sp-card:focus-visible { border-color: var(--sedona); box-shado
 .offer__split { font-weight: 500; }
 .offer__note { font-size: .9rem; }
 .offer__rate { font-weight: 700; color: var(--ink-soft); }
+.hero__img--sedonans { object-position: 45% top; }
+@media (min-width: 760px) { .hero__img--sedonans { object-position: right top; } }
+@media (max-width: 759px) { .hero--sedonans { min-height: 780px; } }
