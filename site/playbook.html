@@ -153,12 +153,21 @@
       <div class="section-head reveal">
         <span class="eyebrow">04 · The budget template</span>
         <h2>Sedona's real numbers, your empty column</h2>
-        <p class="lead">From our 2026 operating budget. 2025 had a $5,000 city grant. 2026 ran without one: tickets and the bar made up most of the gap, and the show spent $360 more than it raised, which last year's surplus covered. Type your own estimates in the Your Town column, or fill in how many × the price where a line has it, and the totals update.</p>
+        <p class="lead">From our 2026 operating budget. 2025 had a $5,000 city grant. 2026 ran without one: tickets and the bar made up most of the gap, and the show spent $360 more than it raised, which last year's surplus covered. Type your own estimates in the Your Town column, or fill in how many × the price where a line has it, and the totals update. Cost per designer is your expenses divided by your designer count. Your numbers stay saved in this browser; Download my budget saves a copy you can open in any spreadsheet.</p>
         <div class="btn-row">
           <button class="btn btn--small" id="budget-fill" type="button">Fill with Sedona 2026</button>
           <button class="btn btn--small btn--ghost" id="budget-clear" type="button">Clear my column</button>
+          <button class="btn btn--small btn--ghost" id="budget-download" type="button">Download my budget</button>
           <a class="btn btn--small btn--ghost" href="assets/docs/fashion-lab-budget-template.xlsx" download>Download the spreadsheet</a>
         </div>
+      </div>
+      <div class="budget-summary budget-summary--top reveal" aria-hidden="true">
+        <div>Your income<strong data-sum="income">$0</strong></div>
+        <div>Your expenses<strong data-sum="expense">$0</strong></div>
+        <div>Your net<strong data-sum="net">$0</strong></div>
+        <div>Cost per designer<strong data-sum="per">–</strong></div>
+        <div>Saved by donations<strong data-sum="inkind">$0</strong></div>
+        <div>In the bank after<strong data-sum="bank">$0</strong></div>
       </div>
       <div class="table-wrap reveal">
         <table class="budget">
@@ -212,16 +221,34 @@
           </tbody>
           <tbody>
             <tr class="total"><td>Total Expenses</td><td class="num">$10,351</td><td class="num">$17,229</td><td class="num" id="sum-expense-cell"></td><td></td></tr>
-            <tr class="total"><td>Net</td><td class="num">$5,720</td><td class="num">-$360</td><td class="num" id="sum-net-cell"></td><td class="note" style="color:#ccc">2025's surplus covered 2026, leaving $4,723 for 2027</td></tr>
+            <tr class="total"><td>Net</td><td class="num">$5,720</td><td class="num">-$360</td><td class="num" id="sum-net-cell"></td><td class="note" style="color:#ccc">Income minus expenses for the year</td></tr>
+          </tbody>
+          <tbody data-kind="surplus">
+            <tr><td>Surplus From Prior Year</td><td class="num">–</td><td class="num">$5,083</td><td class="num"><input type="number" min="0" data-your data-sedona="5083" aria-label="Your surplus from last year"></td><td class="note">What was left in the bank from last year</td></tr>
+            <tr class="total"><td>In the Bank After</td><td class="num">–</td><td class="num">$4,723</td><td class="num" id="sum-bank-cell"></td><td class="note" style="color:#ccc">Prior surplus + net. Sedona carried $4,723 into 2027</td></tr>
+          </tbody>
+          <tbody data-kind="inkind">
+            <tr class="group"><td colspan="5">Donated (In-Kind) · Not in the Cash Totals</td></tr>
+            <tr><td>Create-a-Thon Studio</td><td class="num">–</td><td class="num">$4,800</td><td class="num"><input type="number" min="0" data-your data-sedona="4800" aria-label="Donated studio"></td><td class="note">Weekend studio space</td></tr>
+            <tr><td>Scholarship Courses &amp; Mentorship</td><td class="num">–</td><td class="num">$8,000</td><td class="num"><input type="number" min="0" data-your data-sedona="8000" aria-label="Donated scholarship"></td><td class="note">Donated by the FABRIC Incubator</td></tr>
+            <tr><td>Raffle Prizes</td><td class="num">–</td><td class="num">$6,941</td><td class="num"><input type="number" min="0" data-your data-sedona="6941" aria-label="Donated raffle prizes"></td><td class="note">High-end items from local businesses</td></tr>
+            <tr><td>Director / Producer Time</td><td class="num">–</td><td class="num">$4,000</td><td class="num"><input type="number" min="0" data-your data-sedona="4000" aria-label="Donated director time"></td><td></td></tr>
+            <tr><td>Photography</td><td class="num">–</td><td class="num">$1,000</td><td class="num"><input type="number" min="0" data-your data-sedona="1000" aria-label="Donated photography"></td><td class="note">Two photographers</td></tr>
+            <tr><td>Stage Manager</td><td class="num">–</td><td class="num">$700</td><td class="num"><input type="number" min="0" data-your data-sedona="700" aria-label="Donated stage manager"></td><td></td></tr>
+            <tr><td>Supplies</td><td class="num">–</td><td class="num">$100</td><td class="num"><input type="number" min="0" data-your data-sedona="100" aria-label="Donated supplies"></td><td></td></tr>
+            <tr class="subtotal"><td>Saved by Donations</td><td class="num">–</td><td class="num">$25,541</td><td class="num your">$0</td><td class="note">What you didn't have to pay for</td></tr>
           </tbody>
         </table>
       </div>
       <div class="budget-summary reveal">
-        <div>Your income<strong id="sum-income">$0</strong></div>
-        <div>Your expenses<strong id="sum-expense">$0</strong></div>
-        <div>Your net<strong id="sum-net">$0</strong></div>
+        <div>Your income<strong data-sum="income">$0</strong></div>
+        <div>Your expenses<strong data-sum="expense">$0</strong></div>
+        <div>Your net<strong data-sum="net">$0</strong></div>
+        <div>Cost per designer<strong data-sum="per">–</strong></div>
+        <div>Saved by donations<strong data-sum="inkind">$0</strong></div>
+        <div>In the bank after<strong data-sum="bank">$0</strong></div>
       </div>
-      <p class="muted" style="margin-top:16px;font-size:.9rem">In-kind, not in the table: about $25,500 in 2026. The FABRIC scholarship ($8,000), raffle items (about $6,900), the Create-a-Thon studio (about $4,800), the director's time (about $4,000), photography ($1,000), the stage manager ($700) and supplies. Count them in your sponsor thank-yous, not in your cash budget.</p>
+      <p class="muted" style="margin-top:16px;font-size:.9rem">Donations are not in the cash totals. List them anyway: they show sponsors, the city and grant makers what the show is really worth.</p>
     </div>
   </section>
 

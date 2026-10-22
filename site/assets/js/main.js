@@ -90,12 +90,26 @@
     dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
   }
 
-  /* Budget calculator ---------------------------------------------------- */
+  /* Budget calculator ----------------------------------------------------
+     Your Town numbers are kept in this browser (localStorage), so they are
+     still there next visit, and "Download my budget" saves them as a CSV. */
   var budget = document.querySelector('table.budget');
   if (budget) {
     var fmt = function (n) { return '$' + Math.round(n).toLocaleString('en-US'); };
+    var signed = function (n) { return (n < 0 ? '−' : '') + fmt(Math.abs(n)); };
+    var fields = budget.querySelectorAll('input[data-your], input[data-qty], input[data-price]');
+    var STORE = 'fls-playbook-budget';
+    function save() {
+      try { localStorage.setItem(STORE, JSON.stringify(Array.prototype.map.call(fields, function (f) { return f.value; }))); } catch (e) {}
+    }
+    function restore() {
+      try {
+        var vals = JSON.parse(localStorage.getItem(STORE) || 'null');
+        if (vals && vals.length === fields.length) fields.forEach(function (f, i) { f.value = vals[i]; });
+      } catch (e) {}
+    }
     function recalc() {
-      var totals = { income: 0, expense: 0 };
+      var totals = { income: 0, expense: 0, inkind: 0, surplus: 0 };
       budget.querySelectorAll('tbody').forEach(function (tb) {
         var kind = tb.dataset.kind; // income | expense
         var sub = 0;
@@ -104,14 +118,22 @@
         });
         var cell = tb.querySelector('.subtotal .your');
         if (cell) cell.textContent = fmt(sub);
-        if (kind) totals[kind] += sub;
+        if (kind in totals) totals[kind] += sub;
       });
-      var inc = document.getElementById('sum-income'), exp = document.getElementById('sum-expense'), net = document.getElementById('sum-net');
-      if (inc) inc.textContent = fmt(totals.income);
-      if (exp) exp.textContent = fmt(totals.expense);
+      var d = totals.income - totals.expense;
+      var dq = budget.querySelector('input[data-qty][aria-label="How many designers"]');
+      var designers = dq ? parseFloat(dq.value) : NaN;
+      // The summary shows above and below the table; each figure is [data-sum].
+      document.querySelectorAll('[data-sum]').forEach(function (el) {
+        var k = el.dataset.sum;
+        el.textContent = k === 'net' ? signed(d) : k === 'bank' ? signed(totals.surplus + d) : k === 'per' ? (designers > 0 ? fmt(totals.expense / designers) : '–') : fmt(totals[k]);
+        if (k === 'net' || k === 'bank') el.className = (k === 'net' ? d : totals.surplus + d) < 0 ? 'neg' : 'pos';
+      });
       var ec = document.getElementById('sum-expense-cell'), nc = document.getElementById('sum-net-cell');
       if (ec) ec.textContent = fmt(totals.expense);
-      if (net) { var d = totals.income - totals.expense; if (nc) nc.textContent = (d < 0 ? '−' : '') + fmt(Math.abs(d)); net.textContent = (d < 0 ? '−' : '') + fmt(Math.abs(d)); net.className = d < 0 ? 'neg' : 'pos'; }
+      if (nc) nc.textContent = signed(d);
+      var bc = document.getElementById('sum-bank-cell');
+      if (bc) bc.textContent = signed(totals.surplus + d);
     }
     // A line with "how many × price" fills its Your Town total from those two.
     function lineFromCalc(row) {
@@ -121,19 +143,37 @@
     }
     budget.addEventListener('input', function (e) {
       if (e.target.matches('input[data-qty], input[data-price]')) lineFromCalc(e.target.closest('tr'));
-      recalc();
+      recalc(); save();
     });
     var fill = document.getElementById('budget-fill');
     if (fill) fill.addEventListener('click', function () {
       budget.querySelectorAll('input[data-your]').forEach(function (inp) { inp.value = inp.dataset.sedona || ''; });
       budget.querySelectorAll('input[data-qty]').forEach(function (inp) { inp.value = inp.dataset.sedonaQty || ''; });
-      recalc();
+      recalc(); save();
     });
     var clear = document.getElementById('budget-clear');
     if (clear) clear.addEventListener('click', function () {
       budget.querySelectorAll('input[data-your], input[data-qty]').forEach(function (inp) { inp.value = ''; });
-      recalc();
+      recalc(); save();
     });
+    var dl = document.getElementById('budget-download');
+    if (dl) dl.addEventListener('click', function () {
+      var q = function (v) { v = String(v).replace(/\s+/g, ' ').trim(); return /[",]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
+      var lines = [['Line', 'Sedona 2025', 'Sedona 2026', 'Your town', 'How many', 'Price each'].join(',')];
+      budget.querySelectorAll('tbody tr').forEach(function (tr) {
+        var td = tr.children, your = tr.querySelector('input[data-your]');
+        if (tr.classList.contains('group')) { lines.push(q(td[0].textContent)); return; }
+        var yv = your ? your.value : (td[3] ? td[3].textContent : '');
+        var qty = tr.querySelector('input[data-qty]'), pr = tr.querySelector('input[data-price]');
+        lines.push([td[0].textContent, td[1].textContent, td[2].textContent, yv, qty ? qty.value : '', pr ? pr.value : ''].map(q).join(','));
+      });
+      var blob = new Blob(['﻿' + lines.join('\r\n')], { type: 'text/csv' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob); a.download = 'my-fashion-lab-budget.csv';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+    });
+    restore();
     recalc();
   }
 
