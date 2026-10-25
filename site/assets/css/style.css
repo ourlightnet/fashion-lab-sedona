@@ -391,6 +391,8 @@ dialog.docview::backdrop { background: rgba(0,0,0,.78); }
 .lessons { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
 .lessons ol { margin: 0; padding-left: 20px; }
 .lessons li { margin-bottom: 8px; font-size: .95rem; }
+.lessons-top { margin: 16px 0 0; padding-left: 22px; max-width: 720px; }
+.lessons-top li { margin-bottom: 6px; font-weight: 500; }
 
 /* Footer ----------------------------------------------------------------- */
 .site-footer { background: var(--black); color: #ddd; padding: clamp(40px, 6vw, 72px) 0 28px; border-top: 4px solid var(--sedona); }
