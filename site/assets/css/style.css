@@ -95,13 +95,18 @@ p { margin: 0 0 1em; }
 .nav a:hover, .nav a[aria-current="page"] { color: var(--sedona-glow); }
 .nav .nav-cta { background: var(--sedona); color: var(--white); margin-left: 8px; }
 .nav .nav-cta:hover { background: var(--sedona-deep); color: var(--white); }
+.nav-ig { display: inline-flex; align-items: center; gap: 10px; margin-left: 6px; }
+.nav-ig svg { display: block; }
+.nav-ig__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .nav-toggle { display: none; background: none; border: 2px solid var(--white); color: var(--white); border-radius: var(--radius); padding: .45em .7em; font-family: var(--font-head); font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
-@media (max-width: 1200px) {
+@media (max-width: 1000px) {
   .nav-toggle { display: inline-block; }
   .nav { display: none; position: absolute; left: 0; right: 0; top: 100%; background: var(--black); flex-direction: column; align-items: stretch; padding: 12px var(--gutter) 20px; border-bottom: 1px solid #222; }
   .nav.is-open { display: flex; }
   .nav a { padding: .9em .4em; border-bottom: 1px solid #1e1e1e; border-radius: 0; font-size: .85rem; }
   .nav .nav-cta { margin: 12px 0 0; text-align: center; border-radius: var(--radius); }
+  .nav .nav-ig { margin: 8px 0 0; border-bottom: 0; }
+  .nav-ig__label { position: static; width: auto; height: auto; overflow: visible; clip: auto; }
 }
 
 /* Hero ------------------------------------------------------------------- */
@@ -416,7 +421,7 @@ dialog.docview::backdrop { background: rgba(0,0,0,.78); }
 .nav-drop:hover .nav-drop__btn, .nav-drop:focus-within .nav-drop__btn, .nav-drop:has([aria-current="page"]) .nav-drop__btn { color: var(--sedona-glow); }
 .nav-drop__menu { display: none; position: absolute; top: 100%; left: 0; min-width: 160px; background: var(--black); border: 1px solid #2a2a2a; border-radius: var(--radius); padding: 6px; z-index: 50; }
 .nav-drop:hover .nav-drop__menu, .nav-drop:focus-within .nav-drop__menu { display: flex; flex-direction: column; }
-@media (max-width: 1200px) {
+@media (max-width: 1000px) {
   .nav-drop__btn { width: 100%; text-align: left; padding: .9em .4em; border-bottom: 1px solid #1e1e1e; border-radius: 0; font-size: .85rem; }
   .nav-drop__btn::after { content: ""; }
   .nav-drop__menu { display: flex; flex-direction: column; position: static; border: 0; padding: 0 0 0 16px; min-width: 0; }
@@ -600,6 +605,29 @@ a.sp-card:hover, .sp-card:focus-visible { border-color: var(--sedona); box-shado
 .podcast-card .eyebrow { margin-bottom: 4px; }
 .podcast-card strong, .podcast-card span span { display: block; }
 
+/* Shop page (shop.html): headline sponsor and raffle donors with stickers --- */
+.headline-sticker, .donor-sticker { display: inline-block; font-family: var(--font-head); text-transform: uppercase; letter-spacing: .12em; color: var(--white); background: var(--grad); border-radius: 999px; }
+.headline-sticker { font-size: .78rem; padding: .55em 1.1em; margin-bottom: 1rem; transform: rotate(-2deg); box-shadow: 0 4px 14px rgba(232,93,26,.35); }
+.shop-address { font-style: normal; border-left: 4px solid var(--sedona); padding: 4px 0 4px 16px; margin: 1.4em 0; line-height: 1.55; }
+.shop-address strong { display: block; font-family: var(--font-head); font-weight: 400; text-transform: uppercase; letter-spacing: .04em; }
+.shop-address a { color: inherit; text-decoration-color: var(--sedona); text-underline-offset: 3px; }
+.shop-more { margin-top: 20px; font-weight: 700; }
+.shop-more a { text-decoration-color: var(--sedona); text-underline-offset: 3px; }
+.donors { display: grid; gap: 18px; margin-top: 28px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 520px), 1fr)); }
+.donor { display: grid; grid-template-columns: 140px 1fr; gap: 22px; align-items: center; background: var(--white); border: 1px solid var(--line); border-radius: 6px; padding: 20px; }
+.donor__logo { display: grid; place-items: center; aspect-ratio: 1; padding: 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--white); }
+.donor__logo img { max-height: 100%; object-fit: contain; }
+.donor__body .eyebrow { margin-bottom: .35rem; font-size: .7rem; }
+.donor__body h3 { font-size: 1.15rem; margin: 0 0 .35em; }
+.donor__body p { margin: 0 0 .6em; font-size: .95rem; color: var(--ink-soft); }
+.donor__link { font-weight: 700; font-size: .92rem; text-decoration-color: var(--sedona); text-underline-offset: 3px; }
+.donor-sticker { font-size: .62rem; padding: .5em .9em; margin-bottom: 10px; transform: rotate(-2deg); }
+@media (max-width: 520px) {
+  .donor { grid-template-columns: 96px 1fr; gap: 16px; padding: 16px; align-items: start; }
+}
+.shop-feature--next { border-top: 1px solid var(--line); }
+.donor-sticker--sedonan { background: var(--black); padding-right: 1.1em; }
+.donor__body p a { color: inherit; text-decoration-color: var(--sedona); text-underline-offset: 3px; }
 /* Footer: Follow us (Instagram first, then Facebook + YouTube) */
 .footer-follow { margin-top: 44px; display: grid; gap: 20px; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); align-items: stretch; }
 .site-footer .follow-ig { display: flex; align-items: center; gap: clamp(16px, 3vw, 28px); padding: clamp(20px, 3vw, 32px); border-radius: 18px; color: #fff; background: linear-gradient(45deg, #feda75 0%, #fa7e1e 25%, #d62976 55%, #962fbf 80%, #4f5bd5 100%); box-shadow: 0 14px 40px rgba(214,41,118,.35); transition: transform .2s ease, box-shadow .2s ease; }
