@@ -378,8 +378,8 @@
           var next = items[i + 1];
           var target = Math.max(W * 0.3, 140);
           var h = (W - gap * (row.length - 1)) / sum(row);
-          // Featured photos: two per row (one on phones); others fill rows to the target height
-          var full = it.f ? row.length >= (W < 600 ? 1 : 2) : h <= target;
+          // Featured photos: two per row (one on narrow phones); others fill rows to the target height
+          var full = it.f ? row.length >= (W < 420 ? 1 : 2) : h <= target;
           if (full || !next || next.f !== it.f) {
             // A short last row in a group gets too tall: rebalance it with the row before
             if (!it.f && h > target * 1.6 && rows.length > start) {
@@ -388,7 +388,7 @@
               row = pool.slice(half);
             }
             // An odd featured photo out joins the row before it (three across) on wider screens
-            if (it.f && W >= 600 && row.length === 1 && rows.length > start && (!next || !next.f)) rows[rows.length - 1].push(row[0]);
+            if (it.f && W >= 420 && row.length === 1 && rows.length > start && (!next || !next.f)) rows[rows.length - 1].push(row[0]);
             else rows.push(row);
             row = [];
             if (!next || next.f !== it.f) start = rows.length;
