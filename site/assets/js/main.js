@@ -378,9 +378,11 @@
           var next = items[i + 1];
           var target = Math.max(W * 0.3, 140);
           var h = (W - gap * (row.length - 1)) / sum(row);
-          // Featured photos: two per row (one on narrow phones). Each run of other photos
-          // is one row on wide screens, and fills rows to the target height on small ones.
-          var full = it.f ? row.length >= (W < 420 ? 1 : 2) : W < 700 && h <= target;
+          // Featured photos: two per row (one on narrow phones, or alone with .solo). Other
+          // photos form one row per run (or up to data-row-end) on wide screens, and fill
+          // rows to the target height on small ones.
+          var full = it.f ? row.length >= (W < 420 || it.a.classList.contains('solo') ? 1 : 2)
+            : W < 700 ? h <= target : it.a.hasAttribute('data-row-end');
           if (full || !next || next.f !== it.f) {
             // A short last row in a group gets too tall: rebalance it with the row before
             if (!it.f && h > target * 1.6 && rows.length > start) {
