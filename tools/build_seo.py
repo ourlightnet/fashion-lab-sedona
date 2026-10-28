@@ -41,6 +41,7 @@ PAGES = [
     ('photographers-2026.html', 'photographers-2026', 'collab/leah-joy-love.jpg', 'Leah Joy Love, Karl Mullings and more', 'Photographers & Videographers 2026', (.5, .3)),
     ('winners-2026.html', 'winners-2026', 'designers/jesselynn-desmond-runway.jpg', 'Sustainable Design Award', '2026 Winners', (.5, .3)),
     ('designers.html', 'designers', 'lab/0262.jpg', 'Upcycled in 48 hours', 'Meet the 2026 Designers', (.5, .4)),
+    ('shop.html', 'shop', 'show/11185.jpg', 'The Closet Concierge, FABRIC and our raffle donors', 'Shop Our Sponsors', (.5, .25)),
     ('sedonans.html', 'sedonans', 'show/10883.jpg', 'Local celebrity models', 'Sensational Sedonans 2026', (.5, .25)),
     ('sedona-dance-academy.html', 'sedona-dance-academy', '2026/sedona-dance-academy/03.jpg', 'Event Collaboration', 'Sedona Dance Academy', (.5, .3)),
     ('get-involved.html', 'get-involved', 'lab/0164.jpg', 'Design, model, volunteer, give', 'Get Involved', (.5, .5)),
