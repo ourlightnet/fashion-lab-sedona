@@ -349,7 +349,7 @@
   });
 
   // Justified grids: rows of whole photos that fill the width exactly. Featured
-  // photos (.feature) are grouped into their own rows with a taller target height.
+  // photos (.feature) are grouped into their own, much bigger rows.
   var justified = document.querySelectorAll('.grid--justified');
   if (justified.length) {
     var justify = function () {
@@ -376,11 +376,13 @@
         items.forEach(function (it, i) {
           row.push(it);
           var next = items[i + 1];
-          var target = it.f ? Math.max(W * 0.4, 230) : Math.max(W * 0.3, 140);
+          var target = Math.max(W * 0.3, 140);
           var h = (W - gap * (row.length - 1)) / sum(row);
-          if (h <= target || !next || next.f !== it.f) {
+          // Featured photos: two per row (one on phones); others fill rows to the target height
+          var full = it.f ? row.length >= (W < 600 ? 1 : 2) : h <= target;
+          if (full || !next || next.f !== it.f) {
             // A short last row in a group gets too tall: rebalance it with the row before
-            if (h > target * 1.6 && rows.length > start) {
+            if (!it.f && h > target * 1.6 && rows.length > start) {
               var pool = rows.pop().concat(row), half = Math.ceil(pool.length / 2);
               rows.push(pool.slice(0, half));
               row = pool.slice(half);
