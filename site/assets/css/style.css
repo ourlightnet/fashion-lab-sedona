@@ -661,4 +661,3 @@ a.sp-card:hover, .sp-card:focus-visible { border-color: var(--sedona); box-shado
 .photo-title a { color: var(--sedona-deep); text-decoration: none; }
 .photo-title a:hover { text-decoration: underline; }
 .photo-title + .grid { margin-top: 18px; }
-.photo-sub { margin: 0 0 18px; }
