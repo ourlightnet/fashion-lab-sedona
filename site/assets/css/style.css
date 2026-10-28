@@ -650,10 +650,15 @@ a.sp-card:hover, .sp-card:focus-visible { border-color: var(--sedona); box-shado
 .grid--faces img { object-position: center 15%; }
 .grid--faces img.img--group { object-position: center 35%; }
 
-/* Masonry photo grid: whole photos, no cropping (row spans set in main.js) */
-.grid--masonry { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); grid-auto-rows: 4px; gap: 0 10px; grid-auto-flow: dense; }
-@media (min-width: 700px) { .grid--masonry { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); } }
-.grid--masonry a { display: block; margin-bottom: 10px; border-radius: 3px; overflow: hidden; background: #ddd; }
-.grid--masonry img { display: block; width: 100%; height: auto; transition: transform .5s ease; }
-.grid--masonry a:hover img { transform: scale(1.03); }
-.grid--masonry .feature { grid-column: span 2; }
+/* Justified photo grid: whole photos in full-width rows, no gaps (sizes set in main.js) */
+.grid--justified { display: flex; flex-wrap: wrap; gap: 8px; }
+.grid--justified a { display: block; flex: none; width: calc(25% - 6px); overflow: hidden; border-radius: 2px; background: #222; }
+.grid--justified img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.grid--justified a:hover img { transform: scale(1.03); }
+
+/* Photographer titles above show photo grids */
+.photo-title { font-size: clamp(1.4rem, 3vw, 2rem); margin: 0 0 6px; }
+.photo-title a { color: var(--sedona-deep); text-decoration: none; }
+.photo-title a:hover { text-decoration: underline; }
+.photo-title + .grid { margin-top: 18px; }
+.photo-sub { margin: 0 0 18px; }
