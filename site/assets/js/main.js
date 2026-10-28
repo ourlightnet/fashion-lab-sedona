@@ -387,7 +387,9 @@
               rows.push(pool.slice(0, half));
               row = pool.slice(half);
             }
-            rows.push(row);
+            // An odd featured photo out joins the row before it (three across) on wider screens
+            if (it.f && W >= 600 && row.length === 1 && rows.length > start && (!next || !next.f)) rows[rows.length - 1].push(row[0]);
+            else rows.push(row);
             row = [];
             if (!next || next.f !== it.f) start = rows.length;
           }
