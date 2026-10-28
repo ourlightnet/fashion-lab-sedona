@@ -53,6 +53,7 @@ PAGES = [
     ('videos.html', 'videos', '2026/show-karl/01.jpg', 'Highlights and sizzle reel', 'Videos', (.5, .3)),
     ('sponsors.html', 'sponsors', 'show/11201.jpg', 'Sponsors, donors and vendors', 'Shop Our Sponsors', (.5, .5)),
     ('partners.html', 'partners', 'show/11203.jpg', 'Sponsors, donors and collaborators', 'Our Partners', (.5, .5)),
+    ('about.html', 'about', 'show/11201.jpg', 'Since 2024', 'About Fashion Lab Sedona', (.5, .5)),
     ('press.html', 'press', 'site/lead.jpg', 'News, fast facts, logos, photos', 'Press', (.5, .5)),
     ('2025.html', '2025', 'past/2025/show/01.jpg', 'Prior years', 'Fashion Lab 2025', (.5, .3)),
     ('2024.html', '2024', 'past/2024/show/02.jpg', 'Prior years', 'Fashion Lab 2024', (.5, .3)),
