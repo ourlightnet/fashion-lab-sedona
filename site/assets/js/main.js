@@ -347,4 +347,28 @@
     e.preventDefault();
     openMail(a.getAttribute('href'));
   });
+
+  // Masonry grids: size each tile's row span to its photo so nothing is cropped
+  var masonry = document.querySelectorAll('.grid--masonry');
+  if (masonry.length) {
+    var layout = function () {
+      masonry.forEach(function (g) {
+        var row = parseFloat(getComputedStyle(g).gridAutoRows) || 4;
+        g.querySelectorAll('a').forEach(function (a) {
+          var img = a.querySelector('img');
+          if (!img || !img.naturalWidth) return;
+          var h = a.clientWidth * img.naturalHeight / img.naturalWidth + 10;
+          a.style.gridRowEnd = 'span ' + Math.ceil(h / row);
+        });
+      });
+    };
+    masonry.forEach(function (g) {
+      g.querySelectorAll('img').forEach(function (img) {
+        img.loading = 'eager';
+        if (!img.complete) img.addEventListener('load', layout);
+      });
+    });
+    layout();
+    window.addEventListener('resize', layout);
+  }
 })();
