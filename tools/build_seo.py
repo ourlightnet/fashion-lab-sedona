@@ -51,6 +51,7 @@ PAGES = [
     ('updates/index.html', 'updates', 'show/10941.jpg', 'Mailing list', 'Get Fashion Lab updates', (.5, .3)),
     ('popups.html', 'popups', 'site/popup-sewing.jpg', 'Sewing, dyeing, modeling and more', 'Pop-Ups and Workshops', (.5, .5)),
     ('videos.html', 'videos', '2026/show-karl/01.jpg', 'Highlights and sizzle reel', 'Videos', (.5, .3)),
+    ('sponsors.html', 'sponsors', 'show/11201.jpg', 'Sponsors, donors and vendors', 'Shop Our Sponsors', (.5, .5)),
     ('partners.html', 'partners', 'show/11203.jpg', 'Sponsors, donors and collaborators', 'Our Partners', (.5, .5)),
     ('press.html', 'press', 'site/lead.jpg', 'News, fast facts, logos, photos', 'Press', (.5, .5)),
     ('2025.html', '2025', 'past/2025/show/01.jpg', 'Prior years', 'Fashion Lab 2025', (.5, .3)),

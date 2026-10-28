@@ -1,5 +1,6 @@
-"""Build the sponsors section of site/index.html and the Partners page
-(site/partners.html) from data/sponsors-2026.csv.
+"""Build the sponsors section of site/index.html, the Shop Our Sponsors page
+(site/sponsors.html) and the Partners page (site/partners.html) from
+data/sponsors-2026.csv.
 
 On the home page only Headline Sponsors show their name under the logo; every
 other logo shows its name and description on hover. The Partners page prints
@@ -17,6 +18,7 @@ ROOT = Path(__file__).resolve().parent.parent
 CSV = ROOT / 'data' / 'sponsors-2026.csv'
 INDEX = ROOT / 'site' / 'index.html'
 PARTNERS = ROOT / 'site' / 'partners.html'
+SPONSORS = ROOT / 'site' / 'sponsors.html'
 LOGOS = ROOT / 'site' / 'assets' / 'img' / 'sponsors'
 START, END = '<!-- SPONSORS:START -->', '<!-- SPONSORS:END -->'
 # Compact strip of headline sponsor logos near the top of the page.
@@ -115,6 +117,8 @@ def build():
     partners = PARTNERS.read_text(encoding='utf-8')
     partners = replace_between(partners, START, END, '\n'.join([START, *groups_html(rows, True), '      ' + END]))
     PARTNERS.write_text(partners, encoding='utf-8')
+    sponsors = SPONSORS.read_text(encoding='utf-8')
+    SPONSORS.write_text(replace_between(sponsors, START, END, '\n'.join(out)), encoding='utf-8')
     INDEX.write_text(page, encoding='utf-8')
     missing = [RENAME.get(r['Name'], r['Name']) for r in rows if not logo_for(RENAME.get(r['Name'], r['Name']))]
     print(f'{len(rows)} sponsors; {len(rows) - len(missing)} with logos')
