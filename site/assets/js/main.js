@@ -90,12 +90,26 @@
     dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
   }
 
-  /* Budget calculator ---------------------------------------------------- */
+  /* Budget calculator ----------------------------------------------------
+     Your Town numbers are kept in this browser (localStorage), so they are
+     still there next visit, and "Download my budget" saves them as a CSV. */
   var budget = document.querySelector('table.budget');
   if (budget) {
     var fmt = function (n) { return '$' + Math.round(n).toLocaleString('en-US'); };
+    var signed = function (n) { return (n < 0 ? '−' : '') + fmt(Math.abs(n)); };
+    var fields = budget.querySelectorAll('input[data-your], input[data-qty], input[data-price]');
+    var STORE = 'fls-playbook-budget';
+    function save() {
+      try { localStorage.setItem(STORE, JSON.stringify(Array.prototype.map.call(fields, function (f) { return f.value; }))); } catch (e) {}
+    }
+    function restore() {
+      try {
+        var vals = JSON.parse(localStorage.getItem(STORE) || 'null');
+        if (vals && vals.length === fields.length) fields.forEach(function (f, i) { f.value = vals[i]; });
+      } catch (e) {}
+    }
     function recalc() {
-      var totals = { income: 0, expense: 0 };
+      var totals = { income: 0, expense: 0, inkind: 0, surplus: 0 };
       budget.querySelectorAll('tbody').forEach(function (tb) {
         var kind = tb.dataset.kind; // income | expense
         var sub = 0;
@@ -104,26 +118,62 @@
         });
         var cell = tb.querySelector('.subtotal .your');
         if (cell) cell.textContent = fmt(sub);
-        if (kind) totals[kind] += sub;
+        if (kind in totals) totals[kind] += sub;
       });
-      var inc = document.getElementById('sum-income'), exp = document.getElementById('sum-expense'), net = document.getElementById('sum-net');
-      if (inc) inc.textContent = fmt(totals.income);
-      if (exp) exp.textContent = fmt(totals.expense);
+      var d = totals.income - totals.expense;
+      var dq = budget.querySelector('input[data-qty][aria-label="How many designers"]');
+      var designers = dq ? parseFloat(dq.value) : NaN;
+      // The summary shows above and below the table; each figure is [data-sum].
+      document.querySelectorAll('[data-sum]').forEach(function (el) {
+        var k = el.dataset.sum;
+        el.textContent = k === 'net' ? signed(d) : k === 'bank' ? signed(totals.surplus + d) : k === 'per' ? (designers > 0 ? fmt(totals.expense / designers) : '–') : fmt(totals[k]);
+        if (k === 'net' || k === 'bank') el.className = (k === 'net' ? d : totals.surplus + d) < 0 ? 'neg' : 'pos';
+      });
       var ec = document.getElementById('sum-expense-cell'), nc = document.getElementById('sum-net-cell');
       if (ec) ec.textContent = fmt(totals.expense);
-      if (net) { var d = totals.income - totals.expense; if (nc) nc.textContent = (d < 0 ? '−' : '') + fmt(Math.abs(d)); net.textContent = (d < 0 ? '−' : '') + fmt(Math.abs(d)); net.className = d < 0 ? 'neg' : 'pos'; }
+      if (nc) nc.textContent = signed(d);
+      var bc = document.getElementById('sum-bank-cell');
+      if (bc) bc.textContent = signed(totals.surplus + d);
     }
-    budget.addEventListener('input', recalc);
+    // A line with "how many × price" fills its Your Town total from those two.
+    function lineFromCalc(row) {
+      var q = parseFloat(row.querySelector('input[data-qty]').value);
+      var pr = parseFloat(row.querySelector('input[data-price]').value);
+      row.querySelector('input[data-your]').value = isNaN(q) || isNaN(pr) ? '' : Math.round(q * pr);
+    }
+    budget.addEventListener('input', function (e) {
+      if (e.target.matches('input[data-qty], input[data-price]')) lineFromCalc(e.target.closest('tr'));
+      recalc(); save();
+    });
     var fill = document.getElementById('budget-fill');
     if (fill) fill.addEventListener('click', function () {
       budget.querySelectorAll('input[data-your]').forEach(function (inp) { inp.value = inp.dataset.sedona || ''; });
-      recalc();
+      budget.querySelectorAll('input[data-qty]').forEach(function (inp) { inp.value = inp.dataset.sedonaQty || ''; });
+      recalc(); save();
     });
     var clear = document.getElementById('budget-clear');
     if (clear) clear.addEventListener('click', function () {
-      budget.querySelectorAll('input[data-your]').forEach(function (inp) { inp.value = ''; });
-      recalc();
+      budget.querySelectorAll('input[data-your], input[data-qty]').forEach(function (inp) { inp.value = ''; });
+      recalc(); save();
     });
+    var dl = document.getElementById('budget-download');
+    if (dl) dl.addEventListener('click', function () {
+      var q = function (v) { v = String(v).replace(/\s+/g, ' ').trim(); return /[",]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
+      var lines = [['Line', 'Sedona 2025', 'Sedona 2026', 'Your town', 'How many', 'Price each'].join(',')];
+      budget.querySelectorAll('tbody tr').forEach(function (tr) {
+        var td = tr.children, your = tr.querySelector('input[data-your]');
+        if (tr.classList.contains('group')) { lines.push(q(td[0].textContent)); return; }
+        var yv = your ? your.value : (td[3] ? td[3].textContent : '');
+        var qty = tr.querySelector('input[data-qty]'), pr = tr.querySelector('input[data-price]');
+        lines.push([td[0].textContent, td[1].textContent, td[2].textContent, yv, qty ? qty.value : '', pr ? pr.value : ''].map(q).join(','));
+      });
+      var blob = new Blob(['﻿' + lines.join('\r\n')], { type: 'text/csv' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob); a.download = 'my-fashion-lab-budget.csv';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+    });
+    restore();
     recalc();
   }
 
@@ -157,6 +207,14 @@
     });
   });
 
+  /* get-started.html?support shows only the two paid options (linked from
+     the playbook's support buttons): hide [data-support-hide] and swap in
+     each [data-support] text. */
+  if (/[?&]support\b/.test(window.location.search)) {
+    document.querySelectorAll('[data-support-hide]').forEach(function (el) { el.hidden = true; });
+    document.querySelectorAll('[data-support]').forEach(function (el) { el.textContent = el.dataset.support; });
+  }
+
   /* Sign-up forms (Brevo) ------------------------------------------------
      Each form.signup posts to its Brevo form URL in the action attribute.
      Brevo replies with a page we don't need, so the post goes to a hidden
@@ -164,6 +222,27 @@
      falls back to opening an email to the team. */
   document.querySelectorAll('form.signup').forEach(function (form, i) {
     var done = form.querySelector('.signup__done');
+    // A checkbox group with data-joins sends its ticked values as one
+    // comma-separated field (Brevo stores it as text) and needs at least one.
+    // Phone and texting consent (.sms-only) show only when something other
+    // than Email is ticked. Hidden fields are disabled so they aren't sent.
+    var joined = form.querySelector('[data-joins]');
+    var smsOnly = form.querySelectorAll('.sms-only');
+    function syncChoices() {
+      if (!joined) return;
+      var boxes = joined.querySelectorAll('input[type=checkbox]');
+      var picked = Array.prototype.filter.call(boxes, function (b) { return b.checked; }).map(function (b) { return b.value; });
+      joined.querySelector('input[name="' + joined.dataset.joins + '"]').value = picked.join(', ');
+      boxes[0].setCustomValidity(picked.length ? '' : 'Please choose at least one.');
+      var show = picked.some(function (v) { return v !== 'Email'; });
+      smsOnly.forEach(function (el) {
+        el.hidden = !show;
+        el.querySelectorAll('input, select').forEach(function (inp) { inp.disabled = !show; });
+      });
+    }
+    syncChoices();
+    form.addEventListener('change', syncChoices);
+    form.addEventListener('reset', function () { setTimeout(syncChoices); });
     form.addEventListener('submit', function (e) {
       var action = form.getAttribute('action');
       if (!action) {
@@ -191,48 +270,14 @@
         document.body.appendChild(f);
       }
       form.target = name;
-      var sent = new FormData(form);
       setTimeout(function () {
         form.reset();
-        if (form.dataset.followup) playbookFollowup(form, sent);
-        else if (done) done.hidden = false;
+        if (done) done.hidden = false;
         // A form with data-next moves on to that page once it's sent.
         if (form.dataset.next) setTimeout(function () { window.location.href = form.dataset.next; }, 1200);
       }, 400);
     });
   });
-
-  /* Playbook request (your-town.html): after the first form is sent, swap it
-     for the thank-you and the "email or phone?" question. The follow-up posts
-     to the same Brevo form, carrying the first form's answers so Brevo updates
-     that contact, and asks for a phone number only if none was given. */
-  function playbookFollowup(form, sent) {
-    var next = document.getElementById(form.dataset.followup);
-    if (!next) return;
-    var follow = next.querySelector('form');
-    var hadPhone = !!sent.get('SMS');
-    follow.querySelectorAll('input.carry').forEach(function (el) { el.remove(); });
-    ['FIRSTNAME', 'LASTNAME', 'EMAIL', 'CITY', 'ORGANIZATION'].concat(hadPhone ? ['SMS', 'SMS__COUNTRY_CODE'] : []).forEach(function (key) {
-      if (!sent.get(key)) return;
-      var el = document.createElement('input');
-      el.type = 'hidden'; el.className = 'carry'; el.name = key; el.value = sent.get(key);
-      follow.appendChild(el);
-    });
-    var phoneBox = follow.querySelector('.playbook-next__phone');
-    var phoneInputs = phoneBox.querySelectorAll('input, select');
-    follow.querySelectorAll('input[name=NOTIFY_BY]').forEach(function (radio) {
-      radio.addEventListener('change', function () {
-        var ask = radio.checked && radio.value === 'Phone' && !hadPhone;
-        phoneBox.hidden = !ask;
-        phoneInputs.forEach(function (el) { el.disabled = !ask; });
-        phoneBox.querySelector('input').required = ask;
-        if (ask) phoneBox.querySelector('input').focus();
-      });
-    });
-    form.hidden = true;
-    next.hidden = false;
-    next.querySelector('.playbook-next__thanks').focus();
-  }
 
   /* Email links ------------------------------------------------------------
      A mailto: link does nothing for people without an email app set up

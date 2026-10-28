@@ -63,7 +63,12 @@
           <h2>Your town already has everything it needs</h2>
           <p class="lead">A thrift store. A few people who sew. A hall with a long aisle. Twelve people everybody knows. That is a Fashion Lab.</p>
           <p>Fashion Lab Sedona started in 2024 with a core team of volunteers, a borrowed studio and a budget under $10,000. By 2026 it was a sold-out show with twenty designers, sponsors, vendors, a raffle, a $5,000 design award and an after party. The format pays for itself, builds a real creative community, and keeps clothes out of the landfill.</p>
-          <p>This page is the whole playbook. Use it for free. If you want us in the room, or on a call, consulting is available on site or remotely for a fee. Most towns won't need it.</p>
+          <p>This page is the whole playbook. Use it for free. If you want us in the room, or on a call, consulting is available on site or remotely for a fee.</p>
+          <div class="btn-row">
+            <a class="btn btn--sedona" href="get-started.html?support#sessions">5 Hours of Support Calls</a>
+            <a class="btn btn--ghost" href="get-started.html?support#on-site">Onsite or Custom Support</a>
+          </div>
+          <p class="muted" style="margin-top:14px;font-size:.92rem"><strong>Using the Fashion Lab name.</strong> The playbook is free to use under your own event name. To call your event "Fashion Lab [Your Town]" and use the Fashion Lab logo, sign up for <a href="get-started.html?support#sessions">Rocket Fuel ($625)</a> or <a href="get-started.html?support#on-site">Full Support ($1,500 – $5,000+)</a>; both include the name and logo.</p>
         </div>
         <img class="tall" src="assets/img/show/11185.jpg" alt="Three models in gold, silver and red on the runway" loading="lazy">
       </div>
@@ -76,7 +81,7 @@
       <div class="section-head reveal">
         <span class="eyebrow">01 · The money model</span>
         <h2>Who pays what, and why it works</h2>
-        <p class="lead">Every group that benefits from the show chips in a little. No single sponsor carries it, so no single sponsor can sink it. These are Sedona's 2026 numbers.</p>
+        <p class="lead">Nathan Quinn developed this plan in year 2 after a vision. It is a virtuous cycle: every contributor is also a benefactor. Every group that benefits from the show chips in a little. These are Sedona's 2026 numbers.</p>
       </div>
       <div class="money reveal">
         <div class="money__item"><span class="who">12 local celebrity models</span><span class="amount">$200 each</span><p>"Sensational Sedonans": well-known locals who buy a full-page program ad, walk the runway in 2–3 outfit changes and bring their whole crowd to the show.</p></div>
@@ -92,7 +97,7 @@
       <div class="callout reveal" style="margin-top:32px">
         <div>
           <h2>Where it goes</h2>
-          <p>A scholarship: $1,000 cash from the Lab plus a $4,000 course-and-mentorship package donated by the FABRIC Incubator in Tempe. A venue. Pipe and drape. Food for 48 hours. A videographer. Printing. The rest rolls into next year.</p>
+          <p>A scholarship and prizes: $1,750 cash from the Lab plus an $8,000 course-and-mentorship package donated by the FABRIC Incubator in Tempe. A venue. Pipe and drape. Food for 48 hours. A videographer. Printing. The rest rolls into next year.</p>
         </div>
         <div class="btn-row"><a class="btn btn--light" href="#budget">See the full budget</a></div>
       </div>
@@ -150,73 +155,102 @@
       <div class="section-head reveal">
         <span class="eyebrow">04 · The budget template</span>
         <h2>Sedona's real numbers, your empty column</h2>
-        <p class="lead">Rounded from our operating budget. 2025 was the first year with a city grant; 2026 ran without it and still came out ahead once the venue was paid. Type your own estimates in the last column and the totals update.</p>
+        <p class="lead">From our 2026 operating budget. 2025 had a $5,000 city grant. 2026 ran without one: tickets and the bar made up most of the gap, and the show spent $360 more than it raised, which last year's surplus covered. Type your own estimates in the Your Town column, or fill in how many × the price where a line has it, and the totals update. Cost per designer is your expenses divided by your designer count. Your numbers stay saved in this browser; Download my budget saves a copy you can open in any spreadsheet.</p>
         <div class="btn-row">
           <button class="btn btn--small" id="budget-fill" type="button">Fill with Sedona 2026</button>
           <button class="btn btn--small btn--ghost" id="budget-clear" type="button">Clear my column</button>
+          <button class="btn btn--small btn--ghost" id="budget-download" type="button">Download my budget</button>
           <a class="btn btn--small btn--ghost" href="assets/docs/fashion-lab-budget-template.xlsx" download>Download the spreadsheet</a>
         </div>
+      </div>
+      <div class="budget-summary budget-summary--top reveal" aria-hidden="true">
+        <div>Your income<strong data-sum="income">$0</strong></div>
+        <div>Your expenses<strong data-sum="expense">$0</strong></div>
+        <div>Your net<strong data-sum="net">$0</strong></div>
+        <div>Cost per designer<strong data-sum="per">–</strong></div>
+        <div>Saved by donations<strong data-sum="inkind">$0</strong></div>
+        <div>In the bank after<strong data-sum="bank">$0</strong></div>
       </div>
       <div class="table-wrap reveal">
         <table class="budget">
           <thead><tr><th>Line</th><th class="num">Sedona 2025</th><th class="num">Sedona 2026</th><th class="num">Your town</th><th>Notes</th></tr></thead>
           <tbody data-kind="income">
             <tr class="group"><td colspan="5">Income</td></tr>
-            <tr><td>Event sponsors &amp; underwriters</td><td class="num">$4,000</td><td class="num">$3,000</td><td class="num"><input type="number" min="0" data-your data-sedona="3000" aria-label="Your sponsors"></td><td class="note">Three sponsors in 2026</td></tr>
-            <tr><td>Boutique sponsors</td><td class="num">$1,750</td><td class="num">$1,500</td><td class="num"><input type="number" min="0" data-your data-sedona="1500" aria-label="Your boutiques"></td><td class="note">$1,500 per boutique; aim for three</td></tr>
-            <tr><td>Sensational Sedonans (program ads)</td><td class="num">$1,800</td><td class="num">$1,800</td><td class="num"><input type="number" min="0" data-your data-sedona="1800" aria-label="Your celebrity models"></td><td class="note">$200 × 9 paid in 2026; 12 is the target</td></tr>
-            <tr><td>Program ads</td><td class="num">$200</td><td class="num">$700</td><td class="num"><input type="number" min="0" data-your data-sedona="700" aria-label="Your program ads"></td><td class="note">$50 – $250 per ad</td></tr>
-            <tr><td>Designer registrations</td><td class="num">$1,580</td><td class="num">$1,700</td><td class="num"><input type="number" min="0" data-your data-sedona="1700" aria-label="Your designers"></td><td class="note">$100 each</td></tr>
-            <tr><td>Vendor tables</td><td class="num">$600</td><td class="num">$1,250</td><td class="num"><input type="number" min="0" data-your data-sedona="1250" aria-label="Your vendors"></td><td class="note">$200 each</td></tr>
-            <tr><td>Tickets</td><td class="num">$641</td><td class="num">$3,555</td><td class="num"><input type="number" min="0" data-your data-sedona="3555" aria-label="Your tickets"></td><td class="note">Early bird $30, VIP $100. Sell ahead.</td></tr>
-            <tr><td>Raffle</td><td class="num">$500</td><td class="num">$500</td><td class="num"><input type="number" min="0" data-your data-sedona="500" aria-label="Your raffle"></td><td class="note">10 – 12 high-end items, invite only</td></tr>
-            <tr><td>City grant</td><td class="num">$5,000</td><td class="num">$0</td><td class="num"><input type="number" min="0" data-your data-sedona="0" aria-label="Your grant"></td><td class="note">Small community grant, year one</td></tr>
-            <tr class="subtotal"><td>Total income</td><td class="num">$16,071</td><td class="num">$14,005</td><td class="num your">$0</td><td></td></tr>
+            <tr><td>Event Sponsors &amp; Underwriters</td><td class="num">$4,000</td><td class="num">$3,000</td><td class="num"><input type="number" min="0" data-your data-sedona="3000" aria-label="Your sponsors"></td><td class="note">Five sponsors in 2026, $250 – $1,000 each</td></tr>
+            <tr><td>Boutique Sponsors</td><td class="num">$1,750</td><td class="num">$1,500</td><td class="num"><input type="number" min="0" data-your data-sedona="1500" aria-label="Your boutiques"></td><td class="note"><span class="calc"><input type="number" min="0" data-qty data-sedona-qty="1" placeholder="#" aria-label="How many boutiques"> × $<input type="number" min="0" step="any" data-price value="1500" aria-label="Price per boutique"></span>One in 2026; aim for three</td></tr>
+            <tr><td>VIP Models – Sensational Sedonans + Ad in the Program</td><td class="num">$1,800</td><td class="num">$1,600</td><td class="num"><input type="number" min="0" data-your data-sedona="1600" aria-label="Your celebrity models"></td><td class="note"><span class="calc"><input type="number" min="0" data-qty data-sedona-qty="8" placeholder="#" aria-label="How many models"> × $<input type="number" min="0" step="any" data-price value="200" aria-label="Price per model"></span>Eight paid in 2026; 12 is the target</td></tr>
+            <tr><td>Program Ads</td><td class="num">$200</td><td class="num">$850</td><td class="num"><input type="number" min="0" data-your data-sedona="850" aria-label="Your program ads"></td><td class="note">Five ads in 2026, $100 – $250 each</td></tr>
+            <tr><td>Designer Registrations</td><td class="num">$1,580</td><td class="num">$1,600</td><td class="num"><input type="number" min="0" data-your data-sedona="1600" aria-label="Your designers"></td><td class="note"><span class="calc"><input type="number" min="0" data-qty data-sedona-qty="16" placeholder="#" aria-label="How many designers"> × $<input type="number" min="0" step="any" data-price value="100" aria-label="Price per designer"></span>Sixteen paid in 2026</td></tr>
+            <tr><td>Vendor Tables</td><td class="num">$600</td><td class="num">$1,250</td><td class="num"><input type="number" min="0" data-your data-sedona="1250" aria-label="Your vendors"></td><td class="note"><span class="calc"><input type="number" min="0" data-qty placeholder="#" aria-label="How many tables"> × $<input type="number" min="0" step="any" data-price value="200" aria-label="Price per table"></span>Four vendors in 2026, some took bigger spots</td></tr>
+            <tr><td>Tickets</td><td class="num">$641</td><td class="num">$5,044</td><td class="num"><input type="number" min="0" data-your data-sedona="5044" aria-label="Your tickets"></td><td class="note">Mostly online; early bird $30, VIP $100. After $100 in refunds</td></tr>
+            <tr><td>Raffle + Bar / Juice Bar / Nibbles</td><td class="num">$500</td><td class="num">$1,856</td><td class="num"><input type="number" min="0" data-your data-sedona="1856" aria-label="Your raffle and bar"></td><td class="note">Sold together; the bar is roughly a third to a half of it. Raffle tickets: 1 for $5, 3 for $10, 9 for $20, 55 for $100</td></tr>
+            <tr><td>Workshops</td><td class="num">$0</td><td class="num">$169</td><td class="num"><input type="number" min="0" data-your data-sedona="169" aria-label="Your workshops"></td><td class="note">Pop-up workshop fees</td></tr>
+            <tr><td>City Grant</td><td class="num">$5,000</td><td class="num">$0</td><td class="num"><input type="number" min="0" data-your data-sedona="0" aria-label="Your grant"></td><td class="note">Small community grant; Sedona had one in 2025 only</td></tr>
+            <tr class="subtotal"><td>Total Income</td><td class="num">$16,071</td><td class="num">$16,869</td><td class="num your">$0</td><td></td></tr>
           </tbody>
           <tbody data-kind="expense">
             <tr class="group"><td colspan="5">Expenses · 48 Hour Create-a-Thon</td></tr>
-            <tr><td>Studio / location</td><td class="num">$0</td><td class="num">$0</td><td class="num"><input type="number" min="0" data-your data-sedona="0" aria-label="Create-a-Thon location"></td><td class="note">Donated in Sedona (worth about $2,000)</td></tr>
-            <tr><td>Location cleaning</td><td class="num">$200</td><td class="num">$250</td><td class="num"><input type="number" min="0" data-your data-sedona="250" aria-label="Cleaning"></td><td></td></tr>
-            <tr><td>Food for 48 hours</td><td class="num">$441</td><td class="num">$490</td><td class="num"><input type="number" min="0" data-your data-sedona="490" aria-label="Food"></td><td class="note">Bulk snacks + two grocery runs; get pizza donated</td></tr>
-            <tr><td>Supplies (scissors, irons, thread)</td><td class="num">$157</td><td class="num">$281</td><td class="num"><input type="number" min="0" data-your data-sedona="281" aria-label="Supplies"></td><td class="note">More ironing boards than you think</td></tr>
-            <tr class="subtotal"><td>Subtotal</td><td class="num">$798</td><td class="num">$1,021</td><td class="num your">$0</td><td></td></tr>
+            <tr><td>Studio / Location</td><td class="num">$0</td><td class="num">$0</td><td class="num"><input type="number" min="0" data-your data-sedona="0" aria-label="Create-a-Thon location"></td><td class="note">Donated in Sedona (worth about $4,800)</td></tr>
+            <tr><td>Location Cleaning</td><td class="num">$200</td><td class="num">$250</td><td class="num"><input type="number" min="0" data-your data-sedona="250" aria-label="Cleaning"></td><td></td></tr>
+            <tr><td>Food for 48 Hours</td><td class="num">$441</td><td class="num">$589</td><td class="num"><input type="number" min="0" data-your data-sedona="589" aria-label="Food"></td><td class="note">Bulk snacks, two grocery runs and juice; get pizza donated</td></tr>
+            <tr><td>Supplies (Scissors, Irons, Thread)</td><td class="num">$157</td><td class="num">$281</td><td class="num"><input type="number" min="0" data-your data-sedona="281" aria-label="Supplies"></td><td class="note">More ironing boards than you think</td></tr>
+            <tr class="subtotal"><td>Subtotal</td><td class="num">$798</td><td class="num">$1,120</td><td class="num your">$0</td><td></td></tr>
           </tbody>
           <tbody data-kind="expense">
             <tr class="group"><td colspan="5">Expenses · Fashion Show</td></tr>
-            <tr><td>Venue rental</td><td class="num">$1,275</td><td class="num">$2,500</td><td class="num"><input type="number" min="0" data-your data-sedona="2500" aria-label="Venue"></td><td class="note">Hall + lobby + classroom, load-in to load-out</td></tr>
-            <tr><td>Event insurance</td><td class="num">$263</td><td class="num">$263</td><td class="num"><input type="number" min="0" data-your data-sedona="263" aria-label="Insurance"></td><td></td></tr>
-            <tr><td>Pipe and drape, runway</td><td class="num">$1,564</td><td class="num">$1,387</td><td class="num"><input type="number" min="0" data-your data-sedona="1387" aria-label="Pipe and drape"></td><td class="note">Local tent and event rental company</td></tr>
-            <tr><td>Lighting</td><td class="num">$0</td><td class="num">$300</td><td class="num"><input type="number" min="0" data-your data-sedona="300" aria-label="Lighting"></td><td class="note">Rent more light than you think; photographers will thank you</td></tr>
-            <tr><td>Video</td><td class="num">$1,500</td><td class="num">$2,040</td><td class="num"><input type="number" min="0" data-your data-sedona="2040" aria-label="Video"></td><td class="note">Show filming + reels</td></tr>
-            <tr><td>Photography</td><td class="num">$250</td><td class="num">$250</td><td class="num"><input type="number" min="0" data-your data-sedona="250" aria-label="Photography"></td><td class="note">Often partly donated</td></tr>
-            <tr><td>Director / producer</td><td class="num">$200</td><td class="num">$500</td><td class="num"><input type="number" min="0" data-your data-sedona="500" aria-label="Director"></td><td></td></tr>
-            <tr><td>VIP reception (food, champagne, wine)</td><td class="num">$674</td><td class="num">$543</td><td class="num"><input type="number" min="0" data-your data-sedona="543" aria-label="VIP reception"></td><td class="note">20 VIPs</td></tr>
-            <tr><td>Trophy, raffle tickets, linens, signs</td><td class="num">$210</td><td class="num">$366</td><td class="num"><input type="number" min="0" data-your data-sedona="366" aria-label="Small items"></td><td></td></tr>
-            <tr><td>Jumbotron / screen</td><td class="num">$0</td><td class="num">$500</td><td class="num"><input type="number" min="0" data-your data-sedona="500" aria-label="Screen"></td><td class="note">Optional</td></tr>
-            <tr><td>Parking / shuttle</td><td class="num">$0</td><td class="num">$1,400</td><td class="num"><input type="number" min="0" data-your data-sedona="1400" aria-label="Parking"></td><td class="note">Only if your venue needs it</td></tr>
-            <tr><td>Sales commissions</td><td class="num">$965</td><td class="num">$0</td><td class="num"><input type="number" min="0" data-your data-sedona="0" aria-label="Commissions"></td><td class="note">If someone sells sponsorships for you</td></tr>
-            <tr class="subtotal"><td>Subtotal</td><td class="num">$6,901</td><td class="num">$10,049</td><td class="num your">$0</td><td></td></tr>
+            <tr><td>Venue Rental</td><td class="num">$1,275</td><td class="num">$2,500</td><td class="num"><input type="number" min="0" data-your data-sedona="2500" aria-label="Venue"></td><td class="note">Hall + lobby + classroom, load-in to load-out</td></tr>
+            <tr><td>Event Insurance</td><td class="num">$263</td><td class="num">$263</td><td class="num"><input type="number" min="0" data-your data-sedona="263" aria-label="Insurance"></td><td></td></tr>
+            <tr><td>Pipe and Drape, Runway</td><td class="num">$1,564</td><td class="num">$1,387</td><td class="num"><input type="number" min="0" data-your data-sedona="1387" aria-label="Pipe and drape"></td><td class="note">Local tent and event rental company</td></tr>
+            <tr><td>Lighting</td><td class="num">$0</td><td class="num">$375</td><td class="num"><input type="number" min="0" data-your data-sedona="375" aria-label="Lighting"></td><td class="note">A lighting tech for the night; rent more light than you think</td></tr>
+            <tr><td>Video</td><td class="num">$1,500</td><td class="num">$1,750</td><td class="num"><input type="number" min="0" data-your data-sedona="1750" aria-label="Video"></td><td class="note">Show filming + reels</td></tr>
+            <tr><td>Photography</td><td class="num">$250</td><td class="num">$500</td><td class="num"><input type="number" min="0" data-your data-sedona="500" aria-label="Photography"></td><td class="note">Two photographers, who also donated $1,000 of work</td></tr>
+            <tr><td>Director / Producer</td><td class="num">$200</td><td class="num">$500</td><td class="num"><input type="number" min="0" data-your data-sedona="500" aria-label="Director"></td><td class="note">Plus about $4,000 of donated time</td></tr>
+            <tr><td>VIP Reception &amp; Bar (Food, Champagne, Wine, Beer, Juice)</td><td class="num">$674</td><td class="num">$875</td><td class="num"><input type="number" min="0" data-your data-sedona="875" aria-label="VIP reception"></td><td class="note">20 VIPs</td></tr>
+            <tr><td>Trophy, Raffle Tickets, Linens, Signs, Flowers, Trash</td><td class="num">$210</td><td class="num">$978</td><td class="num"><input type="number" min="0" data-your data-sedona="978" aria-label="Small items"></td><td class="note">Small items add up</td></tr>
+            <tr><td>Jumbotron / Screen</td><td class="num">$0</td><td class="num">$0</td><td class="num"><input type="number" min="0" data-your data-sedona="0" aria-label="Screen"></td><td class="note">Optional; skipped in 2026</td></tr>
+            <tr><td>Parking / Shuttle</td><td class="num">$0</td><td class="num">$2,340</td><td class="num"><input type="number" min="0" data-your data-sedona="2340" aria-label="Parking"></td><td class="note">Parking plus two shuttles. Only if your venue needs it</td></tr>
+            <tr><td>Student Helpers</td><td class="num">$0</td><td class="num">$230</td><td class="num"><input type="number" min="0" data-your data-sedona="230" aria-label="Student helpers"></td><td class="note">Local students helping backstage</td></tr>
+            <tr><td>Sales Commissions</td><td class="num">$965</td><td class="num">$545</td><td class="num"><input type="number" min="0" data-your data-sedona="545" aria-label="Commissions"></td><td class="note">If someone sells sponsorships for you</td></tr>
+            <tr class="subtotal"><td>Subtotal</td><td class="num">$6,901</td><td class="num">$12,243</td><td class="num your">$0</td><td></td></tr>
           </tbody>
           <tbody data-kind="expense">
-            <tr class="group"><td colspan="5">Expenses · Award, publicity, online, pop-ups</td></tr>
-            <tr><td>Cash scholarship</td><td class="num">$1,000</td><td class="num">$1,000</td><td class="num"><input type="number" min="0" data-your data-sedona="1000" aria-label="Scholarship"></td><td class="note">+ $4,000 in courses donated by FABRIC</td></tr>
-            <tr><td>Printing (cards, flyers, posters, tickets, program)</td><td class="num">$786</td><td class="num">$1,420</td><td class="num"><input type="number" min="0" data-your data-sedona="1420" aria-label="Printing"></td><td class="note">The printed program is the big one</td></tr>
-            <tr><td>Website hosting &amp; social scheduling</td><td class="num">$366</td><td class="num">$296</td><td class="num"><input type="number" min="0" data-your data-sedona="296" aria-label="Online"></td><td></td></tr>
-            <tr><td>Pop-up events</td><td class="num">$500</td><td class="num">$0</td><td class="num"><input type="number" min="0" data-your data-sedona="0" aria-label="Pop-ups"></td><td class="note">Hosts and teachers usually volunteer</td></tr>
-            <tr class="subtotal"><td>Subtotal</td><td class="num">$2,652</td><td class="num">$2,716</td><td class="num your">$0</td><td></td></tr>
+            <tr class="group"><td colspan="5">Expenses · Award, Publicity, Online, Pop-Ups</td></tr>
+            <tr><td>Cash Scholarship &amp; Prizes</td><td class="num">$1,000</td><td class="num">$1,750</td><td class="num"><input type="number" min="0" data-your data-sedona="1750" aria-label="Scholarship"></td><td class="note">+ $8,000 in courses donated by FABRIC</td></tr>
+            <tr><td>Printing (Cards, Flyers, Posters, Tickets, Program)</td><td class="num">$786</td><td class="num">$1,420</td><td class="num"><input type="number" min="0" data-your data-sedona="1420" aria-label="Printing"></td><td class="note">The printed program is the big one</td></tr>
+            <tr><td>Website Hosting &amp; Social Scheduling</td><td class="num">$366</td><td class="num">$296</td><td class="num"><input type="number" min="0" data-your data-sedona="296" aria-label="Online"></td><td></td></tr>
+            <tr><td>Pop-Up Events</td><td class="num">$500</td><td class="num">$400</td><td class="num"><input type="number" min="0" data-your data-sedona="400" aria-label="Pop-ups"></td><td class="note">Workshop teachers</td></tr>
+            <tr class="subtotal"><td>Subtotal</td><td class="num">$2,652</td><td class="num">$3,866</td><td class="num your">$0</td><td></td></tr>
           </tbody>
           <tbody>
-            <tr class="total"><td>Total expenses</td><td class="num">$10,351</td><td class="num">$13,786</td><td class="num" id="sum-expense-cell"></td><td></td></tr>
-            <tr class="total"><td>Net</td><td class="num">$5,720</td><td class="num">$219</td><td class="num" id="sum-net-cell"></td><td class="note" style="color:#ccc">Sedona rolled 2025's surplus into 2026</td></tr>
+            <tr class="total"><td>Total Expenses</td><td class="num">$10,351</td><td class="num">$17,229</td><td class="num" id="sum-expense-cell"></td><td></td></tr>
+            <tr class="total"><td>Net</td><td class="num">$5,720</td><td class="num">-$360</td><td class="num" id="sum-net-cell"></td><td class="note" style="color:#ccc">Income minus expenses for the year</td></tr>
+          </tbody>
+          <tbody data-kind="surplus">
+            <tr><td>Surplus From Prior Year</td><td class="num">–</td><td class="num">$5,083</td><td class="num"><input type="number" min="0" data-your data-sedona="5083" aria-label="Your surplus from last year"></td><td class="note">What was left in the bank from last year</td></tr>
+            <tr class="total"><td>In the Bank After</td><td class="num">–</td><td class="num">$4,723</td><td class="num" id="sum-bank-cell"></td><td class="note" style="color:#ccc">Prior surplus + net. Sedona carried $4,723 into 2027</td></tr>
+          </tbody>
+          <tbody data-kind="inkind">
+            <tr class="group"><td colspan="5">Donated (In-Kind) · Not in the Cash Totals</td></tr>
+            <tr><td>Create-a-Thon Studio</td><td class="num">–</td><td class="num">$4,800</td><td class="num"><input type="number" min="0" data-your data-sedona="4800" aria-label="Donated studio"></td><td class="note">Weekend studio space</td></tr>
+            <tr><td>Scholarship Courses &amp; Mentorship</td><td class="num">–</td><td class="num">$8,000</td><td class="num"><input type="number" min="0" data-your data-sedona="8000" aria-label="Donated scholarship"></td><td class="note">Donated by the FABRIC Incubator</td></tr>
+            <tr><td>Raffle Prizes</td><td class="num">–</td><td class="num">$6,941</td><td class="num"><input type="number" min="0" data-your data-sedona="6941" aria-label="Donated raffle prizes"></td><td class="note">High-end items from local businesses</td></tr>
+            <tr><td>Director / Producer Time</td><td class="num">–</td><td class="num">$4,000</td><td class="num"><input type="number" min="0" data-your data-sedona="4000" aria-label="Donated director time"></td><td></td></tr>
+            <tr><td>Photography</td><td class="num">–</td><td class="num">$1,000</td><td class="num"><input type="number" min="0" data-your data-sedona="1000" aria-label="Donated photography"></td><td class="note">Two photographers</td></tr>
+            <tr><td>Stage Manager</td><td class="num">–</td><td class="num">$700</td><td class="num"><input type="number" min="0" data-your data-sedona="700" aria-label="Donated stage manager"></td><td></td></tr>
+            <tr><td>Supplies</td><td class="num">–</td><td class="num">$100</td><td class="num"><input type="number" min="0" data-your data-sedona="100" aria-label="Donated supplies"></td><td></td></tr>
+            <tr class="subtotal"><td>Saved by Donations</td><td class="num">–</td><td class="num">$25,541</td><td class="num your">$0</td><td class="note">What you didn't have to pay for</td></tr>
           </tbody>
         </table>
       </div>
       <div class="budget-summary reveal">
-        <div>Your income<strong id="sum-income">$0</strong></div>
-        <div>Your expenses<strong id="sum-expense">$0</strong></div>
-        <div>Your net<strong id="sum-net">$0</strong></div>
+        <div>Your income<strong data-sum="income">$0</strong></div>
+        <div>Your expenses<strong data-sum="expense">$0</strong></div>
+        <div>Your net<strong data-sum="net">$0</strong></div>
+        <div>Cost per designer<strong data-sum="per">–</strong></div>
+        <div>Saved by donations<strong data-sum="inkind">$0</strong></div>
+        <div>In the bank after<strong data-sum="bank">$0</strong></div>
       </div>
-      <p class="muted" style="margin-top:16px;font-size:.9rem">In-kind, not in the table: the Create-a-Thon studio (about $2,000), the FABRIC scholarship ($4,000), pizza, raffle items, photography. Count them in your sponsor thank-yous, not in your cash budget.</p>
+      <p class="muted" style="margin-top:16px;font-size:.9rem">Donations are not in the cash totals. List them anyway: they show sponsors, the city and grant makers what the show is really worth.</p>
     </div>
   </section>
 
@@ -305,6 +339,18 @@
         <div class="card"><div class="card__body"><span class="card__meta">Do differently · the show</span><ol><li>Write the show structure down ahead of time with the key people. One host for the whole night, an MC for the runway segment.</li><li>Rehearse the day before, not only the morning of.</li><li>A floor host to guide VIPs and general ticket holders in separately.</li><li>More light on the runway. Photographers struggled with pools of light.</li><li>Stronger backstage communication; a runner between the dressing room and the floor.</li><li>Separate dressing rooms.</li></ol></div></div>
         <div class="card"><div class="card__body"><span class="card__meta">Do differently · Create-a-Thon</span><ol><li>Outfits for the competition must be made inside the 48 hours.</li><li>Descriptions turned in on Sunday, the last day.</li><li>A quiet room for the video interviews.</li><li>Tell designers what to bring: scissors, tape measure, pins, chalk, seam ripper, paper and pencil, their own machine if they have one. Before-and-after photos of every piece.</li><li>More ironing boards.</li><li>One person in charge of volunteers, with a pre-meeting a few days ahead and lanyards on the night.</li></ol></div></div>
       </div>
+
+      <div class="section-head reveal" style="margin-top:56px">
+        <span class="eyebrow">2026 debrief</span>
+        <h3>The audience wants to see the work</h3>
+        <p>From Mary Dancer Browne's 2026 debrief. The Create-a-Thon felt magical; the biggest lesson from the show was giving the designers' creations the time and attention they deserve.</p>
+      </div>
+      <div class="lessons reveal">
+        <div class="card"><div class="card__body"><span class="card__meta">Create-a-Thon</span><ol><li>Eat lunch together. It built the community more than anything else.</li><li>Set a real lunch break, so designers don't feel torn between eating, talking and sewing.</li><li>Favorites: a big pot of vegetable soup, pizza and sandwiches, brownies, barbecue chips, popcorn. Add fresh fruit; buy less of everything else.</li><li>Keep a shared volunteer list, and name one volunteer coordinator.</li><li>Keep the same venue year to year. It becomes the event's home.</li><li>Text designers early and one to one for anything important. Group threads get muted.</li></ol></div></div>
+        <div class="card"><div class="card__body"><span class="card__meta">The runway</span><ol><li>Rehearse the day before the show. It doesn't have to be at the venue.</li><li>Hold the "how to model" workshops at easy times, never during the Create-a-Thon.</li><li>Give the judged designer looks at least as much runway time as sponsor looks.</li><li>Walk slower, with pauses and pivots, and pick music that doesn't make models rush.</li><li>Use the whole runway, including the cross aisle, so every seat sees the outfits.</li><li>Share the story behind each design.</li></ol></div></div>
+        <div class="card"><div class="card__body"><span class="card__meta">The room</span><ol><li>Protect the runway camera: a sign and a volunteer beside it.</li><li>Nobody crosses the runway. Mark a walking route behind the audience and the camera.</li><li>More greeters: welcome guests, walk VIPs to the lounge, point to restrooms, explain the layout.</li><li>Give volunteers a short run-of-show briefing: timing, who runs what, seating, runway rules, camera spots, intermission, emergencies.</li></ol></div></div>
+        <div class="card"><div class="card__body"><span class="card__meta">Guests and designers</span><ol><li>Use intermission to let guests meet designers and see the garments up close. Plan a moment for the second half too.</li><li>Simplify the raffle: a silent auction, winners drawn during intermission and posted in the lobby.</li><li>Let designers' models use hair and makeup artists who are free. Cosmetology students were a great addition.</li><li>Open the step-and-repeat to every guest.</li><li>Tell the audience how to join next year: signs, announcements, the website and the mailing list.</li><li>Record short testimonials right after the show, while the energy is high, with permission.</li></ol></div></div>
+      </div>
     </div>
   </section>
 
@@ -318,11 +364,11 @@
           <p class="lead">Everything on this page is free to copy. You can run a Fashion Lab in your town without ever talking to us.</p>
           <p>If you'd rather have someone who has done it three times in the room, we offer consulting for a fee: on site for your Create-a-Thon weekend and show, or remotely by video call through your season. It includes the editable Canva files, the SignNow contract templates, the budget spreadsheet with formulas and a monthly check-in with the core team.</p>
           <ul class="pill-list" style="margin-bottom:24px">
-            <li>Remote: monthly calls through your season</li><li>On site: Create-a-Thon weekend + show week</li><li>Editable Canva &amp; SignNow files</li><li>Pricing on request</li>
+            <li>Remote: monthly calls through your season</li><li>On site: Create-a-Thon weekend + show week</li><li>Editable Canva &amp; SignNow files</li><li>Rocket Fuel: 5 calls, $625</li><li>Full Support: $1,500 – $5,000+</li>
           </ul>
           <div class="btn-row">
-            <a class="btn btn--sedona" href="get-started.html">Ask about consulting</a>
-            <a class="btn btn--ghost" href="get-started.html">Just tell us you're doing it</a>
+            <a class="btn btn--sedona" href="get-started.html?support">Ask about consulting</a>
+            <a class="btn btn--ghost" href="your-town.html#get">Just tell us you're doing it</a>
           </div>
         </div>
         <img class="tall" src="assets/img/lab/0417.jpg" alt="Zenka and the team interviewing designers during the Create-a-Thon" loading="lazy">
@@ -358,6 +404,7 @@
           <li><a href="index.html#create-a-thon">48 Hour Create-a-Thon</a></li>
           <li><a href="index.html#team">Core team</a></li>
           <li><a href="index.html#sponsors">Sponsors</a></li>
+          <li><a href="shop.html">Shop clothes</a></li>
         </ul>
       </div>
       <div>
@@ -370,12 +417,23 @@
         </ul>
       </div>
     </div>
+    <div class="footer-follow">
+      <a class="follow-ig" href="https://www.instagram.com/fashionlabsedona" target="_blank" rel="noopener">
+        <span class="follow-ig__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor"/></svg></span>
+        <span class="follow-ig__text"><small>Follow the runway on Instagram</small><strong>@fashionlabsedona</strong><em>Looks, backstage and behind the scenes &rarr;</em></span>
+      </a>
+      <div class="follow-more">
+        <p>Join us everywhere</p>
+        <a class="follow-chip follow-chip--fb" href="https://www.facebook.com/groups/fashionlabsedona" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21.5v-8h2.7l.4-3.2h-3.1V8.3c0-.9.3-1.5 1.6-1.5h1.7V4c-.3 0-1.3-.1-2.5-.1-2.4 0-4.1 1.5-4.1 4.2v2.3H7.5v3.2h2.7v8z"/></svg><span>Facebook group</span></a>
+        <a class="follow-chip follow-chip--yt" href="https://www.youtube.com/@Fashionlabsedona" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M22.5 7.2a2.8 2.8 0 0 0-2-2C18.7 4.7 12 4.7 12 4.7s-6.7 0-8.5.5a2.8 2.8 0 0 0-2 2C1 9 1 12 1 12s0 3 .5 4.8a2.8 2.8 0 0 0 2 2c1.8.5 8.5.5 8.5.5s6.7 0 8.5-.5a2.8 2.8 0 0 0 2-2C23 15 23 12 23 12s0-3-.5-4.8zM9.8 15.3V8.7l5.7 3.3z"/></svg><span>YouTube channel</span></a>
+      </div>
+    </div>
     <div class="footer-dream">
       <div class="dm">
         <span class="inf">∞</span>
         <div><strong>A Dream Machine project</strong><span>Bringing communities together in joy.</span></div>
       </div>
-      <small>© 2026 Fashion Lab Sedona · Photos by Karl Mullings, KMF Designs Photography</small>
+      <small>© 2026 Fashion Lab Sedona · Photos by <a href="https://kfmdesigns.com" target="_blank" rel="noopener">Karl Mullings, KMF Designs Photography</a> and <a href="https://leahjoylove.com/" target="_blank" rel="noopener">Leah Joy Love Photography</a></small>
     </div>
   </div>
 </footer>
