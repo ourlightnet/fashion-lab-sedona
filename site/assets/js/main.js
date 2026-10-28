@@ -348,27 +348,52 @@
     openMail(a.getAttribute('href'));
   });
 
-  // Masonry grids: size each tile's row span to its photo so nothing is cropped
-  var masonry = document.querySelectorAll('.grid--masonry');
-  if (masonry.length) {
-    var layout = function () {
-      masonry.forEach(function (g) {
-        var row = parseFloat(getComputedStyle(g).gridAutoRows) || 4;
-        g.querySelectorAll('a').forEach(function (a) {
+  // Justified grids: rows of whole photos that fill the width exactly. Featured
+  // photos (.feature) are grouped into their own rows with a taller target height.
+  var justified = document.querySelectorAll('.grid--justified');
+  if (justified.length) {
+    var justify = function () {
+      justified.forEach(function (g) {
+        var W = g.clientWidth;
+        var gap = parseFloat(getComputedStyle(g).columnGap) || 0;
+        var items = Array.prototype.map.call(g.querySelectorAll('a'), function (a) {
           var img = a.querySelector('img');
-          if (!img || !img.naturalWidth) return;
-          var h = a.clientWidth * img.naturalHeight / img.naturalWidth + 10;
-          a.style.gridRowEnd = 'span ' + Math.ceil(h / row);
+          var w = img.naturalWidth || +img.getAttribute('width'), h = img.naturalHeight || +img.getAttribute('height');
+          return { a: a, ar: w / h, f: a.classList.contains('feature') };
         });
+        var size = function (row) {
+          var sum = row.reduce(function (s, it) { return s + it.ar; }, 0);
+          var h = (W - 0.5 - gap * (row.length - 1)) / sum, used = 0;
+          row.forEach(function (it, i) {
+            var w = i === row.length - 1 ? W - 0.5 - gap * (row.length - 1) - used : Math.floor(h * it.ar);
+            used += w;
+            it.a.style.width = w + 'px';
+            it.a.style.height = Math.round(h) + 'px';
+          });
+        };
+        var sum = function (row) { return row.reduce(function (s, r) { return s + r.ar; }, 0); };
+        var rows = [], row = [], start = 0;
+        items.forEach(function (it, i) {
+          row.push(it);
+          var next = items[i + 1];
+          var target = it.f ? Math.max(W * 0.4, 230) : Math.max(W * 0.3, 140);
+          var h = (W - gap * (row.length - 1)) / sum(row);
+          if (h <= target || !next || next.f !== it.f) {
+            // A short last row in a group gets too tall: rebalance it with the row before
+            if (h > target * 1.6 && rows.length > start) {
+              var pool = rows.pop().concat(row), half = Math.ceil(pool.length / 2);
+              rows.push(pool.slice(0, half));
+              row = pool.slice(half);
+            }
+            rows.push(row);
+            row = [];
+            if (!next || next.f !== it.f) start = rows.length;
+          }
+        });
+        rows.forEach(size);
       });
     };
-    masonry.forEach(function (g) {
-      g.querySelectorAll('img').forEach(function (img) {
-        img.loading = 'eager';
-        if (!img.complete) img.addEventListener('load', layout);
-      });
-    });
-    layout();
-    window.addEventListener('resize', layout);
+    justify();
+    window.addEventListener('resize', justify);
   }
 })();
