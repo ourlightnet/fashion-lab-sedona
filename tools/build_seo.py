@@ -44,6 +44,7 @@ PAGES = [
     ('shop.html', 'shop', 'show/11185.jpg', 'The Closet Concierge, FABRIC and our raffle donors', 'Shop Our Sponsors', (.5, .25)),
     ('sedonans.html', 'sedonans', 'show/10883.jpg', 'Local celebrity models', 'Sensational Sedonans 2026', (.5, .25)),
     ('sedona-dance-academy.html', 'sedona-dance-academy', '2026/sedona-dance-academy/03.jpg', 'Event Collaboration', 'Sedona Dance Academy', (.5, .3)),
+    ('show-2027.html', 'show-2027', 'show/11201.jpg', 'Design, model, volunteer, donate', 'Be part of the 2027 Show', (.5, .5)),
     ('get-involved.html', 'get-involved', 'lab/0164.jpg', 'Design, model, volunteer, give', 'Get Involved', (.5, .5)),
     ('designer-waitlist.html', 'designer-waitlist', 'lab/0603.jpg', 'Designer waitlist', 'Design for Fashion Lab 2027', (.5, .3)),
     ('model-waitlist.html', 'model-waitlist', 'show/10965.jpg', 'Model waitlist', 'Walk the runway in 2027', (.5, .3)),
