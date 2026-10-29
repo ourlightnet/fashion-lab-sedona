@@ -10,6 +10,7 @@ Static site, no build step. Open `index.html` in a browser or host the `site/` f
 - `playbook.html` (short link `/playbook`, via `playbook/`) — the full playbook (money model, roles, timeline, budget, print pack, contracts, consulting). Hidden: shared only by direct link with people who sign up; not in menus, footer or sitemap, and `noindex`. Budget spreadsheet in `assets/docs/`.
 - `designer-waitlist.html`, `model-waitlist.html` — 2027 waitlist sign-up pages (first name, last name, email, phone), with photos below. The home page, Get Involved, designers page and footers link here.
 - `get-involved.html` — five ways to help (donate materials, volunteer, design for 2027, give, run a Fashion Lab in your town), the 2027 designer and model waitlists (`#designer-waitlist`, `#model-waitlist`), nominations and the updates form. The menu's "Get Involved" item points here.
+- `show-2027.html` — 2027 Show (The Show menu): four ways to take part in 2027 in this order: design (links to `designer-waitlist.html`), model (links to `model-waitlist.html`), volunteer (sign-up form on the page, emailed to info@ through FormSubmit, no Brevo list yet) and donate (ways to give, linking to `get-involved.html#give`).
 - `popups.html` — past pop-ups and workshops.
 - `2025.html`, `2024.html` — prior years' photos (Prior Years menu).
 - `videos.html` — the YouTube videos.
