@@ -262,6 +262,15 @@
         var code = cc ? cc.value.replace(/\D/g, '') : '';
         if (code && digits.indexOf(code) === 0 && digits.length > 10) digits = digits.slice(code.length);
         phone.value = digits;
+        // Brevo silently drops the whole sign-up when the phone is already on
+        // another contact or it doesn't accept the number. So the sign-up is
+        // also sent once without the phone: the person always lands on the
+        // list, and the full post below adds the phone when Brevo takes it.
+        if (digits) {
+          var data = new URLSearchParams(new FormData(form));
+          data.delete('SMS'); data.delete('SMS__COUNTRY_CODE');
+          fetch(action, { method: 'POST', mode: 'no-cors', body: data }).catch(function () {});
+        }
       }
       var name = 'signup-frame-' + i;
       if (!document.querySelector('iframe[name="' + name + '"]')) {
