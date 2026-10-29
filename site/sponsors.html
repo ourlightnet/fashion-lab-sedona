@@ -198,14 +198,41 @@
       <div class="section-head reveal">
         <span class="eyebrow">Fashion Lab Sedona Mailing List</span>
         <h2>Hear about events first</h2>
-        <p class="lead">Shows, pop-ups, workshops and sponsor news, in your inbox. We respect your privacy.</p>
+        <p class="lead">Shows, pop-ups, workshops and sponsor news, by text, WhatsApp or email. We respect your privacy.</p>
       </div>
       <div class="reveal" style="max-width:560px">
-          <form class="signup newsletter" action="https://ebebc29d.sibforms.com/serve/MUIFAMauUWCwFYZ7oiuDMuHwE6GqFkKjParSZ7SgDOhlL2SCaJtOaU58cROKdaxl7YqSwGuztvHcBZk3hwBuK82KUVM7NHIP7FhWtebbPtBIWEl3ZP8Wsqp3bmzMsGBQiLxsfHKPonrnr9auI-0i1CDCuf-hUOcQyu02P9nQOHmqcDbphGal94FDwvw-F1RPbb6nBE-AHuzVThpt" method="post" data-fallback-subject="Fashion Lab Sedona Mailing List" aria-label="Fashion Lab Sedona Mailing List">
-            <input type="email" name="EMAIL" placeholder="Email address" autocomplete="email" aria-label="Email address" required>
+          <form class="signup signup--stack" action="https://ebebc29d.sibforms.com/serve/MUIFAMauUWCwFYZ7oiuDMuHwE6GqFkKjParSZ7SgDOhlL2SCaJtOaU58cROKdaxl7YqSwGuztvHcBZk3hwBuK82KUVM7NHIP7FhWtebbPtBIWEl3ZP8Wsqp3bmzMsGBQiLxsfHKPonrnr9auI-0i1CDCuf-hUOcQyu02P9nQOHmqcDbphGal94FDwvw-F1RPbb6nBE-AHuzVThpt" method="post" data-fallback-subject="Fashion Lab Sedona Mailing List" aria-label="Fashion Lab Sedona Mailing List">
+            <label>Email<input type="email" name="EMAIL" autocomplete="email" required></label>
+            <fieldset class="signup__choice" data-joins="CONTACT_METHOD_PREFERENCE">
+              <legend>How should we reach you? <span class="signup__hint">Pick any.</span></legend>
+              <label><input type="checkbox" value="SMS Phone Text"> SMS Phone Text</label>
+              <label><input type="checkbox" value="WhatsApp"> WhatsApp</label>
+              <label><input type="checkbox" value="Email"> Email</label>
+              <input type="hidden" name="CONTACT_METHOD_PREFERENCE" value="">
+            </fieldset>
+            <div class="signup__field sms-only" hidden>
+              <label for="sponsors-phone">Phone</label>
+              <div class="signup__phone">
+                <select name="SMS__COUNTRY_CODE" aria-label="Country code">
+                  <option value="+1" selected>+1 US/CA</option>
+                  <option value="+52">+52 MX</option>
+                  <option value="+44">+44 UK</option>
+                  <option value="+61">+61 AU</option>
+                  <option value="+64">+64 NZ</option>
+                  <option value="+49">+49 DE</option>
+                  <option value="+33">+33 FR</option>
+                  <option value="+34">+34 ES</option>
+                  <option value="+39">+39 IT</option>
+                  <option value="+31">+31 NL</option>
+                  <option value="+91">+91 IN</option>
+                </select>
+                <input id="sponsors-phone" type="tel" name="SMS" autocomplete="tel-national" inputmode="tel" placeholder="928 555 0123" required>
+              </div>
+            </div>
+            <label class="signup__consent sms-only" hidden><input type="checkbox" name="SMS_CONSENT" value="Yes" required> Yes, Fashion Lab Sedona may text or WhatsApp me with updates. Message and data rates may apply. Reply STOP to opt out.</label>
             <input class="signup__trap" type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off" aria-hidden="true">
             <input type="hidden" name="locale" value="en">
-            <button class="btn btn--sedona" type="submit">Sign up</button>
+            <button class="btn btn--sedona" type="submit">Sign me up</button>
             <p class="signup__done" role="status" hidden>Thank you! You're on the list.</p>
           </form>
       </div>
